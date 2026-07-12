@@ -53,10 +53,10 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="wrap">
-    <div class="dip">
+<!-- HERO — scrub (o scroll dirige o fluxo do projeto) -->
+<section class="scrub cons" id="topo" data-stages="Diagnóstico,Saneamento,Migração,Handoff">
+  <div class="scrub-sticky">
+    <div class="wrap scrub-grid">
       <div class="dip-text">
         <span class="eyebrow blue rise">// Consultoria · FS-CD → S/4HANA</span>
         <h1 class="rise d1">A migração S/4HANA não trava no código. Trava no dado.</h1>
@@ -66,24 +66,19 @@
           <a class="btn btn-outline" href="#diagnostico">Ver o diagnóstico →</a>
         </div>
       </div>
-      <div class="dip-proof rise d2">
-        <div class="proof">
-          <div class="proof-head"><span>// engajamento</span><span>Direto · via bodyshop</span></div>
-          <div class="axis cons">
-            <div class="axis-k">Porta de entrada</div>
-            <div class="axis-v">Diagnóstico de Prontidão de Dados</div>
-            <div class="axis-d">2–3 semanas · escopo fechado · relatório de riscos + plano priorizado</div>
-          </div>
-          <div class="axis cons">
-            <div class="axis-k">Continuação</div>
-            <div class="axis-v">Saneamento & migração completos</div>
-            <div class="axis-d">Execução com idempotência, BAL/SLG0 e handoff documentado</div>
-          </div>
+      <div class="scrub-visual" aria-hidden="true">
+        <div class="pipe"><div class="pipe-fill" data-pipe></div></div>
+        <div class="nodes">
+          <span class="node" style="left:0%" data-at="0"></span>
+          <span class="node" style="left:33.3%" data-at="0.33"></span>
+          <span class="node" style="left:66.6%" data-at="0.66"></span>
+          <span class="node" style="left:100%" data-at="1"></span>
         </div>
+        <div class="scrub-label"><span data-scrub-label>Diagnóstico</span><span class="sub">role a página — o projeto avança com você</span></div>
       </div>
     </div>
   </div>
-</header>
+</section>
 
 <!-- DIAGNÓSTICO (porta de entrada) -->
 <section id="diagnostico">

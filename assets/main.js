@@ -45,7 +45,10 @@
   var pipe = document.querySelector("[data-pipe]");
   var label = document.querySelector("[data-scrub-label]");
   var nodes = document.querySelectorAll(".scrub .node");
-  var STAGES = ["Detecta", "Tenta de novo", "Avisa", "Confere"];
+  /* etapas vêm do markup (data-stages="A,B,C,D"); fallback = fluxo PME */
+  var STAGES = (scrub && scrub.getAttribute("data-stages"))
+    ? scrub.getAttribute("data-stages").split(",").map(function (s) { return s.trim(); })
+    : ["Detecta", "Tenta de novo", "Avisa", "Confere"];
   if (scrub && pipe && label) {
     if (reduce) {
       /* reduced-motion: estado final estático */

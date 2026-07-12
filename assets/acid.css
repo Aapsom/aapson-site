@@ -11,7 +11,7 @@
   --bg:#0B0B0F; --bg2:#08080B; --surface:#121218; --surface2:#16161E;
   --pink:#FE2266; --lime:#B2F120; --blue:#484AF0; --off:#F4F3EF;
   --pink-active:#e51a59;
-  --lime-glow:rgba(178,241,32,.6); --pink-glow:rgba(254,34,102,.4);
+  --lime-glow:rgba(178,241,32,.6); --pink-glow:rgba(254,34,102,.4); --blue-glow:rgba(72,74,240,.55);
   --lime-tint:rgba(178,241,32,.12); --blue-tint:rgba(72,74,240,.16); --pink-tint:rgba(254,34,102,.13);
   --ink:#0B0B0F;
   --muted:rgba(244,243,239,.72); --faint:rgba(244,243,239,.48);
@@ -315,6 +315,9 @@ html.lenis{scroll-behavior:auto!important;}
 .nodes{position:relative;width:min(100%,440px);height:0;margin-top:-22px;}
 .node{position:absolute;top:-7px;width:14px;height:14px;border-radius:999px;background:var(--surface);border:2px solid var(--line2);transform:translateX(-50%);transition:background .2s,border-color .2s,box-shadow .2s;}
 .node.on{background:var(--lime);border-color:var(--lime);box-shadow:0 0 12px var(--lime-glow);}
+/* variante azul (FS-CD) */
+.scrub.cons .pipe-fill{background:linear-gradient(90deg,var(--blue),var(--lime));box-shadow:0 0 18px var(--blue-glow);}
+.scrub.cons .node.on{background:var(--blue);border-color:var(--blue);box-shadow:0 0 12px var(--blue-glow);}
 .scrub-label{font:700 18px/1.2 var(--font-display);color:var(--off);min-height:1.4em;text-align:center;}
 .scrub-label .sub{display:block;font:400 11px/1 var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:6px;}
 @media(max-width:900px){
