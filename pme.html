@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAPSON · PME — Confiabilidade de cobrança recorrente (Pix Automático)</title>
+<meta name="description" content="Recupere a recorrência que o Pix Automático deixou órfã: retry do débito falho com idempotência, régua on-failure e conciliação PSP × base. Para PME de serviço com receita recorrente.">
+<link rel="canonical" href="https://aapsom.github.io/aapson-site/pme.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aapsom.github.io/aapson-site/pme.html">
+<meta property="og:title" content="AAPSON · PME — Confiabilidade de cobrança recorrente">
+<meta property="og:description" content="Retry, recuperação e conciliação da recorrência sobre Pix Automático. Não é disparo de mensagem — é a recorrência que para de vazar.">
+<meta property="og:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AAPSON · PME — Confiabilidade de cobrança recorrente">
+<meta name="twitter:description" content="Retry, recuperação e conciliação da recorrência sobre Pix Automático.">
+<meta name="twitter:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -10 116 144'%3E%3Crect x='-8' y='-10' width='116' height='144' rx='20' fill='%230B0B0F'/%3E%3Cpolygon fill='%23B2F120' points='50,2 91,56 73,56 50,25 27,56 9,56'/%3E%3Cpolygon fill='%23FE2266' points='9,68 27,68 50,99 73,68 91,68 50,122'/%3E%3Ccircle fill='%23484AF0' cx='50' cy='62' r='9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/acid.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="AAPSON — início">
+      <span class="mark"><svg viewBox="0 0 100 124" aria-hidden="true"><polygon fill="#B2F120" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#FE2266" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#484AF0" cx="50" cy="62" r="9"/></svg></span>
+      <span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span>
+    </a>
+    <div class="navright">
+      <a class="nlink" href="#como">Como funciona</a>
+      <a class="nlink" href="mentoria.html">Mentoria</a>
+      <a class="nlink" href="fscd.html">FS-CD</a>
+      <span class="status"><span class="dot" aria-hidden="true"></span>MVP em validação</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO — scrub (o scroll dirige a animação do fluxo) -->
+<section class="scrub" id="topo">
+  <div class="scrub-sticky">
+    <div class="wrap scrub-grid">
+      <div class="dip-text">
+        <span class="eyebrow rise">// PME · Recorrência</span>
+        <h1 class="rise d1">A recorrência que o Pix Automático deixou órfã — recuperada.</h1>
+        <p class="lede rise d2">Não é disparo de mensagem de cobrança. É o retry do débito que falhou, o resgate no momento certo e a conciliação que hoje se faz na mão (ou não se faz).</p>
+        <div class="hero-actions rise d3">
+          <a class="btn btn-solid" href="#contato">Entrar na lista</a>
+          <a class="btn btn-outline" href="#como">Como funciona →</a>
+        </div>
+      </div>
+      <div class="scrub-visual" aria-hidden="true">
+        <div class="pipe"><div class="pipe-fill" data-pipe></div></div>
+        <div class="nodes">
+          <span class="node" style="left:0%" data-at="0"></span>
+          <span class="node" style="left:33.3%" data-at="0.33"></span>
+          <span class="node" style="left:66.6%" data-at="0.66"></span>
+          <span class="node" style="left:100%" data-at="1"></span>
+        </div>
+        <div class="scrub-label"><span data-scrub-label>Detecta</span><span class="sub">role a página — o fluxo acontece com você</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTO -->
+<section id="produto">
+  <div class="wrap">
+    <div class="dip rev">
+      <div class="dip-proof reveal">
+        <div class="pcard">
+          <h3>CRM de Confiabilidade de Cobrança Recorrente</h3>
+          <p>O painel que diz, todo dia, quem pagou, quem caiu e recolhe quem ficou de fora — sem você tocar em nada.</p>
+          <ul class="plist saas-accent">
+            <li>Painel de status por cliente: pagou / atrasado / retry / grace</li>
+            <li>Histórico de contato unificado (liga, Whats, e-mail, resposta)</li>
+            <li>Retry de débito Pix Automático falho com idempotência</li>
+            <li>Régua on-failure + conciliação PSP × base</li>
+          </ul>
+          <span class="tag saas">Capital zero · MVP em validação (Mom Test)</span>
+        </div>
+      </div>
+      <div class="dip-text reveal">
+        <h2>Para PME de serviço com receita recorrente que não quer perder o que já conquistou.</h2>
+        <p class="sec-lede">Psicóloga, escola de música, estúdio de pilates, qualquer operação de mensalistas. A recorrência do Pix Automático é nova em 2026 — e o retry, o resgate e a conciliação ainda não têm dono. É aí que a AAPSON entra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA — momento pinado (assinatura) -->
+<section id="como">
+  <div class="wrap">
+    <h2>O que o sistema faz quando o débito falha.</h2>
+    <p class="sec-lede">Falha → retry → conciliação. O ciclo completo, automático, sem planilha de retela.</p>
+    <div class="flow">
+      <div class="flow-stick" aria-hidden="true">
+        <svg class="flow-mark" viewBox="0 0 100 124">
+          <polygon fill="rgba(178,241,32,.10)" stroke="#B2F120" stroke-width="1.5" class="draw" points="50,2 91,56 73,56 50,25 27,56 9,56"/>
+          <polygon fill="rgba(254,34,102,.10)" stroke="#FE2266" stroke-width="1.5" class="draw" points="9,68 27,68 50,99 73,68 91,68 50,122"/>
+          <circle fill="rgba(72,74,240,.35)" stroke="#484AF0" stroke-width="1.5" class="draw" cx="50" cy="62" r="9"/>
+        </svg>
+        <div class="flow-count" data-flow-count>01<span class="tot"> / 04</span></div>
+        <div class="flow-now" data-flow-now>Detecta</div>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step" data-i="1" data-label="Detecta">
+          <span class="k">DETECTA</span>
+          <h4>Identifica o débito que não caiu.</h4>
+          <p>O débito Pix Automático que falhou é sinalizado na hora — antes de virar inadimplência silenciosa no fechamento.</p>
+        </div>
+        <div class="flow-step" data-i="2" data-label="Retenta">
+          <span class="k">RETENTA</span>
+          <h4>Reagenda com idempotência.</h4>
+          <p>Retenta o débito sem cobrar duas vezes nem constranger o cliente. A idempotência da cadeia FKK aplicada à PME.</p>
+        </div>
+        <div class="flow-step" data-i="3" data-label="Recupera">
+          <span class="k">RECUPERA</span>
+          <h4>Aciona a régua no momento certo.</h4>
+          <p>Contato on-failure pelo canal que o cliente responde — não spam de cobrança, resgate cirúrgico do mensalista.</p>
+        </div>
+        <div class="flow-step" data-i="4" data-label="Concilia">
+          <span class="k">CONCILIA</span>
+          <h4>Bate PSP × base e fecha o mês.</h4>
+          <p>Conciliação automática entre o extrato do PSP e a sua base. O fechamento sem retrabalho manual.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEDGE -->
+<section id="wedge">
+  <div class="wrap">
+    <div class="wedge-panel reveal">
+      <span class="eyebrow">// Diferencial · Wedge</span>
+      <h2>Onde a AAPSON entra e o oceano vermelho não vai.</h2>
+      <p>O oceano vermelho (Asaas, Neofin, Toolzz, iRecebi) disputa <b>envio de mensagem de cobrança</b>. A AAPSON disputa <b>confiabilidade da recorrência</b> — o retry, a recuperação e a conciliação que o Pix Automático deixou órfãos em 2026. O wedge é a expertise FS-CD (cadeia FKK, idempotência, conciliação FI-CA) traduzida para PME.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contato" class="endcta">
+  <div class="wrap">
+    <span class="eyebrow">// Validação · Mom Test</span>
+    <h2>Quer ver a recorrência da sua operação parar de vazar?</h2>
+    <p>Estou validando o produto com operações reais de mensalistas. Conversa de 25 min, sem pressão: mapeamos onde o débito falha hoje e o que dá para recuperar.</p>
+    <div class="cta-actions">
+      <a class="btn btn-solid" href="mailto:contato@aapson.com.br?subject=Lista%20AAPSON%20%C2%B7%20recorr%C3%AAncia%20PME&body=Oi%2C%20quero%20entrar%20na%20lista%20e%20conversar%20sobre%20recupera%C3%A7%C3%A3o%20de%20recorr%C3%AAncia.%20Minha%20opera%C3%A7%C3%A3o%3A%20">Entrar na lista (e-mail)</a>
+      <a class="btn btn-outline" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20AAPSON%2C%20quero%20conversar%20sobre%20confiabilidade%20de%20cobran%C3%A7a%20recorrente">WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="colorbar"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
+  <div class="wrap">
+    <div class="foot-inner">
+      <span>© 2026 AAPSON · Acid Circuit — capital zero, sem dependência paga.</span>
+      <a class="mono" href="fscd.html">Consultoria FS-CD →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/lenis.min.js"></script>
+<script src="assets/main.js" defer></script>
+</body>
+</html>
