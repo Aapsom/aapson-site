@@ -45,7 +45,7 @@
   var pipe = document.querySelector("[data-pipe]");
   var label = document.querySelector("[data-scrub-label]");
   var nodes = document.querySelectorAll(".scrub .node");
-  var STAGES = ["Detecta", "Retenta", "Recupera", "Concilia"];
+  var STAGES = ["Detecta", "Tenta de novo", "Avisa", "Confere"];
   if (scrub && pipe && label) {
     if (reduce) {
       /* reduced-motion: estado final estático */

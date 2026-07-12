@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAPSON · PME — Confiabilidade de cobrança recorrente (Pix Automático)</title>
-<meta name="description" content="Recupere a recorrência que o Pix Automático deixou órfã: retry do débito falho com idempotência, régua on-failure e conciliação PSP × base. Para PME de serviço com receita recorrente.">
+<title>AAPSON · PME — Sua mensalidade caiu? A gente garante que sim.</title>
+<meta name="description" content="Para negócios que vivem de mensalidade: quando a cobrança automática falha, o sistema da AAPSON tenta de novo, avisa o cliente no momento certo e confere o extrato — antes que vire cliente perdido.">
 <link rel="canonical" href="https://aapsom.github.io/aapson-site/pme.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aapsom.github.io/aapson-site/pme.html">
-<meta property="og:title" content="AAPSON · PME — Confiabilidade de cobrança recorrente">
-<meta property="og:description" content="Retry, recuperação e conciliação da recorrência sobre Pix Automático. Não é disparo de mensagem — é a recorrência que para de vazar.">
+<meta property="og:title" content="AAPSON · PME — Cobrança recorrente que não falha em silêncio">
+<meta property="og:description" content="Quando a mensalidade não cai, o sistema tenta de novo, avisa no momento certo e confere o extrato. Para negócios que vivem de mensalistas.">
 <meta property="og:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AAPSON · PME — Confiabilidade de cobrança recorrente">
-<meta name="twitter:description" content="Retry, recuperação e conciliação da recorrência sobre Pix Automático.">
+<meta name="twitter:title" content="AAPSON · PME — Cobrança recorrente que não falha em silêncio">
+<meta name="twitter:description" content="Quando a mensalidade não cai, o sistema tenta de novo, avisa no momento certo e confere o extrato.">
 <meta name="twitter:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -10 116 144'%3E%3Crect x='-8' y='-10' width='116' height='144' rx='20' fill='%230B0B0F'/%3E%3Cpolygon fill='%23B2F120' points='50,2 91,56 73,56 50,25 27,56 9,56'/%3E%3Cpolygon fill='%23FE2266' points='9,68 27,68 50,99 73,68 91,68 50,122'/%3E%3Ccircle fill='%23484AF0' cx='50' cy='62' r='9'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,14 +27,14 @@
 <body>
 
 <!-- GLOBAL STATUS BAR -->
-<div class="topbar" role="status" aria-label="Status da operação">
+<div class="topbar" role="status" aria-label="Status da página">
   <div class="wrap">
     <span class="tb-astro" aria-hidden="true">✳</span>
     <span class="tb-seg">sessão <span class="tb-val" data-sessão>0s</span></span>
     <span class="tb-sep">·</span>
     <span class="tb-seg tb-hide-sm"><span class="tb-val" data-pings>0</span> pings</span>
     <span class="tb-sep">·</span>
-    <span class="tb-seg">retry engine <span class="tb-live">ativo</span></span>
+    <span class="tb-seg">circuito <span class="tb-live">ativo</span></span>
   </div>
 </div>
 
@@ -48,7 +48,7 @@
       <a class="nlink" href="#como">Como funciona</a>
       <a class="nlink" href="mentoria.html">Mentoria</a>
       <a class="nlink" href="fscd.html">FS-CD</a>
-      <span class="status"><span class="dot" aria-hidden="true"></span>MVP em validação</span>
+      <span class="status"><span class="dot" aria-hidden="true"></span>Em validação</span>
     </div>
   </div>
 </nav>
@@ -58,9 +58,9 @@
   <div class="scrub-sticky">
     <div class="wrap scrub-grid">
       <div class="dip-text">
-        <span class="eyebrow rise">// PME · Recorrência</span>
-        <h1 class="rise d1">A recorrência que o Pix Automático deixou órfã — recuperada.</h1>
-        <p class="lede rise d2">Não é disparo de mensagem de cobrança. É o retry do débito que falhou, o resgate no momento certo e a conciliação que hoje se faz na mão (ou não se faz).</p>
+        <span class="eyebrow rise">// Para quem vive de mensalidade</span>
+        <h1 class="rise d1">A mensalidade que não caiu não precisa virar cliente perdido.</h1>
+        <p class="lede rise d2">Todo mês, uma parte das cobranças automáticas falha — cartão vencido, saldo insuficiente, autorização que expirou. A maioria dos negócios só descobre no fim do mês, quando o aluno já sumiu. A AAPSON cuida desse intervalo: detecta a falha na hora, tenta de novo do jeito certo e avisa o cliente antes que a relação esfrie.</p>
         <div class="hero-actions rise d3">
           <a class="btn btn-solid" href="#contato">Entrar na lista</a>
           <a class="btn btn-outline" href="#como">Como funciona →</a>
@@ -86,20 +86,20 @@
     <div class="dip rev">
       <div class="dip-proof reveal">
         <div class="pcard">
-          <h3>CRM de Confiabilidade de Cobrança Recorrente</h3>
-          <p>O painel que diz, todo dia, quem pagou, quem caiu e recolhe quem ficou de fora — sem você tocar em nada.</p>
+          <h3>O painel da sua recorrência</h3>
+          <p>Um lugar só que responde, todo dia, as três perguntas que importam: quem pagou, quem falhou e o que já está sendo feito para recuperar.</p>
           <ul class="plist saas-accent">
-            <li>Painel de status por cliente: pagou / atrasado / retry / grace</li>
-            <li>Histórico de contato unificado (liga, Whats, e-mail, resposta)</li>
-            <li>Retry de débito Pix Automático falho com idempotência</li>
-            <li>Régua on-failure + conciliação PSP × base</li>
+            <li>Status de cada cliente: pago, atrasado, em nova tentativa, em contato</li>
+            <li>Nova tentativa automática da cobrança que falhou — sem risco de cobrar duas vezes</li>
+            <li>Lembrete ao cliente no momento certo, pelo canal que ele responde</li>
+            <li>Conferência automática entre o extrato do banco e a sua lista de mensalistas</li>
           </ul>
-          <span class="tag saas">Capital zero · MVP em validação (Mom Test)</span>
+          <span class="tag saas">Em validação com negócios reais · lista de espera aberta</span>
         </div>
       </div>
       <div class="dip-text reveal">
-        <h2>Para PME de serviço com receita recorrente que não quer perder o que já conquistou.</h2>
-        <p class="sec-lede">Psicóloga, escola de música, estúdio de pilates, qualquer operação de mensalistas. A recorrência do Pix Automático é nova em 2026 — e o retry, o resgate e a conciliação ainda não têm dono. É aí que a AAPSON entra.</p>
+        <h2>Feito para o negócio que vive de mensalista — e não tem um financeiro inteiro para vigiar cobrança.</h2>
+        <p class="sec-lede">Consultório de psicologia, escola de música, estúdio de pilates, personal, cursos — qualquer operação em que o cliente paga todo mês. Com o Pix Automático (o débito automático via Pix, regulamentado pelo Banco Central) chegando em massa aos pequenos negócios, a cobrança recorrente ficou fácil de criar — mas continua difícil de <b>garantir</b>. É essa segunda parte que a AAPSON resolve.</p>
       </div>
     </div>
   </div>
@@ -108,8 +108,8 @@
 <!-- COMO FUNCIONA — momento pinado (assinatura) -->
 <section id="como">
   <div class="wrap">
-    <h2>O que o sistema faz quando o débito falha.</h2>
-    <p class="sec-lede">Falha → retry → conciliação. O ciclo completo, automático, sem planilha de retela.</p>
+    <h2>O que acontece quando uma cobrança falha.</h2>
+    <p class="sec-lede">Quatro passos, todos automáticos. Você acompanha pelo painel — sem planilha, sem caçar extrato, sem constranger cliente.</p>
     <div class="flow">
       <div class="flow-stick" aria-hidden="true">
         <svg class="flow-mark" viewBox="0 0 100 124">
@@ -123,36 +123,61 @@
       <div class="flow-steps">
         <div class="flow-step" data-i="1" data-label="Detecta">
           <span class="k">DETECTA</span>
-          <h4>Identifica o débito que não caiu.</h4>
-          <p>O débito Pix Automático que falhou é sinalizado na hora — antes de virar inadimplência silenciosa no fechamento.</p>
+          <h4>Percebe na hora que a cobrança não caiu.</h4>
+          <p>Nada de descobrir no fechamento do mês. No momento em que o débito falha, ele entra no painel como pendência — com motivo e próximo passo já definidos.</p>
         </div>
-        <div class="flow-step" data-i="2" data-label="Retenta">
-          <span class="k">RETENTA</span>
-          <h4>Reagenda com idempotência.</h4>
-          <p>Retenta o débito sem cobrar duas vezes nem constranger o cliente. A idempotência da cadeia FKK aplicada à PME.</p>
+        <div class="flow-step" data-i="2" data-label="Tenta de novo">
+          <span class="k">TENTA DE NOVO</span>
+          <h4>Reagenda a cobrança do jeito certo.</h4>
+          <p>O sistema tenta de novo na janela com mais chance de sucesso — e com a trava que garante que o seu cliente nunca será cobrado duas vezes pelo mesmo mês. Essa disciplina vem da engenharia de cobrança usada por seguradoras.</p>
         </div>
-        <div class="flow-step" data-i="3" data-label="Recupera">
-          <span class="k">RECUPERA</span>
-          <h4>Aciona a régua no momento certo.</h4>
-          <p>Contato on-failure pelo canal que o cliente responde — não spam de cobrança, resgate cirúrgico do mensalista.</p>
+        <div class="flow-step" data-i="3" data-label="Avisa">
+          <span class="k">AVISA</span>
+          <h4>Fala com o cliente no momento certo.</h4>
+          <p>Se a nova tentativa não resolve, o cliente recebe um lembrete cordial pelo canal que ele de fato responde. Não é régua de spam — é o toque na hora certa, antes que a mensalidade esfrie.</p>
         </div>
-        <div class="flow-step" data-i="4" data-label="Concilia">
-          <span class="k">CONCILIA</span>
-          <h4>Bate PSP × base e fecha o mês.</h4>
-          <p>Conciliação automática entre o extrato do PSP e a sua base. O fechamento sem retrabalho manual.</p>
+        <div class="flow-step" data-i="4" data-label="Confere">
+          <span class="k">CONFERE</span>
+          <h4>Bate o extrato e fecha o mês por você.</h4>
+          <p>O sistema confere sozinho o que o banco diz que entrou contra a sua lista de mensalistas. O fim do mês deixa de ser uma tarde de planilha e vira um relatório pronto.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WEDGE -->
-<section id="wedge">
+<!-- DIFERENCIAL -->
+<section id="diferencial">
   <div class="wrap">
     <div class="wedge-panel reveal">
-      <span class="eyebrow">// Diferencial · Wedge</span>
-      <h2>Onde a AAPSON entra e o oceano vermelho não vai.</h2>
-      <p>O oceano vermelho (Asaas, Neofin, Toolzz, iRecebi) disputa <b>envio de mensagem de cobrança</b>. A AAPSON disputa <b>confiabilidade da recorrência</b> — o retry, a recuperação e a conciliação que o Pix Automático deixou órfãos em 2026. O wedge é a expertise FS-CD (cadeia FKK, idempotência, conciliação FI-CA) traduzida para PME.</p>
+      <span class="eyebrow">// Por que é diferente</span>
+      <h2>Ferramenta de cobrança já existe. O que não existe é quem garanta a recorrência.</h2>
+      <p>As plataformas do mercado resolvem o <b>envio</b>: geram o link, disparam a mensagem, emitem o boleto. O que fica sem dono é o que acontece <b>quando a cobrança falha</b> — a nova tentativa, a recuperação do cliente e a conferência do que realmente entrou. A AAPSON nasce exatamente desse vão, trazendo para o pequeno negócio a mesma disciplina de cobrança que seguradoras usam para processar milhões de apólices: tentar de novo com segurança, nunca cobrar em dobro, conferir tudo no fim.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <h2>Perguntas diretas, respostas diretas.</h2>
+    <div class="faq reveal">
+      <details>
+        <summary>O que é o Pix Automático?</summary>
+        <div class="faq-a"><p>É o débito automático via Pix, regulamentado pelo Banco Central: o seu cliente autoriza uma vez e a mensalidade é debitada todo mês, sem boleto e sem cartão. Está chegando em massa aos pequenos negócios — e é justamente aí que a falha de cobrança vira um problema novo, porque autorização expira, saldo falta e ninguém fica vigiando.</p></div>
+      </details>
+      <details>
+        <summary>Preciso trocar de banco ou de sistema?</summary>
+        <div class="faq-a"><p>Não. A proposta é trabalhar por cima do que você já usa — o banco ou a plataforma de pagamento continuam os mesmos. A AAPSON entra na camada de acompanhamento: detectar a falha, reagendar, avisar e conferir.</p></div>
+      </details>
+      <details>
+        <summary>Quanto custa?</summary>
+        <div class="faq-a"><p>O produto está em fase de validação, e o preço será definido junto com os primeiros usuários. Quem entra na lista de espera participa dessa conversa e tem condição de fundador. Sem cartão, sem compromisso.</p></div>
+      </details>
+      <details>
+        <summary>O que significa "em validação"?</summary>
+        <div class="faq-a"><p>Significa que estamos construindo o produto com base em conversas reais com negócios de mensalidade — antes de escrever a versão final. Preferimos essa honestidade a vender promessa pronta. A conversa dura ~25 minutos: você conta como cobra hoje e onde dói; nós mostramos o que o sistema faria no seu caso.</p></div>
+      </details>
     </div>
   </div>
 </section>
@@ -160,12 +185,12 @@
 <!-- CTA -->
 <section id="contato" class="endcta">
   <div class="wrap">
-    <span class="eyebrow">// Validação · Mom Test</span>
-    <h2>Quer ver a recorrência da sua operação parar de vazar?</h2>
-    <p>Estou validando o produto com operações reais de mensalistas. Conversa de 25 min, sem pressão: mapeamos onde o débito falha hoje e o que dá para recuperar.</p>
+    <span class="eyebrow">// Lista de espera</span>
+    <h2>Quer parar de perder mensalista por cobrança que falhou?</h2>
+    <p>Estamos validando o produto com negócios reais de mensalidade. Uma conversa de 25 minutos, sem pressão e sem venda: você conta como cobra hoje, nós mapeamos onde a cobrança falha e o que dá para recuperar.</p>
     <div class="cta-actions">
-      <a class="btn btn-solid" href="mailto:contato@aapson.com.br?subject=Lista%20AAPSON%20%C2%B7%20recorr%C3%AAncia%20PME&body=Oi%2C%20quero%20entrar%20na%20lista%20e%20conversar%20sobre%20recupera%C3%A7%C3%A3o%20de%20recorr%C3%AAncia.%20Minha%20opera%C3%A7%C3%A3o%3A%20">Entrar na lista (e-mail)</a>
-      <a class="btn btn-outline" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20AAPSON%2C%20quero%20conversar%20sobre%20confiabilidade%20de%20cobran%C3%A7a%20recorrente">WhatsApp →</a>
+      <a class="btn btn-solid" href="mailto:contato@aapson.com.br?subject=Lista%20de%20espera%20AAPSON%20%C2%B7%20recorr%C3%AAncia&body=Oi%2C%20quero%20entrar%20na%20lista%20e%20conversar%20sobre%20recupera%C3%A7%C3%A3o%20de%20mensalidades.%20Meu%20neg%C3%B3cio%3A%20">Entrar na lista (e-mail)</a>
+      <a class="btn btn-outline" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20AAPSON%2C%20quero%20conversar%20sobre%20recupera%C3%A7%C3%A3o%20de%20mensalidades">WhatsApp →</a>
     </div>
   </div>
 </section>
@@ -174,7 +199,7 @@
   <div class="colorbar"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
   <div class="wrap">
     <div class="foot-inner">
-      <span>© 2026 AAPSON · Acid Circuit — capital zero, sem dependência paga.</span>
+      <span>© 2026 AAPSON — cobrança recorrente confiável para quem vive de mensalidade.</span>
       <a class="mono" href="fscd.html">Consultoria FS-CD →</a>
     </div>
   </div>

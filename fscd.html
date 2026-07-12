@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAPSON · FS-CD — Saneamento & migração de dados para S/4HANA</title>
-<meta name="description" content="Saneamento e migração de dados FI-CA/FS-CD para S/4HANA com aceleradores de IA e a disciplina de quem vive a cadeia FKK há 8+ anos. Para consultorias e bodyshops em projeto de migração.">
+<title>AAPSON · FS-CD — Diagnóstico de prontidão e migração de dados para S/4HANA</title>
+<meta name="description" content="Diagnóstico de Prontidão de Dados FS-CD → S/4HANA acelerado por IA: em 2–3 semanas, o mapa de riscos do dado legado e o plano de saneamento priorizado. E a execução completa, com idempotência e BAL corretos.">
 <link rel="canonical" href="https://aapsom.github.io/aapson-site/fscd.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aapsom.github.io/aapson-site/fscd.html">
-<meta property="og:title" content="AAPSON · FS-CD — Saneamento & migração para S/4HANA">
-<meta property="og:description" content="Assessment rápido, aceleradores de IA e execução de saneamento FS-CD com idempotência e BAL corretos. Canal: bodyshops.">
+<meta property="og:title" content="AAPSON · FS-CD — Diagnóstico de prontidão e migração para S/4HANA">
+<meta property="og:description" content="Em 2–3 semanas: o mapa de riscos do dado FI-CA/FS-CD legado e o plano de saneamento priorizado, acelerado por IA. Depois, a execução completa.">
 <meta property="og:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AAPSON · FS-CD — Saneamento & migração para S/4HANA">
-<meta name="twitter:description" content="Saneamento e migração FI-CA/FS-CD para S/4HANA com aceleradores de IA.">
+<meta name="twitter:title" content="AAPSON · FS-CD — Diagnóstico de prontidão e migração para S/4HANA">
+<meta name="twitter:description" content="Diagnóstico de Prontidão de Dados FS-CD → S/4HANA acelerado por IA + execução de saneamento e migração.">
 <meta name="twitter:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -10 116 144'%3E%3Crect x='-8' y='-10' width='116' height='144' rx='20' fill='%230B0B0F'/%3E%3Cpolygon fill='%23B2F120' points='50,2 91,56 73,56 50,25 27,56 9,56'/%3E%3Cpolygon fill='%23FE2266' points='9,68 27,68 50,99 73,68 91,68 50,122'/%3E%3Ccircle fill='%23484AF0' cx='50' cy='62' r='9'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,14 +27,14 @@
 <body>
 
 <!-- GLOBAL STATUS BAR -->
-<div class="topbar" role="status" aria-label="Status da operação">
+<div class="topbar" role="status" aria-label="Status da página">
   <div class="wrap">
     <span class="tb-astro" aria-hidden="true">✳</span>
     <span class="tb-seg">sessão <span class="tb-val" data-sessão>0s</span></span>
     <span class="tb-sep">·</span>
     <span class="tb-seg tb-hide-sm"><span class="tb-val" data-pings>0</span> pings</span>
     <span class="tb-sep">·</span>
-    <span class="tb-seg">retry engine <span class="tb-live">ativo</span></span>
+    <span class="tb-seg">circuito <span class="tb-live">ativo</span></span>
   </div>
 </div>
 
@@ -45,7 +45,7 @@
       <span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span>
     </a>
     <div class="navright">
-      <a class="nlink" href="#processo">Processo</a>
+      <a class="nlink" href="#diagnostico">Diagnóstico</a>
       <a class="nlink" href="pme.html">PME</a>
       <a class="nlink" href="mentoria.html">Mentoria</a>
       <span class="status"><span class="dot" aria-hidden="true"></span>Disponível</span>
@@ -59,25 +59,25 @@
     <div class="dip">
       <div class="dip-text">
         <span class="eyebrow blue rise">// Consultoria · FS-CD → S/4HANA</span>
-        <h1 class="rise d1">Saneamento e migração de dados FS-CD, com a disciplina de quem vive a cadeia FKK.</h1>
-        <p class="lede rise d2">Assessment rápido, aceleradores de IA e execução de migração FI-CA/FS-CD com idempotência e BAL corretos. 8+ anos dentro do módulo — como serviço para quem migra agora.</p>
+        <h1 class="rise d1">A migração S/4HANA não trava no código. Trava no dado.</h1>
+        <p class="lede rise d2">Partidas em aberto inconsistentes, contratos órfãos, histórico de compensação que o modelo novo rejeita. A AAPSON entra exatamente nesse ponto: diagnóstico de prontidão do dado FI-CA/FS-CD acelerado por IA, e a execução do saneamento e da migração com a disciplina de quem vive a cadeia FKK há 8+ anos.</p>
         <div class="hero-actions rise d3">
           <a class="btn btn-solid" href="#contato">Falar sobre o projeto</a>
-          <a class="btn btn-outline" href="#processo">Ver o processo →</a>
+          <a class="btn btn-outline" href="#diagnostico">Ver o diagnóstico →</a>
         </div>
       </div>
       <div class="dip-proof rise d2">
         <div class="proof">
-          <div class="proof-head"><span>// canal</span><span>Bodyshops · freelance</span></div>
+          <div class="proof-head"><span>// engajamento</span><span>Direto · via bodyshop</span></div>
           <div class="axis cons">
-            <div class="axis-k">Escopo</div>
-            <div class="axis-v">Saneamento & migração FS-CD</div>
-            <div class="axis-d">FI-CA / FS-CD em ambiente real, rumo a S/4HANA</div>
+            <div class="axis-k">Porta de entrada</div>
+            <div class="axis-v">Diagnóstico de Prontidão de Dados</div>
+            <div class="axis-d">2–3 semanas · escopo fechado · relatório de riscos + plano priorizado</div>
           </div>
           <div class="axis cons">
-            <div class="axis-k">Método</div>
-            <div class="axis-v">Aceleradores de IA + BAL</div>
-            <div class="axis-d">Idempotência, retry e registro correto — nada de falha silenciosa</div>
+            <div class="axis-k">Continuação</div>
+            <div class="axis-v">Saneamento & migração completos</div>
+            <div class="axis-d">Execução com idempotência, BAL/SLG0 e handoff documentado</div>
           </div>
         </div>
       </div>
@@ -85,25 +85,50 @@
   </div>
 </header>
 
-<!-- PRODUTO -->
-<section id="produto">
+<!-- DIAGNÓSTICO (porta de entrada) -->
+<section id="diagnostico">
+  <div class="wrap">
+    <div class="dip rev">
+      <div class="dip-proof reveal">
+        <div class="pcard">
+          <h3>Diagnóstico de Prontidão de Dados FS-CD → S/4HANA</h3>
+          <p>Escopo fechado, 2–3 semanas, começo e fim definidos. Antes de comprometer o cronograma da migração, você sabe exatamente onde o dado legado vai travar — e em que ordem atacar.</p>
+          <ul class="plist cons-accent">
+            <li>Varredura assistida por IA do dado FI-CA/FS-CD em ambiente real (partidas, contratos, planos de pagamento, histórico de compensação)</li>
+            <li>Mapa de riscos classificado: o que o modelo S/4HANA rejeita, o que degrada, o que passa</li>
+            <li>Plano de saneamento priorizado por impacto no cronograma da migração</li>
+            <li>Estimativa de esforço para a fase de execução — sem surpresa no meio do projeto</li>
+          </ul>
+          <span class="tag cons">Escopo fechado · entregável definido · sob consulta</span>
+        </div>
+      </div>
+      <div class="dip-text reveal">
+        <h2>Para quem lidera uma migração com FI-CA/FS-CD e não quer descobrir o problema em teste integrado.</h2>
+        <p class="sec-lede">Consultorias, bodyshops e empresas com projeto S/4HANA em andamento ou em planejamento. O diagnóstico é a forma de baixo risco de começar: um entregável concreto em semanas, que vale por si e prepara a fase de execução — com a AAPSON ou com o seu próprio time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUÇÃO -->
+<section id="execucao">
   <div class="wrap">
     <div class="dip">
       <div class="dip-text reveal">
-        <h2>Consultorias, bodyshops e empresas em migração S/4HANA com FI-CA/FS-CD.</h2>
-        <p class="sec-lede">A mesma base técnica que sustenta o produto SaaS, aplicada como serviço. Entro no ponto onde o dado sujo trava a migração — e saio com o time interno capaz de tocar sozinho.</p>
+        <h2>Depois do diagnóstico, a execução — sem falha silenciosa.</h2>
+        <p class="sec-lede">Saneamento e migração do dado FS-CD com a disciplina que o módulo exige: idempotência de ponta a ponta (nada roda duas vezes por acidente), registro completo em BAL/SLG0 (nada falha sem deixar rastro) e aceleradores de IA onde eles realmente reduzem esforço — classificação, reconciliação e documentação.</p>
       </div>
       <div class="dip-proof reveal">
         <div class="pcard">
           <h3>Saneamento & Migração FS-CD → S/4HANA</h3>
-          <p>A base técnica que sustenta o SaaS, aplicada como serviço para quem migra agora.</p>
+          <p>A fase de execução, guiada pelo plano priorizado do diagnóstico.</p>
           <ul class="plist cons-accent">
-            <li>Diagnóstico FS-CD/FI-CA em ambiente real</li>
-            <li>Aceleradores de IA para saneamento de dados</li>
-            <li>Execução de migração com idempotência e BAL corretos</li>
-            <li>Handoff documentado para o time interno</li>
+            <li>Limpeza e reconciliação do dado legado com rastreabilidade completa do que mudou</li>
+            <li>Execução de carga com idempotência e retry seguro na cadeia FKK</li>
+            <li>Registro estruturado em BAL/SLG0 — cada objeto com trilha de auditoria</li>
+            <li>Handoff documentado: o time interno termina o projeto sabendo operar sozinho</li>
           </ul>
-          <span class="tag cons">Canal: bodyshops · freelance liberado</span>
+          <span class="tag cons">Contratação direta ou via bodyshop · sob consulta</span>
         </div>
       </div>
     </div>
@@ -113,24 +138,24 @@
 <!-- PROCESSO -->
 <section id="processo">
   <div class="wrap">
-    <h2>Do assessment ao handoff, sem falha silenciosa.</h2>
-    <p class="sec-lede">Quatro passos. Cada um com registro (SLG0/BAL) — porque na cadeia FKK faltar um handle é falha que não aparece até doer.</p>
+    <h2>Do diagnóstico ao handoff, em quatro passos.</h2>
+    <p class="sec-lede">Cada passo com registro estruturado — porque na cadeia FKK, falha sem log é falha que só aparece quando dói.</p>
     <div class="proc cons">
-      <div class="prow reveal"><span class="pn">01</span><div><h4>Assessment</h4><p>Diagnóstico rápido do estado do dado FI-CA/FS-CD e do gap para o modelo S/4HANA — onde a migração vai travar.</p></div></div>
-      <div class="prow reveal"><span class="pn">02</span><div><h4>Saneamento</h4><p>Limpeza e reconciliação dos dados com aceleradores de IA, mantendo rastreabilidade do que mudou.</p></div></div>
-      <div class="prow reveal"><span class="pn">03</span><div><h4>Migração</h4><p>Execução com idempotência e BAL corretos: escopo de handle, registro SLG0, retry seguro. Nada roda duas vezes por acidente.</p></div></div>
-      <div class="prow reveal"><span class="pn">04</span><div><h4>Handoff</h4><p>Documentação e passagem para o time interno operar sozinho — a entrega não termina numa dependência de mim.</p></div></div>
+      <div class="prow reveal"><span class="pn">01</span><div><h4>Diagnóstico</h4><p>Varredura do dado FI-CA/FS-CD em ambiente real e do gap para o modelo S/4HANA. Sai o mapa de riscos e o plano priorizado — o entregável que orienta todo o resto.</p></div></div>
+      <div class="prow reveal"><span class="pn">02</span><div><h4>Saneamento</h4><p>Limpeza e reconciliação dos dados com aceleradores de IA, na ordem do plano, mantendo rastreabilidade de cada mudança.</p></div></div>
+      <div class="prow reveal"><span class="pn">03</span><div><h4>Migração</h4><p>Execução de carga com idempotência e BAL corretos: escopo de handle, registro SLG0, retry seguro. Nada roda duas vezes por acidente, nada falha em silêncio.</p></div></div>
+      <div class="prow reveal"><span class="pn">04</span><div><h4>Handoff</h4><p>Documentação completa e passagem de conhecimento para o time interno operar sozinho. A entrega não termina numa dependência da consultoria.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- WEDGE -->
-<section id="wedge">
+<!-- POR QUE A AAPSON -->
+<section id="porque">
   <div class="wrap">
     <div class="wedge-panel reveal">
-      <span class="eyebrow blue">// Por que essa base importa</span>
-      <h2>A consultoria financia e valida o produto.</h2>
-      <p>O saneamento FS-CD não é um serviço solto: é a <b>mesma expertise</b> (cadeia FKK, idempotência, conciliação FI-CA) que vira o wedge do SaaS de recorrência para PME. Cada projeto de migração aprofunda a base técnica que o produto usa — e o produto, por sua vez, mantém a disciplina de engenharia afiada. Dois eixos, uma base.</p>
+      <span class="eyebrow blue">// Por que a AAPSON</span>
+      <h2>IA acelera. O julgamento de quem vive o módulo é o que garante.</h2>
+      <p>Os aceleradores de IA da AAPSON cortam o trabalho braçal do saneamento — classificar, cruzar, documentar. Mas a decisão do que é lixo, do que é histórico obrigatório e do que o modelo novo aceita continua sendo julgamento técnico de quem passou <b>8+ anos dentro do FS-CD</b>, em projetos reais de seguradoras — cobrança, cosseguro/resseguro, Pix e faturamento. É essa combinação, IA com critério de domínio, que separa um saneamento confiável de um script que corrompe base.</p>
     </div>
   </div>
 </section>
@@ -139,11 +164,11 @@
 <section id="contato" class="endcta">
   <div class="wrap">
     <span class="eyebrow blue">// Contato</span>
-    <h2>Tem um projeto de migração FS-CD travando no dado?</h2>
-    <p>Conversa direta sobre escopo e prazo. Trabalho via bodyshop ou freelance — sem intermediário desnecessário.</p>
+    <h2>Tem uma migração FS-CD no horizonte — ou travada no dado?</h2>
+    <p>Conversa técnica direta sobre escopo, prazo e formato de contratação (direta ou via bodyshop). Se fizer sentido, o diagnóstico começa em dias, não meses. Valores sob consulta.</p>
     <div class="cta-actions">
-      <a class="btn btn-solid" href="mailto:contato@aapson.com.br?subject=Projeto%20FS-CD%20%C2%B7%20saneamento%2Fmigra%C3%A7%C3%A3o&body=Oi%2C%20temos%20um%20projeto%20de%20migra%C3%A7%C3%A3o%20FI-CA%2FFS-CD.%20Contexto%3A%20">Falar por e-mail</a>
-      <a class="btn btn-outline" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20AAPSON%2C%20quero%20falar%20sobre%20um%20projeto%20de%20saneamento%2Fmigra%C3%A7%C3%A3o%20FS-CD">WhatsApp →</a>
+      <a class="btn btn-solid" href="mailto:contato@aapson.com.br?subject=Diagn%C3%B3stico%20FS-CD%20%E2%86%92%20S%2F4HANA&body=Oi%2C%20temos%20um%20projeto%20de%20migra%C3%A7%C3%A3o%20FI-CA%2FFS-CD.%20Contexto%3A%20">Falar por e-mail</a>
+      <a class="btn btn-outline" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20AAPSON%2C%20quero%20falar%20sobre%20diagn%C3%B3stico%2Fmigra%C3%A7%C3%A3o%20FS-CD">WhatsApp →</a>
     </div>
   </div>
 </section>
@@ -152,7 +177,7 @@
   <div class="colorbar"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
   <div class="wrap">
     <div class="foot-inner">
-      <span>© 2026 AAPSON · Acid Circuit — capital zero, sem dependência paga.</span>
+      <span>© 2026 AAPSON — dados FS-CD prontos para S/4HANA, sem falha silenciosa.</span>
       <a class="mono" href="pme.html">Produto PME →</a>
     </div>
   </div>

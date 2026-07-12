@@ -145,6 +145,30 @@ h2{font:700 clamp(28px,3.6vw,40px)/1.1 var(--font-display);letter-spacing:-.01em
 .prow h4{font:700 18px/1.2 var(--font-display);margin-bottom:var(--s-2xs);}
 .prow p{color:var(--muted);font-size:14.5px;max-width:64ch;}
 
+/* ---- FAQ (details nativo, conteúdo anima em transform/opacity) ---- */
+.faq{margin-top:var(--s-2xl);border-top:1px solid var(--line);max-width:760px;}
+.faq details{border-bottom:1px solid var(--line);}
+.faq summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:var(--s-lg);
+  padding-block:var(--s-lg);font:700 17px/1.35 var(--font-display);color:var(--off);}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";font:700 22px/1 var(--font-mono);color:var(--lime);flex:none;
+  transition:transform .22s cubic-bezier(.16,1,.3,1);}
+.faq details[open] summary::after{transform:rotate(45deg);}
+.faq summary:hover{color:var(--lime);}
+.faq summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px;}
+.faq .faq-a{padding-bottom:var(--s-lg);}
+.faq .faq-a p{color:var(--muted);font-size:15px;max-width:62ch;}
+@media (prefers-reduced-motion:no-preference){
+  .faq details[open] .faq-a{animation:faq-in .32s cubic-bezier(.16,1,.3,1);}
+}
+@keyframes faq-in{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+
+/* ---- nav link underline draw (hover) ---- */
+.nlink{position:relative;}
+.nlink::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);
+  transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.16,1,.3,1);}
+.nlink:hover::after{transform:scaleX(1);}
+
 /* ---- wedge ---- */
 .wedge-panel{background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:var(--s-2xl);}
 .wedge-panel .eyebrow{color:var(--pink);}
@@ -201,6 +225,8 @@ footer{border-top:1px solid var(--line);}
    ============================================================ */
 /* Lenis (regras mínimas vendorizadas) */
 html.lenis,html.lenis body{height:auto;}
+/* com Lenis ativo, o smooth nativo do CSS briga com o raf do Lenis — desligar sempre */
+html.lenis{scroll-behavior:auto!important;}
 .lenis.lenis-smooth{scroll-behavior:auto!important;}
 .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain;}
 .lenis.lenis-stopped{overflow:hidden;}
