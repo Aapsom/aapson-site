@@ -83,4 +83,23 @@
       update();
     }
   }
+
+  /* --- global status bar: sessão (tempo real) + heartbeat pings --- */
+  var t0 = Date.now();
+  var sessEl = document.querySelector("[data-sessão]");
+  var pingEl = document.querySelector("[data-pings]");
+  function fmt(ms) {
+    var s = Math.floor(ms / 1000);
+    var h = Math.floor(s / 3600); s -= h * 3600;
+    var m = Math.floor(s / 60); s -= m * 60;
+    var p = function (n) { return (n < 10 ? "0" : "") + n; };
+    return (h ? h + "h " : "") + p(m) + "m " + p(s) + "s";
+  }
+  if (sessEl) {
+    setInterval(function () { sessEl.textContent = fmt(Date.now() - t0); }, 1000);
+  }
+  if (pingEl && !reduce) {
+    var pings = 0;
+    setInterval(function () { pings++; pingEl.textContent = pings; }, 3000);
+  }
 })();
