@@ -130,16 +130,43 @@
   </div>
 </section>
 
-<!-- PROCESSO -->
+<!-- PROCESSO — momento pinado (assinatura) -->
 <section id="processo">
   <div class="wrap">
     <h2>Do diagnóstico ao handoff, em quatro passos.</h2>
     <p class="sec-lede">Cada passo com registro estruturado — porque na cadeia FKK, falha sem log é falha que só aparece quando dói.</p>
-    <div class="proc cons">
-      <div class="prow reveal"><span class="pn">01</span><div><h4>Diagnóstico</h4><p>Varredura do dado FI-CA/FS-CD em ambiente real e do gap para o modelo S/4HANA. Sai o mapa de riscos e o plano priorizado — o entregável que orienta todo o resto.</p></div></div>
-      <div class="prow reveal"><span class="pn">02</span><div><h4>Saneamento</h4><p>Limpeza e reconciliação dos dados com aceleradores de IA, na ordem do plano, mantendo rastreabilidade de cada mudança.</p></div></div>
-      <div class="prow reveal"><span class="pn">03</span><div><h4>Migração</h4><p>Execução de carga com idempotência e BAL corretos: escopo de handle, registro SLG0, retry seguro. Nada roda duas vezes por acidente, nada falha em silêncio.</p></div></div>
-      <div class="prow reveal"><span class="pn">04</span><div><h4>Handoff</h4><p>Documentação completa e passagem de conhecimento para o time interno operar sozinho. A entrega não termina numa dependência da consultoria.</p></div></div>
+    <div class="flow cons">
+      <div class="flow-stick" aria-hidden="true">
+        <svg class="flow-mark" viewBox="0 0 100 124">
+          <polygon fill="rgba(178,241,32,.10)" stroke="#B2F120" stroke-width="1.5" class="draw" points="50,2 91,56 73,56 50,25 27,56 9,56"/>
+          <polygon fill="rgba(254,34,102,.10)" stroke="#FE2266" stroke-width="1.5" class="draw" points="9,68 27,68 50,99 73,68 91,68 50,122"/>
+          <circle fill="rgba(72,74,240,.35)" stroke="#484AF0" stroke-width="1.5" class="draw" cx="50" cy="62" r="9"/>
+        </svg>
+        <div class="flow-count" data-flow-count>01<span class="tot"> / 04</span></div>
+        <div class="flow-now" data-flow-now>Diagnóstico</div>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step" data-i="1" data-label="Diagnóstico">
+          <span class="k">DIAGNÓSTICO</span>
+          <h4>Varredura do dado real e do gap para o S/4HANA.</h4>
+          <p>Varredura assistida por IA do dado FI-CA/FS-CD em ambiente real e do gap para o modelo novo. Sai o mapa de riscos e o plano priorizado — o entregável que orienta todo o resto.</p>
+        </div>
+        <div class="flow-step" data-i="2" data-label="Saneamento">
+          <span class="k">SANEAMENTO</span>
+          <h4>Limpeza e reconciliação, na ordem do plano.</h4>
+          <p>Aceleradores de IA cortam o trabalho braçal; o critério de domínio decide o que é lixo e o que é histórico obrigatório. Rastreabilidade completa de cada mudança.</p>
+        </div>
+        <div class="flow-step" data-i="3" data-label="Migração">
+          <span class="k">MIGRAÇÃO</span>
+          <h4>Carga com idempotência e BAL corretos.</h4>
+          <p>Escopo de handle, registro SLG0, retry seguro. Nada roda duas vezes por acidente, nada falha em silêncio — a disciplina da cadeia FKK aplicada de ponta a ponta.</p>
+        </div>
+        <div class="flow-step" data-i="4" data-label="Handoff">
+          <span class="k">HANDOFF</span>
+          <h4>O time interno termina sabendo operar sozinho.</h4>
+          <p>Documentação completa e passagem de conhecimento. A entrega não termina numa dependência da consultoria — termina em autonomia.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
