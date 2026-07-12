@@ -68,9 +68,12 @@
         pipe.style.width = (p * 100).toFixed(2) + "%";
         var idx = Math.min(STAGES.length - 1, Math.floor(p * STAGES.length));
         if (label.textContent !== STAGES[idx]) label.textContent = STAGES[idx];
+        var lastIdx = STAGES.length - 1;
         nodes.forEach(function (n) {
           var at = parseFloat(n.getAttribute("data-at"));
-          n.classList.toggle("on", p >= at - 0.001);
+          /* último nó acende ao entrar na etapa final (não só em p=1) */
+          var on = at >= 1 ? (idx >= lastIdx) : (p >= at - 0.001);
+          n.classList.toggle("on", on);
         });
       }
       window.addEventListener("scroll", function () {
