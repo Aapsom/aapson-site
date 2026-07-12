@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAPSON — Confiabilidade de cobrança recorrente & aceleração FS-CD/S4HANA</title>
+<meta name="description" content="AAPSON: SaaS de confiabilidade de cobrança recorrente sobre Pix Automático (retry, recuperação, conciliação) e consultoria de saneamento & migração FS-CD para S/4HANA.">
+<link rel="canonical" href="https://aapsom.github.io/aapson-site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aapsom.github.io/aapson-site/">
+<meta property="og:title" content="AAPSON — Confiabilidade de cobrança recorrente & aceleração FS-CD/S4HANA">
+<meta property="og:description" content="SaaS de confiabilidade de cobrança recorrente sobre Pix Automático + consultoria de saneamento & migração FS-CD para S/4HANA. Dois eixos, uma base técnica.">
+<meta property="og:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AAPSON — Confiabilidade de cobrança recorrente & aceleração FS-CD/S4HANA">
+<meta name="twitter:description" content="SaaS de confiabilidade de cobrança recorrente sobre Pix Automático + consultoria de saneamento & migração FS-CD para S/4HANA.">
+<meta name="twitter:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -10 116 144'%3E%3Crect x='-8' y='-10' width='116' height='144' rx='20' fill='%230B0B0F'/%3E%3Cpolygon fill='%23B2F120' points='50,2 91,56 73,56 50,25 27,56 9,56'/%3E%3Cpolygon fill='%23FE2266' points='9,68 27,68 50,99 73,68 91,68 50,122'/%3E%3Ccircle fill='%23484AF0' cx='50' cy='62' r='9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · macrostructure: Split Studio (15) · nav: N9 Edge-min · footer: Ft2 Inline
+   · pre-emit critique: P5 H5 E4 S5 R4 V5
+   · contrast: pass (40–41, ink-on-pink 6:1) · slop: pass (42–45) · mobile: pass (34,49,50–57)
+   · theme: AAPSON Acid Circuit (logo SVG tokens) */
+:root{
+  /* color tokens — fonte da verdade: logo SVG oficial */
+  --bg:#0B0B0F; --bg2:#08080B; --surface:#121218; --surface2:#16161E;
+  --pink:#FE2266; --lime:#B2F120; --blue:#484AF0; --off:#F4F3EF;
+  --ink:#0B0B0F;                    /* tinta escura p/ texto sobre acentos claros */
+  --muted:rgba(244,243,239,.72);
+  --faint:rgba(244,243,239,.48);
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.14);
+  --focus:#B2F120;
+  /* spacing scale — multiplos de 4px (gate 24) */
+  --s-2xs:4px; --s-xs:8px; --s-sm:12px; --s-md:16px; --s-lg:24px;
+  --s-xl:32px; --s-2xl:48px; --s-3xl:72px; --s-4xl:104px; --s-5xl:140px;
+  --maxw:1160px;
+  --font-display:"Space Grotesk",sans-serif;
+  --font-body:system-ui,-apple-system,sans-serif;
+  --font-mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{overflow-x:clip;}   /* gate 34 */
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg); color:var(--off);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--s-2xl);}
+.mono{font-family:var(--font-mono);letter-spacing:.24em;text-transform:uppercase;}
+.disp{font-family:var(--font-display);}
+h1,h2,h3,h4{font-family:var(--font-display);overflow-wrap:anywhere;min-width:0;} /* gate 51 */
+
+/* ---- logo mark ---- */
+.mark{display:inline-block;width:22px;height:27px;flex:none;line-height:1;}
+.mark svg{display:block;width:100%;height:100%;}
+.word{font:700 17px/1 var(--font-display);letter-spacing:.03em;}
+.word .a1{color:var(--pink);} .word .a2{color:var(--lime);} .word .rest{color:var(--off);}
+
+/* ---- nav (N9 Edge-min — não é o template gate 42) ---- */
+nav{position:sticky;top:0;z-index:300;background:rgba(11,11,15,.85);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+.brand{display:flex;align-items:center;gap:var(--s-sm);line-height:1;}
+.navright{display:flex;align-items:center;gap:var(--s-lg);}
+.status{display:flex;align-items:center;gap:var(--s-xs);font:400 10.5px/1 var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
+.dot{width:7px;height:7px;border-radius:999px;background:var(--lime);flex:none;box-shadow:0 0 8px rgba(178,241,32,.6);}
+.nlink{font:400 11px/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s;}
+.nlink:hover{color:var(--off);}
+.nlink:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:2px;}
+
+/* ---- buttons (8 estados — gate 26) ---- */
+.btn{display:inline-flex;align-items:center;gap:var(--s-xs);text-decoration:none;
+  border-radius:999px;font-family:var(--font-display);white-space:nowrap;   /* gate 49 */
+  transition:background .16s ease, box-shadow .16s ease, border-color .16s ease;cursor:pointer;}
+.btn:focus-visible{outline:2px solid var(--focus);outline-offset:3px;}
+.btn-solid{background:var(--pink);color:var(--ink);padding:14px 26px;font-weight:700;font-size:15px;line-height:1;}
+.btn-solid:hover{box-shadow:0 0 26px rgba(254,34,102,.4);}
+.btn-solid:active{background:#e51a59;box-shadow:none;}
+.btn-outline{background:transparent;border:1px solid var(--line2);color:var(--off);padding:13px 22px;font-weight:500;font-size:14px;line-height:1;}
+.btn-outline:hover{border-color:var(--off);background:rgba(255,255,255,.04);}
+.btn-outline:active{background:rgba(255,255,255,.08);}
+
+/* ---- diptych core (Split Studio) ---- */
+.dip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-2xl);align-items:center;} /* gate 50 */
+.dip.rev .dip-text{order:2;}
+.dip.rev .dip-proof{order:1;}
+.eyebrow{font:400 11px/1 var(--font-mono);letter-spacing:.28em;text-transform:uppercase;color:var(--lime);margin-bottom:var(--s-md);display:block;}
+.eyebrow.blue{color:var(--blue);}
+.lede{color:var(--muted);font-size:16.5px;max-width:52ch;margin-top:var(--s-md);}
+
+/* ---- hero ---- */
+header.hero{padding-block:var(--s-3xl) var(--s-4xl);position:relative;} /* 72 top / 104 bottom = 1.44× gate 44a */
+.hero h1{font:700 clamp(38px,5.2vw,62px)/1.04 var(--font-display);letter-spacing:-.015em;text-wrap:balance;}
+.hero .lede{max-width:46ch;font-size:17px;}
+.hero-actions{display:flex;gap:var(--s-md);flex-wrap:wrap;margin-top:var(--s-xl);}
+/* hero proof panel — motivado, não decorativo (gate 45): mostra os dois eixos reais */
+.proof{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s-xl);position:relative;overflow:hidden;}
+.proof-head{display:flex;align-items:center;justify-content:space-between;font:400 10.5px/1 var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);padding-bottom:var(--s-md);border-bottom:1px solid var(--line);margin-bottom:var(--s-lg);}
+.axis{padding-block:var(--s-md);border-bottom:1px solid var(--line);}
+.axis:last-child{border-bottom:0;padding-bottom:0;}
+.axis-k{font:400 10px/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;margin-bottom:var(--s-xs);}
+.axis.saas .axis-k{color:var(--lime);}
+.axis.cons .axis-k{color:var(--blue);}
+.axis-v{font:700 16px/1.25 var(--font-display);}
+.axis-d{color:var(--muted);font-size:13px;margin-top:2px;}
+
+/* ---- sections ---- */
+section{padding-block:var(--s-4xl);border-top:1px solid var(--line);}
+h2{font:700 clamp(28px,3.6vw,40px)/1.1 var(--font-display);letter-spacing:-.01em;max-width:22ch;}
+.sec-lede{color:var(--muted);margin-top:var(--s-md);max-width:60ch;font-size:15.5px;}
+
+/* product proof panels (sem side-stripe — gate 5) */
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s-xl);}
+.pcard .eyebrow{margin-bottom:var(--s-sm);}
+.pcard h3{font:700 21px/1.2 var(--font-display);margin-bottom:var(--s-xs);}
+.pcard p{color:var(--muted);font-size:14.5px;}
+.plist{list-style:none;margin-top:var(--s-lg);display:flex;flex-direction:column;gap:var(--s-sm);}
+.plist li{padding-left:20px;position:relative;font-size:14px;color:rgba(244,243,239,.9);}
+.plist li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:2px;background:currentColor;}
+.saas-accent{color:var(--lime);} .cons-accent{color:var(--blue);}
+.tag{display:inline-block;font:400 10.5px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;padding:6px 11px;border-radius:999px;margin-top:var(--s-lg);}
+.tag.saas{background:rgba(178,241,32,.12);color:var(--lime);}
+.tag.cons{background:rgba(72,74,240,.16);color:var(--blue);}
+
+/* process — narrativa numerada vertical (não 4 col iguais — gate 8) */
+.proc{margin-top:var(--s-2xl);display:flex;flex-direction:column;}
+.prow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-xl);padding-block:var(--s-lg);border-top:1px solid var(--line);align-items:baseline;}
+.prow:first-child{border-top:0;}
+.pn{font:700 clamp(28px,4vw,44px)/1 var(--font-mono);color:var(--pink);letter-spacing:0;}
+.prow h4{font:700 18px/1.2 var(--font-display);margin-bottom:var(--s-2xs);}
+.prow p{color:var(--muted);font-size:14.5px;max-width:64ch;}
+
+/* wedge — declaração (Manifesto energy dentro do Split) */
+.wedge-panel{background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:var(--s-2xl);}
+.wedge-panel .eyebrow{color:var(--pink);}
+.wedge-panel p{color:rgba(244,243,239,.86);font-size:16px;margin-top:var(--s-md);}
+.wedge-panel b{color:var(--off);}
+
+/* CTA strip — 1 botão (gate CTA strip) */
+.endcta{text-align:center;padding-block:var(--s-5xl);}
+.endcta .eyebrow{display:inline-block;color:var(--lime);}
+.endcta h2{margin:0 auto;max-width:20ch;}
+.endcta p{color:var(--muted);margin:var(--s-md) auto var(--s-xl);max-width:52ch;}
+
+/* footer — Ft2 inline + colorbar (não 4-col template gate 43) */
+footer{border-top:1px solid var(--line);}
+.colorbar{display:flex;height:4px;}
+.colorbar span{flex:1;}
+.colorbar .c1{background:var(--pink);} .colorbar .c2{background:var(--lime);} .colorbar .c3{background:var(--blue);}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--s-sm);padding-block:var(--s-lg);}
+.foot-inner span{color:var(--faint);font-size:12.5px;}
+.foot-inner .mono{color:var(--faint);font-size:10.5px;}
+
+/* reveal (fade-up, orquestrado — gate 27 tem fallback) */
+@media (prefers-reduced-motion:no-preference){
+  .rise{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.16,1,.3,1) forwards;}
+  .rise.d1{animation-delay:.06s;} .rise.d2{animation-delay:.12s;} .rise.d3{animation-delay:.18s;}
+}
+@keyframes rise{to{opacity:1;transform:none;}}
+
+/* responsive */
+@media(max-width:900px){
+  .wrap{padding-inline:var(--s-lg);}
+  .dip{grid-template-columns:1fr;gap:var(--s-xl);}
+  .dip.rev .dip-text{order:1;} .dip.rev .dip-proof{order:2;}
+  section{padding-block:var(--s-3xl);}
+}
+@media(max-width:520px){
+  .navright{gap:var(--s-md);}
+  .nlink{display:none;}          /* colapsa nav em telas muito estreitas */
+  .prow{grid-template-columns:1fr;gap:var(--s-2xs);}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<!-- logo mark symbol (fonte: aapson-logo.svg) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="aapson-mark" viewBox="0 0 100 124">
+    <polygon fill="#B2F120" points="50,2 91,56 73,56 50,25 27,56 9,56"></polygon>
+    <polygon fill="#FE2266" points="9,68 27,68 50,99 73,68 91,68 50,122"></polygon>
+    <circle fill="#484AF0" cx="50" cy="62" r="9"></circle>
+  </symbol>
+</defs></svg>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark"><svg aria-hidden="true"><use href="#aapson-mark"></use></svg></span>
+      <span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span>
+    </div>
+    <div class="navright">
+      <a class="nlink" href="#produtos">Produtos</a>
+      <a class="nlink" href="#wedge">Diferencial</a>
+      <span class="status"><span class="dot" aria-hidden="true"></span>Disponível</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO — diptych: texto | painel de prova (dois eixos reais) -->
+<header class="hero">
+  <div class="wrap">
+    <div class="dip">
+      <div class="dip-text">
+        <span class="eyebrow rise">SAP FS-CD → IA</span>
+        <h1 class="rise d1">Confiabilidade de cobrança recorrente e aceleração de dados FS-CD para S/4HANA.</h1>
+        <p class="lede rise d2">A AAPSON opera em dois eixos sobre a mesma base técnica: um SaaS que recupera a recorrência que falha e a consultoria que saneia e migra FS-CD com aceleradores de IA.</p>
+        <div class="hero-actions rise d3">
+          <a class="btn btn-solid" href="#contato">Falar com a AAPSON</a>
+          <a class="btn btn-outline" href="#produtos">Ver os produtos →</a>
+        </div>
+      </div>
+      <div class="dip-proof rise d2">
+        <div class="proof">
+          <div class="proof-head"><span>// operação</span><span>2 eixos · 1 base</span></div>
+          <div class="axis saas">
+            <div class="axis-k">Ativo · SaaS</div>
+            <div class="axis-v">Confiabilidade de recorrência</div>
+            <div class="axis-d">Retry · recuperação · conciliação Pix Automático</div>
+          </div>
+          <div class="axis cons">
+            <div class="axis-k">Caixa · Consultoria</div>
+            <div class="axis-v">Saneamento & migração FS-CD</div>
+            <div class="axis-d">Assessment · aceleradores IA · handoff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PRODUTO 1 — SaaS (prova esquerda / texto direita, revertido) -->
+<section id="produtos">
+  <div class="wrap">
+    <div class="dip rev">
+      <div class="dip-proof">
+        <div class="pcard">
+          <span class="eyebrow">// Ativo · SaaS</span>
+          <h3>CRM de Confiabilidade de Cobrança Recorrente</h3>
+          <p>O painel que diz, todo dia, quem pagou, quem caiu e recolhe quem ficou de fora — sem você tocar em nada.</p>
+          <ul class="plist saas-accent">
+            <li>Painel de status por cliente: pagou / atrasado / retry / grace</li>
+            <li>Histórico de contato unificado (liga, Whats, e-mail, resposta)</li>
+            <li>Retry de débito Pix Automático falho com idempotência</li>
+            <li>Régua on-failure + conciliação PSP × base</li>
+          </ul>
+          <span class="tag saas">Capital zero · MVP em validação (Mom Test)</span>
+        </div>
+      </div>
+      <div class="dip-text">
+        <span class="eyebrow">// Para quem</span>
+        <h2>PME de serviço com receita recorrente que não quer perder o que já conquistou.</h2>
+        <p class="sec-lede">Não é disparo de mensagem. É a recuperação da recorrência que o Pix Automático deixou órfã em 2026 — o retry, o resgate e a conciliação que hoje se faz na mão (ou não se faz).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTO 2 — Consultoria (texto esquerda / prova direita) -->
+<section>
+  <div class="wrap">
+    <div class="dip">
+      <div class="dip-text">
+        <span class="eyebrow blue">// Para quem</span>
+        <h2>Consultorias, bodyshops e empresas em migração S/4HANA com FI-CA/FS-CD.</h2>
+        <p class="sec-lede">Assessment rápido, aceleradores de IA e execução de saneamento de dados com a disciplina de quem vive o módulo há 8+ anos. A consultoria financia e valida o produto.</p>
+      </div>
+      <div class="dip-proof">
+        <div class="pcard">
+          <span class="eyebrow blue">// Caixa · Consultoria</span>
+          <h3>Saneamento & Migração FS-CD → S/4HANA</h3>
+          <p>A base técnica que sustenta o SaaS, aplicada como serviço para quem migra agora.</p>
+          <ul class="plist cons-accent">
+            <li>Diagnóstico FS-CD/FI-CA em ambiente real</li>
+            <li>Aceleradores de IA para saneamento de dados</li>
+            <li>Execução de migração com idempotência e BAL corretos</li>
+            <li>Handoff documentado para o time interno</li>
+          </ul>
+          <span class="tag cons">Canal: bodyshops · freelance liberado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA — narrativa numerada vertical -->
+<section id="como">
+  <div class="wrap">
+    <span class="eyebrow">// A recorrência que não cai</span>
+    <h2>O que o SaaS faz quando o débito falha.</h2>
+    <p class="sec-lede">Falha → retry → conciliação. O ciclo completo, automático, sem planilha de retela no fim do mês.</p>
+    <div class="proc">
+      <div class="prow"><span class="pn">01</span><div><h4>Detecta</h4><p>Identifica o débito Pix Automático que não caiu — antes de virar inadimplência.</p></div></div>
+      <div class="prow"><span class="pn">02</span><div><h4>Retenta</h4><p>Reagenda o débito com idempotência, sem cobrar duas vezes nem perder o cliente.</p></div></div>
+      <div class="prow"><span class="pn">03</span><div><h4>Recupera</h4><p>Aplica régua de contato no momento certo, pelo canal que o cliente responde.</p></div></div>
+      <div class="prow"><span class="pn">04</span><div><h4>Concilia</h4><p>Bate PSP × base automaticamente e fecha o mês sem retrabalho manual.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORIA — diptych ponte -->
+<section id="mentoria">
+  <div class="wrap">
+    <div class="dip">
+      <div class="dip-text">
+        <span class="eyebrow">// Ponte · Mentoria em IA</span>
+        <h2>Consultores que dominam IA não serão substituídos por ela.</h2>
+      </div>
+      <div class="dip-proof">
+        <p class="sec-lede" style="max-width:56ch">Mentoria prática de IA para consultores SAP e de mercado — por quem passou 8+ anos dentro do FS-CD. Esforço zero sobre a série LinkedIn existente; não é produto construído, é a ponte que valida e alimenta os dois eixos acima.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEDGE — diferencial (declaração) -->
+<section id="wedge">
+  <div class="wrap">
+    <div class="wedge-panel">
+      <span class="eyebrow">// Diferencial · Wedge</span>
+      <h2>Onde a AAPSON entra e o oceano vermelho não vai.</h2>
+      <p>O oceano vermelho (Asaas, Neofin, Toolzz, iRecebi) disputa <b>envio de mensagem de cobrança</b>. A AAPSON disputa <b>confiabilidade da recorrência</b> — o retry, a recuperação e a conciliação que o Pix Automático deixou órfãos em 2026. O wedge é a expertise FS-CD (cadeia FKK, idempotência, conciliação FI-CA) traduzida para PME. A consultoria FS-CD financia e valida o produto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contato" class="endcta">
+  <div class="wrap">
+    <span class="eyebrow">// Próximo passo</span>
+    <h2>Quer ver a recorrência da sua operação parar de vazar?</h2>
+    <p>Conversa de 25 min, sem pressão. Mapeamos onde o débito falha hoje e o que dá para recuperar.</p>
+    <a class="btn btn-solid" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20AAPSON%2C%20quero%20conversar%20sobre%20confiabilidade%20de%20cobran%C3%A7a%20recorrente">WhatsApp · AAPSON</a>
+  </div>
+</section>
+
+<footer>
+  <div class="colorbar"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
+  <div class="wrap">
+    <div class="foot-inner">
+      <span>© 2026 AAPSON · Acid Circuit — capital zero, sem dependência paga.</span>
+      <span class="mono">SAP FS-CD · PIX · IA</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
