@@ -23,14 +23,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Hallmark · macrostructure: Split Studio (15) · nav: N9 Edge-min · footer: Ft2 Inline
+/* Hallmark · macrostructure: Split Studio (15) · nav: N1 Wordmark+2 links (+status) · footer: Ft2 Inline
    · pre-emit critique: P5 H5 E4 S5 R4 V5
-   · contrast: pass (40–41, ink-on-pink 6:1) · slop: pass (42–45) · mobile: pass (34,49,50–57)
+   · contrast: pass (40–41, ink-on-pink 6:1) · mobile: pass (34,49,50–57)
+   · audit 2026-07-12: nav stamp corrected (was mislabeled N9), eyebrow count cut 9→2, tokenized 5 raw colors (gate 48)
    · theme: AAPSON Acid Circuit (logo SVG tokens) */
 :root{
   /* color tokens — fonte da verdade: logo SVG oficial */
   --bg:#0B0B0F; --bg2:#08080B; --surface:#121218; --surface2:#16161E;
   --pink:#FE2266; --lime:#B2F120; --blue:#484AF0; --off:#F4F3EF;
+  --pink-active:#e51a59;            /* :active shade, tokenized (gate 48) */
+  --lime-glow:rgba(178,241,32,.6);  /* status dot glow */
+  --pink-glow:rgba(254,34,102,.4);  /* CTA hover glow */
+  --lime-tint:rgba(178,241,32,.12); /* tag.saas bg */
+  --blue-tint:rgba(72,74,240,.16);  /* tag.cons bg */
   --ink:#0B0B0F;                    /* tinta escura p/ texto sobre acentos claros */
   --muted:rgba(244,243,239,.72);
   --faint:rgba(244,243,239,.48);
@@ -71,7 +77,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .brand{display:flex;align-items:center;gap:var(--s-sm);line-height:1;}
 .navright{display:flex;align-items:center;gap:var(--s-lg);}
 .status{display:flex;align-items:center;gap:var(--s-xs);font:400 10.5px/1 var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
-.dot{width:7px;height:7px;border-radius:999px;background:var(--lime);flex:none;box-shadow:0 0 8px rgba(178,241,32,.6);}
+.dot{width:7px;height:7px;border-radius:999px;background:var(--lime);flex:none;box-shadow:0 0 8px var(--lime-glow);}
 .nlink{font:400 11px/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s;}
 .nlink:hover{color:var(--off);}
 .nlink:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:2px;}
@@ -82,8 +88,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   transition:background .16s ease, box-shadow .16s ease, border-color .16s ease;cursor:pointer;}
 .btn:focus-visible{outline:2px solid var(--focus);outline-offset:3px;}
 .btn-solid{background:var(--pink);color:var(--ink);padding:14px 26px;font-weight:700;font-size:15px;line-height:1;}
-.btn-solid:hover{box-shadow:0 0 26px rgba(254,34,102,.4);}
-.btn-solid:active{background:#e51a59;box-shadow:none;}
+.btn-solid:hover{box-shadow:0 0 26px var(--pink-glow);}
+.btn-solid:active{background:var(--pink-active);box-shadow:none;}
 .btn-outline{background:transparent;border:1px solid var(--line2);color:var(--off);padding:13px 22px;font-weight:500;font-size:14px;line-height:1;}
 .btn-outline:hover{border-color:var(--off);background:rgba(255,255,255,.04);}
 .btn-outline:active{background:rgba(255,255,255,.08);}
@@ -127,8 +133,8 @@ h2{font:700 clamp(28px,3.6vw,40px)/1.1 var(--font-display);letter-spacing:-.01em
 .plist li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:2px;background:currentColor;}
 .saas-accent{color:var(--lime);} .cons-accent{color:var(--blue);}
 .tag{display:inline-block;font:400 10.5px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;padding:6px 11px;border-radius:999px;margin-top:var(--s-lg);}
-.tag.saas{background:rgba(178,241,32,.12);color:var(--lime);}
-.tag.cons{background:rgba(72,74,240,.16);color:var(--blue);}
+.tag.saas{background:var(--lime-tint);color:var(--lime);}
+.tag.cons{background:var(--blue-tint);color:var(--blue);}
 
 /* process — narrativa numerada vertical (não 4 col iguais — gate 8) */
 .proc{margin-top:var(--s-2xl);display:flex;flex-direction:column;}
@@ -244,7 +250,6 @@ footer{border-top:1px solid var(--line);}
     <div class="dip rev">
       <div class="dip-proof">
         <div class="pcard">
-          <span class="eyebrow">// Ativo · SaaS</span>
           <h3>CRM de Confiabilidade de Cobrança Recorrente</h3>
           <p>O painel que diz, todo dia, quem pagou, quem caiu e recolhe quem ficou de fora — sem você tocar em nada.</p>
           <ul class="plist saas-accent">
@@ -257,7 +262,6 @@ footer{border-top:1px solid var(--line);}
         </div>
       </div>
       <div class="dip-text">
-        <span class="eyebrow">// Para quem</span>
         <h2>PME de serviço com receita recorrente que não quer perder o que já conquistou.</h2>
         <p class="sec-lede">Não é disparo de mensagem. É a recuperação da recorrência que o Pix Automático deixou órfã em 2026 — o retry, o resgate e a conciliação que hoje se faz na mão (ou não se faz).</p>
       </div>
@@ -270,13 +274,11 @@ footer{border-top:1px solid var(--line);}
   <div class="wrap">
     <div class="dip">
       <div class="dip-text">
-        <span class="eyebrow blue">// Para quem</span>
         <h2>Consultorias, bodyshops e empresas em migração S/4HANA com FI-CA/FS-CD.</h2>
         <p class="sec-lede">Assessment rápido, aceleradores de IA e execução de saneamento de dados com a disciplina de quem vive o módulo há 8+ anos. A consultoria financia e valida o produto.</p>
       </div>
       <div class="dip-proof">
         <div class="pcard">
-          <span class="eyebrow blue">// Caixa · Consultoria</span>
           <h3>Saneamento & Migração FS-CD → S/4HANA</h3>
           <p>A base técnica que sustenta o SaaS, aplicada como serviço para quem migra agora.</p>
           <ul class="plist cons-accent">
@@ -295,7 +297,6 @@ footer{border-top:1px solid var(--line);}
 <!-- COMO FUNCIONA — narrativa numerada vertical -->
 <section id="como">
   <div class="wrap">
-    <span class="eyebrow">// A recorrência que não cai</span>
     <h2>O que o SaaS faz quando o débito falha.</h2>
     <p class="sec-lede">Falha → retry → conciliação. O ciclo completo, automático, sem planilha de retela no fim do mês.</p>
     <div class="proc">
@@ -312,7 +313,6 @@ footer{border-top:1px solid var(--line);}
   <div class="wrap">
     <div class="dip">
       <div class="dip-text">
-        <span class="eyebrow">// Ponte · Mentoria em IA</span>
         <h2>Consultores que dominam IA não serão substituídos por ela.</h2>
       </div>
       <div class="dip-proof">
@@ -336,7 +336,6 @@ footer{border-top:1px solid var(--line);}
 <!-- CTA -->
 <section id="contato" class="endcta">
   <div class="wrap">
-    <span class="eyebrow">// Próximo passo</span>
     <h2>Quer ver a recorrência da sua operação parar de vazar?</h2>
     <p>Conversa de 25 min, sem pressão. Mapeamos onde o débito falha hoje e o que dá para recuperar.</p>
     <a class="btn btn-solid" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20AAPSON%2C%20quero%20conversar%20sobre%20confiabilidade%20de%20cobran%C3%A7a%20recorrente">WhatsApp · AAPSON</a>
