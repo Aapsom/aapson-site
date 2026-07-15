@@ -34,7 +34,31 @@
   --font-body:"Fraunces",Georgia,serif;
   --font-mono:"Fraunces",Georgia,serif;
 }
-/* === Light 04 Editorial Cream === */
+/* === Light 04 Editorial Cream ===
+   Três fontes de tema, em ordem de prioridade:
+   1) [data-theme="light"|"dark"]  -> escolha manual do botão (mais forte)
+   2) @media (prefers-color-scheme:light) -> segue o sistema (padrão)
+   3) :root acima -> dark (fallback)                                        */
+:root[data-theme="light"]{
+  --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
+  --fg:#191512;
+  --a1:#B4472B;   /* vinho */
+  --a2:#1B6E7A;   /* teal */
+  --a3:#C8743C;   /* terra (idem) */
+  --pink:var(--a1); --lime:var(--a2); --blue:var(--a3);
+  --off:var(--fg); --ink:#F2EEE6;
+  --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
+  --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
+}
+:root[data-theme="dark"]{
+  --bg:#0B0714; --bg2:#08060F; --surface:#14101F; --surface2:#1A1426;
+  --fg:#EFE9FF;
+  --a1:#A78BFA; --a2:#D9F03A; --a3:#C8743C;
+  --pink:var(--a1); --lime:var(--a2); --blue:var(--a3);
+  --off:var(--fg); --ink:#0B0714;
+  --muted:rgba(239,233,255,.72); --faint:rgba(239,233,255,.48);
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+}
 @media (prefers-color-scheme:light){
   :root{
     --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
@@ -48,11 +72,12 @@
     --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
   }
 }
+/* Nano Banana no light (seja sistema ou botão): imagem é dark-native (neon claro
+   some no creme). Inverte p/ traço escuro + multiply p/ o acento de canto aparecer. */
 @media (prefers-color-scheme:light){
-  /* Nano Banana no light: imagem é dark-native (neon claro some no creme).
-     Inverte p/ traço escuro + multiply p/ o acento de canto aparecer sobre o creme. */
-  .hub-hero::before{mix-blend-mode:multiply;filter:invert(1) hue-rotate(180deg);opacity:.5;}
+  :root .hub-hero::before{mix-blend-mode:multiply;filter:invert(1) hue-rotate(180deg);opacity:.5;}
 }
+:root[data-theme="light"] .hub-hero::before{mix-blend-mode:multiply;filter:invert(1) hue-rotate(180deg);opacity:.5;}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{overflow-x:clip;}
 html{scroll-behavior:smooth;}
@@ -479,4 +504,29 @@ html.lenis{scroll-behavior:auto!important;}
   .scrub{height:auto;}
   .scrub-sticky{position:static;height:auto;padding-block:var(--s-3xl);}
   .scrub-grid{grid-template-columns:1fr;gap:var(--s-xl);}
+}
+
+/* === Toggle de tema (botão canto superior direito) === */
+.theme-toggle{
+  position:fixed; top:var(--s-sm); right:var(--s-sm); z-index:400;
+  width:42px; height:42px; display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--line2); border-radius:999px;
+  background:var(--surface); color:var(--fg);
+  cursor:pointer; padding:0; line-height:0;
+  box-shadow:0 6px 22px rgba(0,0,0,.28);
+  transition:background .25s,color .25s,border-color .25s,transform .25s,box-shadow .25s;
+}
+.theme-toggle:hover{transform:translateY(-1px); border-color:var(--a2); box-shadow:0 8px 26px var(--lime-glow);}
+.theme-toggle:active{transform:scale(.94);}
+.theme-toggle:focus-visible{outline:2px solid var(--focus); outline-offset:3px;}
+.theme-toggle svg{width:20px; height:20px; display:block;}
+@media(max-width:560px){
+  .theme-toggle{top:8px; right:8px; width:38px; height:38px;}
+  nav .wrap{padding-right:52px;}
+}
+/* transição suave de cor ao trocar tema (exceto reduz-motion) */
+:root{transition:background .35s ease, color .35s ease;}
+@media (prefers-reduced-motion:reduce){
+  :root{transition:none;}
+  .theme-toggle{transition:background .15s,color .15s,border-color .15s;}
 }
