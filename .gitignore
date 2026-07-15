@@ -1,0 +1,5 @@
+# === Lixo de verificação / pipeline (não é entrega) ===
+.chrome-tmp/
+test-*.html
+test-*.png
+bg-mockup.html

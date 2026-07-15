@@ -1,6 +1,6 @@
 /* AAPSON · Acid Circuit — motion runtime
-   Lenis smooth-scroll + contador do bloco pinado "Como funciona".
-   Honra prefers-reduced-motion: sem smooth-scroll, sem observers. */
+   Lenis smooth-scroll + scrub com spring + reveals de seção + parallax.
+   Honra prefers-reduced-motion: sem smooth-scroll, sem observers, estado final. */
 (function () {
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -10,7 +10,6 @@
     var lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, smoothWheel: true });
     function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    /* âncoras internas continuam funcionando com o smooth-scroll */
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener("click", function (e) {
         var id = a.getAttribute("href");
@@ -22,72 +21,178 @@
     });
   }
 
-  /* --- contador do bloco pinado: qual passo está ativo --- */
+  /* ============================================================
+     1) REVEALS de seção (IntersectionObserver) — dirige .in
+     ============================================================ */
+  var reveals = document.querySelectorAll(".reveal");
+  if (reveals.length && "IntersectionObserver" in window && !reduce) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); ro.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+    reveals.forEach(function (r) { ro.observe(r); });
+  } else {
+    reveals.forEach(function (r) { r.classList.add("in"); });
+  }
+
+  /* ============================================================
+     2) FLOW-STEP ativo (linha de tempo da seção "Como funciona")
+        dirige .is-active (highlight de borda) — mais robusto que opacity
+     ============================================================ */
   var steps = document.querySelectorAll(".flow-step");
   var count = document.querySelector("[data-flow-count]");
   var now = document.querySelector("[data-flow-now]");
-  if (steps.length && count && now && "IntersectionObserver" in window) {
+  if (steps.length && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
-          var i = en.target.getAttribute("data-i");
-          var label = en.target.getAttribute("data-label") || "";
-          count.firstChild.nodeValue = "0" + i;
-          now.textContent = label;
+          steps.forEach(function (s) { s.classList.remove("is-active"); });
+          en.target.classList.add("is-active");
+          if (count && now) {
+            var i = en.target.getAttribute("data-i");
+            var label = en.target.getAttribute("data-label") || "";
+            count.firstChild.nodeValue = (i < 10 ? "0" : "") + i;
+            now.textContent = label;
+          }
         }
       });
     }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
     steps.forEach(function (s) { io.observe(s); });
+    if (reduce) steps[0].classList.add("is-active");
   }
 
-  /* --- PME scrub hero: o scroll dirige a animação do fluxo --- */
+  /* flow-mark: respiro ao entrar na view */
+  var fmark = document.querySelector(".flow-mark");
+  if (fmark && "IntersectionObserver" in window && !reduce) {
+    var mo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); mo.unobserve(en.target); }
+      });
+    }, { threshold: 0.3 });
+    mo.observe(fmark);
+  } else if (fmark) { fmark.classList.add("in"); }
+
+  /* ============================================================
+     3) SCRUB PME — progresso com SPRING (lerp contínuo no rAF)
+        feel suave/robusto, não linear. Labels com fade ao trocar.
+     ============================================================ */
   var scrub = document.querySelector(".scrub");
   var pipe = document.querySelector("[data-pipe]");
   var label = document.querySelector("[data-scrub-label]");
   var nodes = document.querySelectorAll(".scrub .node");
-  /* etapas vêm do markup (data-stages="A,B,C,D"); fallback = fluxo PME */
   var STAGES = (scrub && scrub.getAttribute("data-stages"))
     ? scrub.getAttribute("data-stages").split(",").map(function (s) { return s.trim(); })
     : ["Detecta", "Tenta de novo", "Avisa", "Confere"];
+  var sub = (label && label.querySelector(".sub")) ? label.querySelector(".sub") : null;
+
+  function setFinal() {
+    if (pipe) pipe.style.width = "100%";
+    if (label) label.firstChild.nodeValue = STAGES[STAGES.length - 1];
+    nodes.forEach(function (n) { n.classList.add("on"); });
+  }
+
   if (scrub && pipe && label) {
     if (reduce) {
-      /* reduced-motion: estado final estático */
-      pipe.style.width = "100%";
-      label.textContent = STAGES[STAGES.length - 1];
-      nodes.forEach(function (n) { n.classList.add("on"); });
+      setFinal();
     } else {
-      var ticking = false;
-      function update() {
-        ticking = false;
+      var cur = 0, target = 0, raf2 = null, lastIdx = -1;
+      function computeTarget() {
         var total = scrub.offsetHeight - window.innerHeight;
-        if (total <= 0) {            /* mobile: hero estático */
-          pipe.style.width = "100%";
-          label.textContent = STAGES[STAGES.length - 1];
-          nodes.forEach(function (n) { n.classList.add("on"); });
-          return;
-        }
+        if (total <= 0) { target = 1; return; }
         var top = scrub.getBoundingClientRect().top;
-        var p = Math.min(1, Math.max(0, -top / total));
-        pipe.style.width = (p * 100).toFixed(2) + "%";
-        var idx = Math.min(STAGES.length - 1, Math.floor(p * STAGES.length));
-        if (label.textContent !== STAGES[idx]) label.textContent = STAGES[idx];
-        var lastIdx = STAGES.length - 1;
-        nodes.forEach(function (n) {
-          var at = parseFloat(n.getAttribute("data-at"));
-          /* último nó acende ao entrar na etapa final (não só em p=1) */
-          var on = at >= 1 ? (idx >= lastIdx) : (p >= at - 0.001);
-          n.classList.toggle("on", on);
-        });
+        target = Math.min(1, Math.max(0, -top / total));
       }
-      window.addEventListener("scroll", function () {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
-      }, { passive: true });
-      window.addEventListener("resize", update);
-      update();
+      function apply() {
+        /* spring: aproxima cur de target (suaviza o salto do scroll) */
+        cur += (target - cur) * 0.12;
+        if (Math.abs(target - cur) < 0.0005) cur = target;
+        if (pipe) pipe.style.width = (cur * 100).toFixed(2) + "%";
+        var idx = Math.min(STAGES.length - 1, Math.floor(cur * STAGES.length));
+        if (idx !== lastIdx) {
+          /* fade out/in no label ao trocar de etapa */
+          if (label) {
+            label.style.opacity = "0";
+            label.style.transform = "translateY(6px)";
+            setTimeout(function () {
+              label.firstChild.nodeValue = STAGES[idx];
+              label.style.opacity = "1";
+              label.style.transform = "none";
+            }, 140);
+          }
+          nodes.forEach(function (n) {
+            var at = parseFloat(n.getAttribute("data-at"));
+            var on = at >= 1 ? (idx >= STAGES.length - 1) : (cur >= at - 0.001);
+            n.classList.toggle("on", on);
+          });
+          lastIdx = idx;
+        }
+        if (cur !== target) { raf2 = requestAnimationFrame(apply); }
+        else { raf2 = null; }
+      }
+      function kick() {
+        computeTarget();
+        if (!raf2) raf2 = requestAnimationFrame(apply);
+      }
+      window.addEventListener("scroll", kick, { passive: true });
+      window.addEventListener("resize", kick);
+      window.addEventListener("load", kick);
+      kick();
     }
   }
 
-  /* --- global status bar: sessão (tempo real) + heartbeat pings --- */
+  /* ============================================================
+     4) PARALLAX do fundo Nano Banana (hub) — --py conforme scroll
+     ============================================================ */
+  var hero = document.querySelector(".hub-hero");
+  if (hero && !reduce) {
+    var py = 0, pyt = 0, raf3 = null;
+    function computePy() {
+      var r = hero.getBoundingClientRect();
+      var prog = Math.min(1, Math.max(0, -r.top / (r.height || 1)));
+      pyt = prog * 60; /* desloca até 60px p/ baixo */
+    }
+    function tick() {
+      py += (pyt - py) * 0.1;
+      if (Math.abs(pyt - py) < 0.1) py = pyt;
+      hero.style.setProperty("--py", py.toFixed(2) + "px");
+      if (py !== pyt) raf3 = requestAnimationFrame(tick); else raf3 = null;
+    }
+    function kickPy() { computePy(); if (!raf3) raf3 = requestAnimationFrame(tick); }
+    window.addEventListener("scroll", kickPy, { passive: true });
+    window.addEventListener("resize", kickPy);
+    kickPy();
+  }
+
+  /* ============================================================
+     4b) COLLAPSE DA MARCA NO SCROLL (estilo Anthropic)
+         no topo: marca completa (logo + wordmark) | ao descer: só o logo
+     ============================================================ */
+  var navEl = document.querySelector("nav");
+  if (navEl) {
+    var navScrolled = false;
+    function navUpdate() {
+      var next = window.scrollY > 60;
+      if (next !== navScrolled) {
+        navScrolled = next;
+        navEl.classList.toggle("scrolled", next);
+      }
+    }
+    var navTicking = false;
+    window.addEventListener("scroll", function () {
+      if (!navTicking) {
+        navTicking = true;
+        requestAnimationFrame(function () { navUpdate(); navTicking = false; });
+      }
+    }, { passive: true });
+    window.addEventListener("resize", navUpdate);
+    window.addEventListener("load", navUpdate);
+    navUpdate();
+  }
+
+  /* ============================================================
+     5) STATUS BAR global — sessão (tempo real) + heartbeat pings
+     ============================================================ */
   var t0 = Date.now();
   var sessEl = document.querySelector("[data-sessão]");
   var pingEl = document.querySelector("[data-pings]");
@@ -98,9 +203,7 @@
     var p = function (n) { return (n < 10 ? "0" : "") + n; };
     return (h ? h + "h " : "") + p(m) + "m " + p(s) + "s";
   }
-  if (sessEl) {
-    setInterval(function () { sessEl.textContent = fmt(Date.now() - t0); }, 1000);
-  }
+  if (sessEl) { setInterval(function () { sessEl.textContent = fmt(Date.now() - t0); }, 1000); }
   if (pingEl && !reduce) {
     var pings = 0;
     setInterval(function () { pings++; pingEl.textContent = pings; }, 3000);

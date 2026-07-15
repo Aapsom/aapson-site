@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="AAPSON · Mentoria — IA aplicada ao trabalho real do consultor SAP">
 <meta name="twitter:description" content="4 sessões 1:1 + plano de IA aplicado ao seu projeto real.">
 <meta name="twitter:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -10 116 144'%3E%3Crect x='-8' y='-10' width='116' height='144' rx='20' fill='%230B0B0F'/%3E%3Cpolygon fill='%23B2F120' points='50,2 91,56 73,56 50,25 27,56 9,56'/%3E%3Cpolygon fill='%23FE2266' points='9,68 27,68 50,99 73,68 91,68 50,122'/%3E%3Ccircle fill='%23484AF0' cx='50' cy='62' r='9'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -10 116 144'%3E%3Crect x='-8' y='-10' width='116' height='144' rx='20' fill='%230B0B0F'/%3E%3Cpolygon fill='%23D9F03A' points='50,2 91,56 73,56 50,25 27,56 9,56'/%3E%3Cpolygon fill='%23A78BFA' points='9,68 27,68 50,99 73,68 91,68 50,122'/%3E%3Ccircle fill='%23C8743C' cx='50' cy='62' r='9'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@
 <nav>
   <div class="wrap">
     <a class="brand" href="./" aria-label="AAPSON — início">
-      <span class="mark"><svg viewBox="0 0 100 124" aria-hidden="true"><polygon fill="#B2F120" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#FE2266" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#484AF0" cx="50" cy="62" r="9"/></svg></span>
+      <span class="mark"><svg viewBox="0 0 100 124" aria-hidden="true"><polygon class="m-top" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon class="m-base" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle class="m-node" cx="50" cy="62" r="9"/></svg></span>
       <span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span>
     </a>
     <div class="navright">
@@ -92,7 +92,7 @@
 </header>
 
 <!-- FORMATO — momento pinado (assinatura) -->
-<section id="formato">
+<section id="formato" class="reveal">
   <div class="wrap">
     <h2>Não é curso gravado. São 4 sessões no seu projeto real.</h2>
     <p class="sec-lede">Cada sessão parte do seu contexto — não de exemplo genérico. Entre as sessões, você aplica; na seguinte, ajustamos. Esta é a trilha individual; para equipes, o mesmo método vira um ciclo in-company sob medida. Valor 1:1: R$ 200–400 por sessão (4 sessões) · in-company: sob consulta para a sua equipe.</p>
@@ -100,9 +100,9 @@
     <div class="flow">
       <div class="flow-stick" aria-hidden="true">
         <svg class="flow-mark" viewBox="0 0 100 124">
-          <polygon fill="rgba(178,241,32,.10)" stroke="#B2F120" stroke-width="1.5" class="draw" points="50,2 91,56 73,56 50,25 27,56 9,56"/>
-          <polygon fill="rgba(254,34,102,.10)" stroke="#FE2266" stroke-width="1.5" class="draw" points="9,68 27,68 50,99 73,68 91,68 50,122"/>
-          <circle fill="rgba(72,74,240,.35)" stroke="#484AF0" stroke-width="1.5" class="draw" cx="50" cy="62" r="9"/>
+          <polygon fill="rgba(217,240,58,.10)" stroke="var(--a2)" stroke-width="1.5" class="draw m-top" pathLength="1" points="50,2 91,56 73,56 50,25 27,56 9,56"/>
+          <polygon fill="rgba(167,139,250,.10)" stroke="var(--a1)" stroke-width="1.5" class="draw m-base" pathLength="1" points="9,68 27,68 50,99 73,68 91,68 50,122"/>
+          <circle fill="rgba(200,116,60,.35)" stroke="var(--a3)" stroke-width="1.5" class="draw m-node" pathLength="1" cx="50" cy="62" r="9"/>
         </svg>
         <div class="flow-count" data-flow-count>01<span class="tot"> / 04</span></div>
         <div class="flow-now" data-flow-now>Diagnóstico</div>
@@ -134,7 +134,7 @@
 </section>
 
 <!-- PARA QUEM -->
-<section id="paraquem">
+<section id="paraquem" class="reveal">
   <div class="wrap">
     <div class="wedge-panel reveal">
       <span class="eyebrow pink">// Para quem é</span>
