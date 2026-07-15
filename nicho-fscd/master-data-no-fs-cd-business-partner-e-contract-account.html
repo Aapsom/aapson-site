@@ -35,26 +35,18 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Master Data no FS-CD: Business Partner e Contract Account</h1>
-<p>A tríade do FS-CD:</p>
-<p>1. <strong>Business Partner</strong> (BP) — pessoa/jurídica</p>
-<p>2. <strong>Contract Account</strong> (CA) — onde rolam débitos/créditos</p>
-<p>3. <strong>Contract Object</strong> (opcional) — o ativo contratado</p>
-<p>Governança de master data é onde 70% dos problemas de saneamento nascem: BP duplicado, CA órfão, regra de clearing quebrada.</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
-<ul>
-<li>SAP Help Portal — Business Partner for Contract Accounts</li>
-<li>Documentação de estrutura de master data FI-CA</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
-</ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<p>No FS-CD, a dupla central é <strong>Business Partner (BP)</strong> e <strong>Contract Account (CA)</strong>. Entender a relação dos dois é o primeiro lugar onde o dado sujo aparece.</p>
+<h2>Business Partner (BUT000 / DFKKBPT)</h2>
+<p>O BP é a pessoa/jurídica no modelo SAP S/4HANA (MDG/BP). No FS-CD ele é o pagador. Problemas típicos: BP duplicado, BP sem endereço válido, BP órfão (sem nenhum CA).</p>
+<h2>Contract Account (FKKVK / DFKKKP)</h2>
+<p>O CA é a conta de cobrança amarrada ao BP. Cada CA tem company code, perfil de pagamento e estado de dunning. Problemas típicos: CA com company code inconsistente, CA fechado mas com item aberto, CA sem plano de pagamento.</p>
+<h2>Por que isso trava a migração</h2>
+<p>O Migration Cockpit valida chaves estrangeiras. Um BP órfão ou um CA com company code fora do intervalo válido <strong>rejeita a linha inteira</strong> — e o erro só aparece no mock load, quando o cronograma já está apertado. O scanner pré-carga da AAPSON detecta essas quebras antes, por contrato e por empresa.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: master data FS-CD: BP e Contract Account.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

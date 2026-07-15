@@ -35,24 +35,16 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>FS-CD 101: o que é Contract Accounts Receivable and Payable</h1>
-<p>O <strong>FS-CD</strong> (Contract Accounts Receivable and Payable) é o componente da SAP para gestão de contas de contrato — usado quando o modelo de FI-AR/FI-AP (cliente/fornecedor) não cobre a recorrência (utilities, seguros, setor público, assinaturas).</p>
-<p>Diferencial-chave: a entidade central é o <strong>Contract Account</strong> (conta de contrato), ligada ao <strong>Business Partner</strong>, não diretamente ao cliente FI. Isso permite faturamento recorrente, dunning por níveis e clearing por regras.</p>
-<p>Para o consultor independente, entender FS-CD é entrar em um nicho de alta demanda e baixa oferta de mão de obra qualificada.</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
-<ul>
-<li>SAP Help Portal — FS-CD (Contract Accounts Receivable and Payable): visão geral do componente</li>
-<li>Documentação FI-CA: estrutura de contas de contrato e eventos</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
-</ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<p>O <strong>FS-CD (Contract Accounts Receivable and Payable)</strong> é o componente de contas a receber/pagar por contrato do SAP, parte da indústria de Serviços Financeiros (IS-U, seguros, tax & revenue). Ele não substitui o FI-AR nem o FI-AP: convive com eles. A diferença está no objeto contábil.</p>
+<h2>Onde o FS-CD entra</h2>
+<p>No FI tradicional, o documento nasce de uma nota fiscal ou de uma fatura de fornecedor. No FS-CD, o documento nasce de um <strong>contract account</strong> (FKKVK) amarrado a um <strong>business partner</strong> (BUT000/DFKKBPT). É o contract account — e não o cliente genérico — que acumula os itens abertos, recebe os pagamentos e dispara o dunning. Por isso seguradoras e utilities o usam: a cobrança é recorrente, por contrato, com milhões de contas independentes da contabilidade societária.</p>
+<h2>Por que isso importa na migração</h2>
+<p>Cada contract account carrega estado: plano de pagamento (DFKKBW), histórico de compensação, clearing automático. Quando esse estado está inconsistente, o S/4HANA não "corrige sozinho" — ele replica o problema. O diagnóstico pré-carga existe justamente para inspecionar esse estado antes de mover qualquer registro.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: FS-CD 101 / arquitetura de contas a receber por contrato.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

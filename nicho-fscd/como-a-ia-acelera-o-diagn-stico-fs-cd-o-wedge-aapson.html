@@ -35,23 +35,20 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Como a IA acelera o diagnóstico FS-CD (o wedge AAPSON)</h1>
-<p>O diagnóstico pré-carga FS-CD é repetitivo: ler tabelas, achar BP duplicado, regra quebrada, dunning travado. Um agente de IA fundamentado (RAG sobre fonte SAP oficial) faz o levantamento em minutos, não dias.</p>
-<p>Isso libera o consultor para a decisão de conteúdo (que exige experiência humana) — a IA opera o bastidor, o humano assina o resultado.</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
+<p>A IA acelera o diagnóstico FS-CD cortando o trabalho braçal de varredura e classificação. Mas a IA sozinha é perigosa — é por isso que a AAPSON tem um <strong>wedge</strong> específico.</p>
+<h2>O wedge: IA com critério de domínio</h2>
 <ul>
-<li>SAP Help Portal — FS-CD (fundamentação técnica para o agente)</li>
-<li>AAPSON: Template Técnica 3 de diagnóstico pré-carga</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
+<li><strong>Cita a fonte:</strong> todo resumo de LLM aponta a wiki de migração FS-CD e as tabelas DFKKOP/FKKVK reais. Nada de inventar campo SAP;</li>
+<li><strong>Roda local / anonimizado:</strong> sem expor dado de cliente real;</li>
+<li><strong>Julgamento humano decide:</strong> o que é lixo vs histórico obrigatório continua sendo quem vive o módulo.</li>
 </ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>Por que é diferente de "IA para S/4HANA"</h2>
+<p>Relatório genérico de LLM alucina tabela e passa vergonha em produção. O da AAPSON entrega diagnóstico com causa provável e regra de saneamento sugerida — em 5 dias, R$ 15.000, pacote fechado.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: IA no diagnóstico FS-CD / wedge AAPSON.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

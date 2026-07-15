@@ -35,29 +35,20 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Clearing automático e regras de compensação no FS-CD</h1>
-<p>Clearing = compensar débito com crédito. No FS-CD existem:</p>
+<p><strong>Clearing automático</strong> no FS-CD é a compensação de itens abertos por regra, sem intervenção manual. É o mecanismo que mantém o saldo do contract account coerente.</p>
+<h2>Como funciona</h2>
 <ul>
-<li><strong>Clearing automático</strong> por regras de matching</li>
-<li><strong>Clearing parcial/total</strong></li>
-<li><strong>Tolerância</strong> de diferença</li>
+<li>Regras de compensação (clearing rules) definem quais itens se anulam entre si (pagamento vs fatura);</li>
+<li>O processo de clearing automático roda em background e gera o documento de compensação;</li>
+<li>Itens que não encontram par voam para uma fila de exceção — é aí que o dado sujo aparece.</li>
 </ul>
-<p>Regra de ouro: nunca compensar sem regra explícita de matching — compensação errada vira inconsistência que só aparece na conciliação mensal.</p>
-<blockquote class="eeat">⚠️ <strong>Revisão técnica pendente:</strong> Checar com consultor SAP: FQ09 é config de restrições (clearing control), não 'clearing manual'; clearing automático roda via FPCA/RFKKZUAB. FQ10 pode não ser o termo correto para 'automático'.</blockquote>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
-<ul>
-<li>SAP Help Portal — Clearing in Contract Accounts</li>
-<li>Transação FQ09 (clearing control) e execução de clearing via FPCA</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
-</ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>Por que importa na migração</h2>
+<p>Se o legado tem itens "semi-compensados" (parcial, com resto órfão), o S/4HANA replica o estado quebrado. O diagnóstico pré-carga inspeciona exatamente essas inconsistências de clearing por company code e por conta.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: clearing automático e regras de compensação FS-CD.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

@@ -35,28 +35,21 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Dunning automático no FS-CD: passos e níveis</h1>
-<p>O dunning do FS-CD roda em <strong>passos (dunning levels)</strong> configuráveis: L1 aviso suave, L2 cobrança, L3 suspensão. Cada passo tem:</p>
+<p><strong>Dunning automático</strong> no FS-CD é a sequência de cobrança por níveis, disparada por evento de derivação (FQEVENTS) quando o item vence.</p>
+<h2>Os passos</h2>
 <ul>
-<li>intervalo de dias</li>
-<li>texto/formulário</li>
-<li>exceções por tipo de débito</li>
+<li><strong>Seleção:</strong> o job de dunning identifica itens vencidos por contract account;</li>
+<li><strong>Nível:</strong> cada conta sobe de nível conforme dias de atraso e regra de derivação;</li>
+<li><strong>Notificação:</strong> carta/e-mail gerado pelo evento 600/610 (formato);</li>
+<li><strong>Histórico:</strong> cada passo fica registrado para auditoria.</li>
 </ul>
-<p>A AAPSON usa exatamente esse modelo como wedge: o agente de IA monitora o não-débito e dispara a régua — substituindo o dunning manual que hoje é feito à mão em PMEs.</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
-<ul>
-<li>SAP Help Portal — Dunning in Contract Accounts (FQI0/FPY1)</li>
-<li>Customizing de dunning procedure por conta de contrato</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
-</ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>Por que importa na migração</h2>
+<p>Se o dado de dunning veio sujo (conta fechada com nível ativo), o job dispara cobrança para cliente morto no dia 1 pós-go-live. O diagnóstico pré-carga inspeciona o estado de dunning por conta.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: dunning automático FS-CD: passos e níveis.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

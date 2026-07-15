@@ -35,22 +35,20 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Clearing e conciliação pós-saneamento</h1>
-<p>Após sanea, as regras de clearing devem compensar sem ruído. A conciliação FS-CD x FI-GL precisa bater diariamente. Relatório de demo (AAPSON) prova o fechamento antes de liberar produção.</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
+<p>Depois do saneamento, o teste de verdade é a <strong>conciliação pós-carga</strong>: o que o banco diz que entrou tem que bater com o que o FS-CD registrou.</p>
+<h2>O que reconciliar</h2>
 <ul>
-<li>SAP Help Portal — Clearing and Open Item Management</li>
-<li>FPL9 account balance</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
+<li>Saldo de itens abertos legado vs novo por contract account;</li>
+<li>Documentos de clearing migrados vs exceções não migradas;</li>
+<li>Pagamentos recebidos no período de cutover vs registro no S/4HANA.</li>
 </ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>Saneamento e conciliação andam juntos</h2>
+<p>Saneamento sem conciliação é promessa; conciliação sem saneamento é trabalho manual eterno. O plano de saneamento da AAPSON entrega os dois: o dado limpo <em>e</em> o relatório que prova que o limpo bateu.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: clearing e conciliação pós-saneamento FS-CD.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

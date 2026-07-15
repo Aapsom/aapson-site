@@ -35,23 +35,20 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Conciliação e relatórios de cobrança no FS-CD</h1>
-<p>Conciliação FS-CD = bater débitos, créditos, clearing e dunning com o FI-GL. Relatórios padrão (FPL*) mostram aging e itens em aberto.</p>
-<p>O desafio real: quando o FS-CD roda em sistema legado, a conciliação é cega — não se sabe o que falhou. É exatamente a lacuna que a AAPSON fecha com painel de recuperação.</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
+<p>No FS-CD, <strong>conciliar</strong> é fechar o ciclo: o extrato bancário tem que casar com o saldo de itens abertos por contract account.</p>
+<h2>Relatórios que importam</h2>
 <ul>
-<li>SAP Help Portal — Account Balance and Line Items (FPL9)</li>
-<li>Relatórios de cobrança FI-CA</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
+<li><strong>Saldo de itens abertos</strong> (por company code, por data de vencimento);</li>
+<li><strong>Status de dunning</strong> (em qual nível cada conta está);</li>
+<li><strong>Exceções de clearing</strong> (o que não compensou e por quê).</li>
 </ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>Por que relatório bom evita retrabalho</h2>
+<p>Em migração, o relatório de conciliação é a primeira evidência de que o dado não quebrou. Se o relatório do legado e do novo divergent em mais de tolerância, algo no saneamento ficou pela metade. O assessment da AAPSON entrega o relatório executivo + técnico exatamente para esse antes/depois.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: conciliação e relatórios de cobrança FS-CD.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

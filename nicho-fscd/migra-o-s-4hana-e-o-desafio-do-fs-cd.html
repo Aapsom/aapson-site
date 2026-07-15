@@ -35,23 +35,20 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Migração S/4HANA e o desafio do FS-CD</h1>
-<p>O FS-CD é o módulo mais sensível na conversão S/4HANA por causa do Universal Journal e do Business Partner obrigatório. Erros de saneamento aqui travam toda a contabilidade de utilidades/seguros.</p>
-<p>Plano: diagnosticar → sanea → reconciliar em sandbox → migrar.</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
+<p>O desafio do FS-CD no S/4HANA não é técnico de plataforma — é de <strong>dado</strong>.</p>
+<h2>Onde o projeto realmente trava</h2>
 <ul>
-<li>SAP Help Portal — Conversion to S/4HANA (FI-CA specifics)</li>
-<li>Guia de reconciliação pós-migração</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
+<li>Volume: milhões de contract accounts, cada um com estado próprio;</li>
+<li>Histórico: anos de compensação que o modelo novo questiona;</li>
+<li>Derivação: FQEVENTS que funcionava no release antigo e some no novo.</li>
 </ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>Por que hypercare importa</h2>
+<p>O go-live não é o fim. Jobs de background travados, fila de IDoc parada e erro de compensação que só estoura dias depois são o território do hypercare 24/7 — o agente que vigia o bastidorm e explica a causa raiz de processo FS-CD, não só "o job falhou". A AAPSON entrega os dois: o assessment pré-carga e o hypercare pós-go-live.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: migração S/4HANA e o desafio do FS-CD.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

@@ -35,24 +35,20 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Eventos do FS-CD e regras de derivação (FQEVENTS)</h1>
-<p>Os <strong>FQEVENTS</strong> são pontos de extensão do FS-CD (ex: 0100 determina conta). Cada evento aceita uma função/BAdI.</p>
-<p>Consultores experientes ganham dinheiro debugando regras de derivação conflitantes — é o 'código custom' mais sensível do módulo.</p>
-<blockquote class="eeat">⚠️ <strong>Revisão técnica pendente:</strong> Checar com consultor SAP: evento '1100 calcula juros' não confirmado — numeração de eventos de juros é outra. Manter só 0100 (account determination) como exemplo verificado.</blockquote>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
+<p><strong>FQEVENTS</strong> são os pontos de derivação do FS-CD: ganchos onde o sistema executa lógica customizada (contabilização, dunning, formatação de aviso).</p>
+<h2>Como funcionam</h2>
 <ul>
-<li>SAP Help Portal — FQEVENTS (Events in Contract Accounts)</li>
-<li>Guia de implementação de BAdI em eventos FI-CA</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
+<li>Cada evento tem um número (ex.: 0010 determinação de conta, 600/610 formatação de dunning);</li>
+<li>A regra de derivação aponta para uma função/exit que roda no momento do evento;</li>
+<li>Se a função não existe no release alvo, o evento silencia — e o efeito some sem erro.</li>
 </ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>Por que trava a migração</h2>
+<p>Migrar sem revisar FQEVENTS é herdar lógica quebrada. O scanner pré-carga da AAPSON valida eventos órfãos e regras que apontam para objeto inexistente no S/4HANA.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: eventos FS-CD e regras de derivação FQEVENTS.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

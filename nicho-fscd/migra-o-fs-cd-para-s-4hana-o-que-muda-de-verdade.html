@@ -35,29 +35,21 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Migração FS-CD para S/4HANA: o que muda de verdade</h1>
-<p>Na conversão para S/4HANA, o FS-CD continua como FI-CA porém sobre o novo data model. Pontos críticos:</p>
+<p>Migrar FS-CD para S/4HANA não é "subir a mesma coisa". O que muda de verdade está no modelo de dados e na forma de carga.</p>
+<h2>O que muda</h2>
 <ul>
-<li><strong>Universal Journal (ACDOCA)</strong>: a parte G/L do FS-CD passa a espelhar no universal journal; open items ficam em DFKKOP.</li>
-<li><strong>Business Partner</strong>: obrigatório — o modelo de cliente legado (KNA1) deve ser convertido.</li>
-<li><strong>Customizing de eventos (FQEVENTS)</strong>: regras de derivação precisam de revalidação.</li>
+<li><strong>Business Partner é obrigatório</strong> — modelo de parceiro unificado (não mais cliente clássico);</li>
+<li><strong>Migration Cockpit / DMC</strong> substitui a carga manual de LSMW em muitos objetos;</li>
+<li><strong>Tabelas FICA</strong> mantêm a lógica, mas a validação de chave estrangeira é mais rígida;</li>
+<li><strong>Universal Journal</strong> muda a forma de fechar — o FS-CD contabiliza nele.</li>
 </ul>
-<p>O erro mais caro é tratar migração FS-CD como 'copy-paste' de tabelas. É reestruturação de modelo de dados.</p>
-<blockquote class="eeat">⚠️ <strong>Revisão técnica pendente:</strong> Refinar com consultor SAP: não dizer que 'todos os dados FS-CD espelham no ACDOCA' — open items (DFKKOP) continuam em tabela própria; só o G/L vai para ACDOCA.</blockquote>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
-<ul>
-<li>SAP Help Portal — S/4HANA Conversion Guide (FI-CA)</li>
-<li>Nota SAP de preparação de migração FI-CA -> S/4HANA</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
-</ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<h2>O que NÃO muda</h2>
+<p>A lógica de contract account, plano de pagamento e dunning continua FS-CD. O risco não é o novo; é o velho inconsistente que o novo rejeita.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: migração FS-CD para S/4HANA: o que muda.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

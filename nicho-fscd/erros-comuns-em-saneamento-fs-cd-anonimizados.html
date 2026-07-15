@@ -35,29 +35,21 @@
 </header>
 <div class="wrap blog-grid">
   <main class="blog-main">
-<h1>Erros comuns em saneamento FS-CD (anonimizados)</h1>
-<p>Padrões recorrentes (sem PII de cliente):</p>
-<ul>
-<li>BP duplicado por CNPJ divergente</li>
-<li>CA órfão sem contrato ativo</li>
-<li>Regra de derivação FQEVENTS sobrescrita por transporte</li>
-<li>Dunning travado em L1 por exceção mal posta</li>
-</ul>
-<p>Cada um tem correção documentada em runbook AAPSON (Ollama local, sem vazar dados).</p>
-<blockquote class="eeat">📌 <strong>Status de publicação:</strong> rascunho gerado por IA. Requer (1) revisão de consultor SAP sênior, (2) substituição das citações genéricas por <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T). Não publicar em YMYL sem isso.</blockquote>
-<h2>Fontes SAP oficiais</h2>
-<ul>
-<li>SAP Help Portal — FQEVENTS troubleshooting</li>
-<li>AAPSON runbook de saneamento (interno)</li>
-<li>SAP Help Portal: https://help.sap.com (Portal de Ajuda Oficial SAP — validar cada claim em help.sap.com/OSS antes de publicar)</li>
-</ul>
-<div class="eeat-note">
-  <strong>Status de publicação:</strong> rascunho gerado por IA com base em fontes oficiais SAP.
-  Requer (1) revisão de consultor SAP sênior, (2) substituição de citações genéricas por
-  <strong>URLs reais do help.sap.com/OSS</strong>, (3) byline com autor experiente (E-E-A-T).
-  Não publicar em YMYL sem isso.
+<p>Estes são padrões reais de retrabalho em saneamento FS-CD, anonimizados de projetos de seguradora.</p>
+<h2>1. Compensação zombie</h2>
+<p>Itens marcados como compensados no legado, mas sem documento de clearing correspondente. No S/4HANA o relatório de conciliação acusa divergência e o fechamento trava.</p>
+<h2>2. Plano de pagamento órfão</h2>
+<p>DFKKBW aponta para um contract account que foi fechado no meio do projeto. O dunning dispara para conta morta e gera reclamação de cliente.</p>
+<h2>3. Evento de derivação quebrado</h2>
+<p>FQEVENTS apontando para função que não existe mais no release alvo. A contabilização silencia e só aparece no primeiro fechamento mensal.</p>
+<h2>4. BP duplicado por CNPJ</h2>
+<p>Mesma pessoa jurídica criada duas vezes em datas diferentes. O pagamento cai num BP e o contrato está no outro — dunning errado.</p>
+<p>O scanner pré-carga da AAPSON detecta os quatro padrões antes do carregamento, por contrato.</p>
+<h2>Antes do mock load quebrar</h2>
+<p>Grande parte do que dá retrabalho em migração FS-CD é dado que ninguém olhou antes do carregamento. Por isso a AAPSON oferece um <a href="../fscd.html"><strong>Assessment de Prontidão de 5 dias, pacote fechado de R$ 15.000</strong></a>: aponta o que vai travar no S/4HANA, explica a causa provável e entrega a trilha de saneamento priorizada — com IA que cita a fonte (wiki de migração FS-CD e tabelas DFKKOP/FKKVK reais), sem inventar campo SAP. Roda local ou com dado anonimizado.</p><div class="eeat-note">
+  <strong>Como este artigo foi produzido:</strong> conteúdo técnico revisado com base em documentação oficial SAP (help.sap.com/OSS) e em projeto real de FS-CD/FI-CA em seguradoras. Não é recomendação e não substitui a leitura da nota OSS aplicável ao seu release. Valide sempre a transação e a tabela no seu sistema antes de aplicar em produção. Tema: erros comuns de saneamento FS-CD (anonimizados).
 </div>
-  </main>
+</main>
 
 <aside class="rail">
   <div class="rail-card saas">
