@@ -19,6 +19,19 @@
   --font-body:"Fraunces",Georgia,serif;
   --font-mono:"JetBrains Mono",monospace;
 }
+/* ===== Tema claro (Light 04 Editorial Cream, espelha acid.css) ===== */
+:root[data-theme="light"]{
+  --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
+  --fg:#191512; --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
+  --ink:#F2EEE6; --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
+}
+@media (prefers-color-scheme:light){
+  :root{
+    --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
+    --fg:#191512; --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
+    --ink:#F2EEE6; --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
+  }
+}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;}
 body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden;}
@@ -98,9 +111,30 @@ h2{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,3.4vw,40
 ul.clean{list-style:none;}.clean li{padding:9px 0 9px 26px;position:relative;font-size:15.5px;color:var(--muted);border-top:1px solid var(--line);}
 .clean li:first-child{border-top:none;}.clean li::before{content:"▸";position:absolute;left:0;color:var(--accent);}
 @media(max-width:760px){.slide{padding:44px 26px;}.grid2,.grid3,.price,.steps,.ba,.stat-row{grid-template-columns:1fr;}.nav{padding:0 26px;}.topbar{padding:18px 26px;}}
+.theme-toggle{position:fixed;top:14px;right:14px;z-index:400;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:18px;line-height:1;cursor:pointer;border:1px solid var(--line2);border-radius:999px;background:var(--surface);color:var(--fg);box-shadow:0 6px 22px rgba(0,0,0,.28);transition:background .2s,color .2s,border-color .2s,transform .2s;user-select:none;}
+.theme-toggle:hover{transform:translateY(-1px);border-color:var(--accent);box-shadow:0 8px 26px var(--accent-glow);}
+.theme-toggle:active{transform:scale(.94);}
+.theme-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 </style>
 </head>
 <body>
+<button class="theme-toggle" type="button" aria-label="Mudar tema">◐</button>
+<script>
+/* toggle de tema para decks (segue sistema por padrao, botao sobrescreve) */
+(function(){
+  var STORE="aapson-deck-theme";
+  function forced(){try{return localStorage.getItem(STORE);}catch(e){return null;}}
+  function system(){return (matchMedia&&matchMedia("(prefers-color-scheme:light)").matches)?"light":"dark";}
+  function resolved(){return forced()||system();}
+  function apply(){var f=forced();if(f==="light"||f==="dark")document.documentElement.setAttribute("data-theme",f);else document.documentElement.removeAttribute("data-theme");}
+  apply();
+  var btn=document.querySelector(".theme-toggle");
+  function paint(){btn.textContent=(resolved()==="light")?"☀":"☾";btn.setAttribute("aria-label",(resolved()==="light")?"Tema claro — clica para escuro":"Tema escuro — clica para claro");}
+  paint();
+  btn.addEventListener("click",function(){var n=(resolved()==="light")?"dark":"light";try{localStorage.setItem(STORE,n);}catch(e){}apply();paint();});
+  if(window.matchMedia){var mq=matchMedia("(prefers-color-scheme:light)");var on=function(){if(!forced()){apply();paint();}};if(mq.addEventListener)mq.addEventListener("change",on);else if(mq.addListener)mq.addListener(on);}
+})();
+</script>
 <div class="deck" id="deck">
 
   <!-- 1 COVER -->

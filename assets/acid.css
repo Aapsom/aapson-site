@@ -194,7 +194,7 @@ h2{font:700 clamp(28px,3.6vw,40px)/1.1 var(--font-display);letter-spacing:-.01em
 .pcard h3{font:700 21px/1.2 var(--font-display);margin-bottom:var(--s-xs);}
 .pcard p{color:var(--muted);font-size:14.5px;}
 .plist{list-style:none;margin-top:var(--s-lg);display:flex;flex-direction:column;gap:var(--s-sm);}
-.plist li{padding-left:20px;position:relative;font-size:14px;color:rgba(244,243,239,.9);}
+.plist li{padding-left:20px;position:relative;font-size:14px;color:var(--off);}
 .plist li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:2px;background:currentColor;}
 .saas-accent{color:var(--lime);} .cons-accent{color:var(--blue);}
 .tag{display:inline-block;font:400 10.5px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;padding:6px 11px;border-radius:999px;margin-top:var(--s-lg);}
@@ -239,7 +239,7 @@ h2{font:700 clamp(28px,3.6vw,40px)/1.1 var(--font-display);letter-spacing:-.01em
 /* ---- wedge ---- */
 .wedge-panel{background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:var(--s-2xl);}
 .wedge-panel .eyebrow{color:var(--pink);}
-.wedge-panel p{color:rgba(244,243,239,.86);font-size:16px;margin-top:var(--s-md);}
+.wedge-panel p{color:var(--off);font-size:16px;margin-top:var(--s-md);}
 .wedge-panel b{color:var(--off);}
 
 /* ---- CTA strip ---- */
@@ -448,7 +448,7 @@ html.lenis{scroll-behavior:auto!important;}
 .blog-main h2{color:var(--blue);margin:var(--s-xl) 0 var(--s-sm);}
 .blog-main p{color:var(--muted);font-size:16px;margin-bottom:var(--s-md);max-width:64ch;}
 .blog-main ul{margin:0 0 var(--s-md) var(--s-lg);}
-.blog-main ul li{color:rgba(244,243,239,.9);margin:.3rem 0;font-size:15.5px;}
+.blog-main ul li{color:var(--off);margin:.3rem 0;font-size:15.5px;}
 .blog-main blockquote.eeat{background:var(--blue-tint);border-left:3px solid var(--blue);
   padding:var(--s-md) var(--s-lg);border-radius:0 12px 12px 0;color:var(--off);font-size:15px;margin:var(--s-lg) 0;}
 .eeat-note{margin-top:var(--s-2xl);padding:var(--s-lg) var(--s-xl);background:var(--surface2);
