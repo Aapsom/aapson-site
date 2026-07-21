@@ -3,3 +3,7 @@
 test-*.html
 test-*.png
 bg-mockup.html
+
+# Python
+__pycache__/
+*.pyc
