@@ -208,4 +208,44 @@
     var pings = 0;
     setInterval(function () { pings++; pingEl.textContent = pings; }, 3000);
   }
+
+  /* ============================================================
+     6) PARALLAX DE CURSOR COM SPRING (técnica do vídeo XEIMIfJb5d0)
+        floaters seguem o cursor (spring lerp); um contra-move na
+        direção oposta e mais devagar (estilo "lata" do vídeo).
+        Só em ponteiro fino; respeita prefers-reduced-motion.
+     ============================================================ */
+  var fx = document.querySelectorAll(".hub-hero .hero-fx");
+  if (fx.length && !reduce && window.matchMedia("(pointer:fine)").matches) {
+    var items = [];
+    fx.forEach(function (el) {
+      items.push({
+        el: el,
+        depth: parseFloat(el.getAttribute("data-depth")) || 0.03,
+        dir: parseFloat(el.getAttribute("data-dir")) || 1,
+        cx: 0, cy: 0, tx: 0, ty: 0
+      });
+    });
+    var rafFx = null;
+    function onMove(e) {
+      var nx = (e.clientX / window.innerWidth) - 0.5;  /* -0.5..0.5 */
+      var ny = (e.clientY / window.innerHeight) - 0.5;
+      items.forEach(function (t) {
+        t.tx = nx * t.dir * t.depth * 220;  /* px */
+        t.ty = ny * t.dir * t.depth * 220;
+      });
+      if (!rafFx) rafFx = requestAnimationFrame(tickFx);
+    }
+    function tickFx() {
+      var moving = false;
+      items.forEach(function (t) {
+        t.cx += (t.tx - t.cx) * 0.08;  /* spring */
+        t.cy += (t.ty - t.cy) * 0.08;
+        if (Math.abs(t.tx - t.cx) > 0.05 || Math.abs(t.ty - t.cy) > 0.05) moving = true;
+        t.el.style.transform = "translate3d(" + t.cx.toFixed(2) + "px," + t.cy.toFixed(2) + "px,0)";
+      });
+      rafFx = moving ? requestAnimationFrame(tickFx) : null;
+    }
+    window.addEventListener("mousemove", onMove, { passive: true });
+  }
 })();
