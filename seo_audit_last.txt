@@ -1,0 +1,19 @@
+=== AUDITOR SEO OFFLINE — aapson-site ===
+páginas .html encontradas: 30
+[OK ] sitemap.xml
+[OK ] robots.txt
+[OK ] JSON-LD (application/ld+json) em 23/30 páginas
+meta tags: 30 páginas; problemas=9
+   - bg-mockup.html: sem meta description
+   - scroll-world-test.html: sem meta description
+   - test-duotone.html: sem meta description
+   - test-hero.html: sem meta description
+   - test-logos-v2.html: sem <title>
+   - test-logos-v2.html: sem meta description
+   - test-logos.html: sem <title>
+   - test-logos.html: sem meta description
+   - test-palettes.html: sem meta description
+[FALTA] interlink nicho-fscd: 18/18 artigos sem link p/ outro artigo do cluster
+
+VEREDITO: 1 categoria(s) de quick-win pendente(s)
+[gerado por seo_audit.py em 2026-07-21T07:35:19]
