@@ -108,6 +108,7 @@
         cur += (target - cur) * 0.12;
         if (Math.abs(target - cur) < 0.0005) cur = target;
         if (pipe) pipe.style.width = (cur * 100).toFixed(2) + "%";
+        if (window.__aapsonScrubProg) window.__aapsonScrubProg(cur);
         var idx = Math.min(STAGES.length - 1, Math.floor(cur * STAGES.length));
         if (idx !== lastIdx) {
           /* fade out/in no label ao trocar de etapa */
@@ -215,7 +216,8 @@
         direção oposta e mais devagar (estilo "lata" do vídeo).
         Só em ponteiro fino; respeita prefers-reduced-motion.
      ============================================================ */
-  var fx = document.querySelectorAll(".hub-hero .hero-fx");
+  var fx = document.querySelectorAll(".hub-hero .hero-fx, .scrub .hero-fx");
+  var scrubProg = 0; /* 0..1 progresso do .scrub (hero pme) — alimenta drift no scroll */
   if (fx.length && !reduce && window.matchMedia("(pointer:fine)").matches) {
     var items = [];
     fx.forEach(function (el) {
@@ -223,7 +225,9 @@
         el: el,
         depth: parseFloat(el.getAttribute("data-depth")) || 0.03,
         dir: parseFloat(el.getAttribute("data-dir")) || 1,
-        cx: 0, cy: 0, tx: 0, ty: 0
+        scroll: el.getAttribute("data-scroll") === "1",
+        cx: 0, cy: 0, tx: 0, ty: 0,   /* cursor (spring) */
+        sx: 0, sy: 0                    /* scroll drift */
       });
     });
     var rafFx = null;
@@ -239,13 +243,18 @@
     function tickFx() {
       var moving = false;
       items.forEach(function (t) {
-        t.cx += (t.tx - t.cx) * 0.08;  /* spring */
+        t.cx += (t.tx - t.cx) * 0.08;  /* spring cursor */
         t.cy += (t.ty - t.cy) * 0.08;
-        if (Math.abs(t.tx - t.cx) > 0.05 || Math.abs(t.ty - t.cy) > 0.05) moving = true;
-        t.el.style.transform = "translate3d(" + t.cx.toFixed(2) + "px," + t.cy.toFixed(2) + "px,0)";
+        if (t.scroll) { t.sx = scrubProg * t.dir * 40; t.sy = -scrubProg * t.dir * 30; }
+        if (Math.abs(t.tx - t.cx) > 0.05 || Math.abs(t.ty - t.cy) > 0.05 ||
+            (t.scroll && (Math.abs(t.sx) > 0.05 || Math.abs(t.sy) > 0.05))) moving = true;
+        var x = (t.cx + t.sx), y = (t.cy + t.sy);
+        t.el.style.transform = "translate3d(" + x.toFixed(2) + "px," + y.toFixed(2) + "px,0)";
       });
       rafFx = moving ? requestAnimationFrame(tickFx) : null;
     }
     window.addEventListener("mousemove", onMove, { passive: true });
+    /* expõe o progresso do scrub p/ o drift no scroll (hero pme) */
+    window.__aapsonScrubProg = function (p) { scrubProg = p; if (!rafFx) rafFx = requestAnimationFrame(tickFx); };
   }
 })();
