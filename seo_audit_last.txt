@@ -16,4 +16,4 @@ meta tags: 30 páginas; problemas=9
 [OK ] interlink nicho-fscd: 0/18 artigos sem link p/ outro artigo do cluster
 
 VEREDITO: SAUDÁVEL
-[gerado por seo_audit.py em 2026-07-21T07:41:33]
+[gerado por seo_audit.py em 2026-07-21T07:45:44]
