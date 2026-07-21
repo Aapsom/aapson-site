@@ -13,7 +13,7 @@ meta tags: 30 páginas; problemas=9
    - test-logos.html: sem <title>
    - test-logos.html: sem meta description
    - test-palettes.html: sem meta description
-[FALTA] interlink nicho-fscd: 18/18 artigos sem link p/ outro artigo do cluster
+[OK ] interlink nicho-fscd: 0/18 artigos sem link p/ outro artigo do cluster
 
-VEREDITO: 1 categoria(s) de quick-win pendente(s)
-[gerado por seo_audit.py em 2026-07-21T07:35:19]
+VEREDITO: SAUDÁVEL
+[gerado por seo_audit.py em 2026-07-21T07:41:33]
