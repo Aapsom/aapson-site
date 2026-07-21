@@ -1,0 +1,18 @@
+# Log — PO ATLAS Autônomo | D1 | 2026-07-18 18:21
+
+## BLOCO A — Re-verificação dos decks (sem toque visual)
+  [OK] deck-atlas-pme.html: violeta=0 terra=0 chart=0 verde=3 lime=4 brand=5 powered=7 codinome=0
+  [OK] deck-atlas-wl.html: violeta=0 terra=0 chart=0 verde=3 lime=4 brand=5 powered=9 codinome=0
+  >> Decks mantêm Emerald Sentry + brandmark + powered by. Sem rótulo de codinome.
+
+## BLOCO B — One-Pager ATLAS (interno, Emerald Sentry)
+  >> Escrito: C:\Users\kauea\OneDrive\Documentos\AAPSOM.MD\OBSIDIAN\AAPSOM.MD\Trabalho\06-Produto-SaaS\ATLAS - One-Pager Interno.md (1205 bytes)
+
+## BLOCO C — Consolidação da spec dos 5 funcionários (ATLAS)
+  >> Escrito: C:\Users\kauea\OneDrive\Documentos\AAPSOM.MD\OBSIDIAN\AAPSOM.MD\Trabalho\03-Sistema-Agentes-IA\ATLAS - Spec dos 5 Funcionarios.md (2116 bytes)
+
+## BLOCO D — Verificação final + link na spec
+  >> Spec do PO atualizada com links D1.
+
+=== D1 CONCLUÍDO (autônomo) — sem GATE travado. Próximo: D2 (MVP E2E real). ===
+D1_DONE
