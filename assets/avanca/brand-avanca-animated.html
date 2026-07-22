@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Space+Grotesk:wght@400;500;700&display=swap");
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#07111A; color:#EAF4F4; font-family:"Fraunces",Georgia,serif; padding:40px; }
+  .wrap { max-width:1400px; margin:0 auto; }
+  .title { font-size:13px; text-transform:uppercase; letter-spacing:0.2em; color:#1FB6A6; font-family:"Space Grotesk",sans-serif; margin-bottom:24px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .card { background:#0E1C28; border-radius:18px; overflow:hidden; border:1px solid #15293a; }
+  .art { position:relative; height:300px; overflow:hidden; }
+  .art img { width:100%; height:100%; object-fit:cover; display:block; }
+  .label { position:absolute; top:14px; left:16px; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#7FE3D6; font-family:"Space Grotesk",sans-serif; background:rgba(7,17,26,0.6); padding:4px 8px; border-radius:6px; }
+  /* wordmark sobre a arte */
+  .wordmark { position:absolute; left:0; right:0; bottom:18px; text-align:center; font-size:34px; font-weight:700; letter-spacing:-0.02em; }
+  .wordmark .a1 { color:#2E7DF6; }
+  .wordmark .rest { color:#EAF4F4; }
+  .wordmark .a2 { color:#1FB6A6; }
+  /* OP1 — pulse no pico (glow suave) */
+  @keyframes pulse1 { 0%,100% { opacity:0.85; transform:scale(1); } 50% { opacity:1; transform:scale(1.04); } }
+  .op1 img { animation:pulse1 4s ease-in-out infinite; }
+  /* OP2 — shimmer (faixa de luz atravessa) */
+  .op2 .shimmer { position:absolute; inset:0; background:linear-gradient(115deg,transparent 30%,rgba(242,179,61,0.28) 50%,transparent 70%); transform:translateX(-100%); animation:shim2 3.5s ease-in-out infinite; }
+  @keyframes shim2 { 0% { transform:translateX(-100%);} 60%,100% { transform:translateX(100%);} }
+  /* OP3 — float (névoa sobe) */
+  .op3 .fog { position:absolute; left:0; right:0; bottom:0; height:90px; background:linear-gradient(to top,rgba(31,182,166,0.35),transparent); animation:float3 5s ease-in-out infinite; }
+  @keyframes float3 { 0%,100% { opacity:0.3; transform:translateY(8px);} 50% { opacity:0.6; transform:translateY(-8px);} }
+  .foot { padding:14px 16px; font-size:11px; color:#5b7787; font-family:"Space Grotesk",sans-serif; }
+  .foot b { color:#9fc7d4; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title">Avança — 3 opções de arte (Nano Banana) + animação + wordmark</div>
+  <div class="grid">
+    <div class="card">
+      <div class="art op1">
+        <span class="label">Op1 · Constância</span>
+        <img src="op1_constancia.png" alt="Constância">
+        <div class="wordmark"><span class="a1">A</span><span class="rest">van</span><span class="a2">ç</span><span class="rest">a</span></div>
+      </div>
+      <div class="foot">Animação: <b>pulse</b> (respira no pico) · Montanha minimalista duotone</div>
+    </div>
+    <div class="card">
+      <div class="art op2">
+        <span class="label">Op2 · Conquista</span>
+        <img src="op2_conquista.png" alt="Conquista">
+        <div class="shimmer"></div>
+        <div class="wordmark"><span class="a1">A</span><span class="rest">van</span><span class="a2">ç</span><span class="rest">a</span></div>
+      </div>
+      <div class="foot">Animação: <b>shimmer</b> (luz âmbar atravessa) · Glow no topo</div>
+    </div>
+    <div class="card">
+      <div class="art op3">
+        <span class="label">Op3 · Tech</span>
+        <img src="op3_tech.png" alt="Tech">
+        <div class="fog"></div>
+        <div class="wordmark"><span class="a1">A</span><span class="rest">van</span><span class="a2">ç</span><span class="rest">a</span></div>
+      </div>
+      <div class="foot">Animação: <b>float</b> (névoa sobe) · Montanha de circuitos</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

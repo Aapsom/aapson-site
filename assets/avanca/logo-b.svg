@@ -1,0 +1,5 @@
+<svg viewBox="0 0 48 48" fill="none" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <path class="peak-glow" d="M6 40 L20 14 L28 26 L34 16 L42 40Z" stroke="#1FB6A6" stroke-width="4" stroke-linejoin="round"/>
+  <circle class="peak-glow" cx="34" cy="16" r="3.5" fill="#F2B33D"/>
+  <path d="M6 40 L20 14 L28 26 L34 16 L42 40Z" fill="none" stroke="#2E7DF6" stroke-width="1.5" opacity="0.4"/>
+</svg>

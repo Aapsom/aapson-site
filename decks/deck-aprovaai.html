@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AprovaAI — Apresentação Comercial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0B0F1A; --fg:#EAF6FF; --a1:#06B6D4; --a2:#2563EB; --a3:#34D399;
+      --muted:rgba(234,246,255,.64); --card:rgba(6,182,212,.06); --border:rgba(6,182,212,.22);
+      --ice:#EAF6FF; --bar:#2563EB; --mint:#34D399;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      background:var(--bg); color:var(--fg);
+      font-family:'Inter',system-ui,sans-serif;
+      line-height:1.5; -webkit-font-smoothing:antialiased;
+      overflow:hidden;
+    }
+    .deck{height:100vh;height:100dvh;overflow:visible}
+    section{
+      min-height:100vh; min-height:100dvh; padding:5.2rem 6vw 8rem;
+      display:flex; flex-direction:column; justify-content:center;
+      opacity:0; transform:translateY(18px); transition:opacity .5s ease,transform .5s ease;
+      position:absolute; inset:0; pointer-events:none; overflow-y:auto;
+    }
+    section.active{opacity:1; transform:none; pointer-events:auto}
+    h1,h2,h3,.eyebrow,.price,.tag,.brandmark,.tier{font-family:'Plus Jakarta Sans','Inter',sans-serif}
+    .eyebrow{color:var(--a1); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.8rem; margin-bottom:1rem}
+    h1{font-size:clamp(2.5rem,5.6vw,4.6rem); line-height:1.02; font-weight:800; letter-spacing:-.02em}
+    h1 .cyan{color:var(--a1)} h1 .mint{color:var(--mint)}
+    h2{font-size:clamp(1.9rem,4vw,3rem); line-height:1.05; font-weight:800; margin-bottom:1.6rem; letter-spacing:-.01em}
+    .lead{color:var(--muted); font-size:clamp(1.05rem,1.7vw,1.3rem); max-width:54ch; margin-top:1.2rem}
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1.8rem}
+    .cards.c2{grid-template-columns:repeat(2,1fr)}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:1.4rem 1.5rem}
+    .card h3{color:var(--a1); font-size:1.16rem; margin-bottom:.55rem; font-weight:700}
+    .card p{color:var(--muted); font-size:1.0rem}
+    .card .ico{font-size:1.5rem; margin-bottom:.5rem; display:block}
+    .list{margin-top:1.4rem; display:flex; flex-direction:column; gap:.95rem}
+    .li{display:flex; gap:1rem; align-items:flex-start}
+    .li .dot{flex:0 0 auto; width:8px; height:8px; border-radius:50%; background:var(--a1); margin-top:.55rem}
+    .li b{color:var(--fg); font-weight:600}
+    .li span{color:var(--muted)}
+    .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1.6rem}
+    .plan{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:1.4rem 1.5rem; display:flex; flex-direction:column}
+    .plan.feat{border-color:var(--a1); box-shadow:0 0 0 1px var(--a1), 0 12px 40px rgba(6,182,212,.12)}
+    .plan .tier{font-weight:800; font-size:1.25rem}
+    .plan .price{color:var(--a1); font-weight:800; font-size:1.6rem; margin:.4rem 0 .2rem}
+    .plan .price small{color:var(--muted); font-size:.82rem; font-weight:500}
+    .plan ul{list-style:none; margin-top:1rem; display:flex; flex-direction:column; gap:.55rem; font-size:.96rem}
+    .plan li{color:var(--muted); display:flex; gap:.5rem; align:flex-start}
+    .plan li .ok{color:var(--mint); font-weight:700}
+    .plan li .no{color:#64748b; font-weight:700}
+    .plan li b{color:var(--fg); font-weight:600}
+    .plan .strip{margin-top:auto; padding-top:.9rem; font-size:.82rem; color:var(--a1); opacity:.85}
+    .tag{display:inline-block; background:var(--a1); color:#06121A; font-weight:800; font-size:.72rem; padding:.15rem .55rem; border-radius:999px; letter-spacing:.03em; vertical-align:middle; margin-left:.4rem}
+    .disclaimer{margin-top:2.2rem; font-size:.82rem; color:var(--muted); max-width:62ch; opacity:.85}
+    .brandmark{position:fixed; top:1.3rem; left:1.6rem; z-index:20; display:flex; align-items:center; gap:.6rem; font-weight:800; font-size:1.3rem; color:var(--ice); letter-spacing:-.01em}
+    .brandmark svg{flex:0 0 auto}
+    .brandmark .wm-ap{color:var(--ice)} .brandmark .wm-ai{color:var(--a1)}
+    .brandmark small{color:var(--muted); font-weight:500; font-size:.74rem; margin-left:.5rem; letter-spacing:0}
+    .by{position:fixed; top:1.5rem; right:1.8rem; font-size:.78rem; color:var(--muted); z-index:20; letter-spacing:.04em}
+    .nav{position:fixed; bottom:1.6rem; right:1.8rem; z-index:30; display:flex; gap:.5rem}
+    .nav button{background:var(--card); border:1px solid var(--border); color:var(--fg); width:2.4rem; height:2.4rem; border-radius:10px; cursor:pointer; font-size:1.1rem; font-family:'Plus Jakarta Sans'}
+    .nav button:hover{border-color:var(--a1)}
+    .dots{position:fixed; bottom:1.8rem; left:1.8rem; z-index:30; display:flex; gap:.4rem}
+    .dots i{width:7px; height:7px; border-radius:50%; background:rgba(234,246,255,.28)}
+    .dots i.on{background:var(--a1); transform:scale(1.25)}
+    .counter{color:var(--muted); font-size:.85rem; min-width:5rem; text-align:right}
+    .compare{margin-top:1.4rem; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; font-size:.92rem}
+    .compare div{padding:.7rem .9rem; border-bottom:1px solid var(--border); border-right:1px solid var(--border)}
+    .compare .head{background:rgba(6,182,212,.08); color:var(--fg); font-weight:700; font-family:'Plus Jakarta Sans'}
+    .compare .rowh{color:var(--a1); font-weight:700; font-family:'Plus Jakarta Sans'}
+    .compare .yes{color:var(--mint); font-weight:700}
+    .compare .no{color:#64748b; font-weight:700}
+    .deck-nav-btn{position:fixed;bottom:74px;width:46px;height:46px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--fg);font-size:22px;z-index:25;cursor:pointer;display:none;align-items:center;justify-content:center}
+    .deck-nav-btn.prev{left:18px}
+    .deck-nav-btn.next{right:18px}
+    @media(max-width:760px){
+      body{overflow-x:hidden;overflow-y:auto}
+      html,body{height:100%}
+      section{justify-content:flex-start;padding:84px 22px 130px}
+      .cards,.plans,.compare{grid-template-columns:1fr}
+      .brandmark{top:14px;left:16px}
+      .nav{bottom:14px}
+      .deck-nav-btn{display:flex}
+    }
+    @media print{
+      body{background:#fff; color:#111; overflow:visible}
+      .nav,.brandmark,.by,.dots{display:none!important}
+      section{position:relative; height:auto; opacity:1!important; transform:none!important; page-break-after:always; padding:3rem 2rem}
+      .card,.plan,.compare{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="brandmark">
+    <svg width="34" height="34" viewBox="0 0 120 120" aria-label="AprovaAI">
+      <path d="M32 98 L60 20 L88 98" fill="none" stroke="#06B6D4" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M44 74 L76 74" fill="none" stroke="#2563EB" stroke-width="9" stroke-linecap="round"/>
+      <path d="M78 50 L88 58 L98 42" fill="none" stroke="#34D399" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" transform="translate(-6,-4)"/>
+    </svg>
+    <span><span class="wm-ap">aprova</span><span class="wm-ai">AI</span></span>
+    <small>da AAPSON</small>
+  </div>
+
+  <div class="deck" id="deck">
+
+    <!-- 1. ABERTURA -->
+    <section class="active" data-i="0">
+      <div class="eyebrow">agente de estudo p/ concursos · Telegram</div>
+      <h1>manda o edital. em <span class="cyan">30s</span> você tem o <span class="mint">resumo</span> e o plano.</h1>
+      <p class="lead">O <b>aprovaAI</b> lê o edital por você e monta o cronograma de estudo ponderado por peso. Menos tempo lendo regra, mais tempo estudando. Entrada por PDF, link ou texto — direto no Telegram.</p>
+      <p class="disclaimer">Produto PRÓPRIO da AAPSON (identidade própria B1 Azul Confiança). Modelo freemium, aquisição a R$ 0 (Telegram + comunidade). Não é "banco de questões" — vende ORGANIZAÇÃO e CLARÉZA.</p>
+    </section>
+
+    <!-- 2. PROBLEMA / WEDGE -->
+    <section data-i="1">
+      <div class="eyebrow">por que existe</div>
+      <h2>concurseiro perde 2h lendo edital e não entende nada.</h2>
+      <div class="cards c2">
+        <div class="card"><span class="ico">😵</span><h3>o problema</h3><p>Edital é denso, cheio de jargon. Montar plano na mão é trabalhoso e cada um faz diferente. A prova chega e o cronograma não ficou pronto.</p></div>
+        <div class="card"><span class="ico">⚡</span><h3>a nossa wedge</h3><p>1 clique vira resumo estruturado + plano cronológico ponderado. Benchmark viral (@concursairotec, 183K views) prova que o mercado já confia em "IA pra concurso" — o aprovaAI é a versão 1 clique disso.</p></div>
+      </div>
+      <p class="lead">Diferencial vs concorrente: foca em <b>TEMPO e CLAREZA</b> (resumo + plano), não em "milhares de questões". Concorrente vende banca de questões; aprovaAI vende ORGANIZAÇÃO.</p>
+    </section>
+
+    <!-- 3. COMO FUNCIONA -->
+    <section data-i="2">
+      <div class="eyebrow">o fluxo</div>
+      <h2>3 passos. manda, o bot processa, você estuda.</h2>
+      <div class="cards">
+        <div class="card"><span class="ico">📥</span><h3>1. Entrada</h3><p>Manda PDF, link ou texto do edital no privado do bot no Telegram. O <code>input</code> resolve qualquer um para texto puro.</p></div>
+        <div class="card"><span class="ico">🤖</span><h3>2. Extração + Plano</h3><p>LLM extrai JSON estruturado (cargos, vagas, salário, datas, matérias com peso) e gera o plano cronológico ponderado.</p></div>
+        <div class="card"><span class="ico">📲</span><h3>3. Resposta</h3><p>Chega no Telegram em Markdown, com aviso obrigatório "confira no edital original". Pronto pra estudar.</p></div>
+      </div>
+    </section>
+
+    <!-- 4. FUNCIONALIDADES (completo) -->
+    <section data-i="3">
+      <div class="eyebrow">o que o aprovaAI faz de verdade</div>
+      <h2>Funcionalidades</h2>
+      <div class="list">
+        <div class="li"><span class="dot"></span><div><b>Resumo estruturado do edital</b> — <span>JSON com cargos, vagas, salário, datas-chave e matérias com peso. Não é "resumo de texto" — é dado tratado.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Plano de estudo cronológico</b> — <span>gerado a partir do edital e das datas, ponderado pelo peso de cada matéria. Mostra por onde começar.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Entrada flexível</b> — <span>aceita PDF (pdf-parse), link (fetch) ou texto colado. O usuário manda do jeito que tem o edital.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Multi-concurso (Pro+)</b> — <span>acompanha vários editais ao mesmo tempo, com lembretes e radar do perfil.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Lembretes diários (Pro+)</b> — <span>o bot lembra o que estudar hoje conforme o plano. Sem pressão de streak — é utilidade.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Aviso anti-alucinação</b> — <span>toda saída traz "confira no edital original". Honestidade obrigatória (LLM pode errar data).</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Grupo VIP + bot + mentoria (Ultra)</b> — <span>comunidade de cronograma, suporte de método e prioridade no roadmap.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Roadmap pós-MVP</b> — <span>radar DOU/bancas (polling), banco de questões, simulado inédito e corretor discursivo (o gap do método artesanal vira upsell).</span></div></div>
+      </div>
+    </section>
+
+    <!-- 5. DIFERENCA POR PLANO (tabela comparativa) -->
+    <section data-i="4">
+      <div class="eyebrow">o que muda por plano</div>
+      <h2>Diferenças por plano</h2>
+      <div class="compare">
+        <div class="head">Funcionalidade</div>
+        <div class="head">Free · R$0</div>
+        <div class="head">Pro · R$19–29/mês</div>
+        <div class="head">Ultra/Comunidade</div>
+
+        <div class="rowh">Editais resumidos</div>
+        <div>1 / mês</div>
+        <div class="yes">ilimitados</div>
+        <div class="yes">ilimitados</div>
+
+        <div class="rowh">Plano de estudo ponderado</div>
+        <div class="yes">básico</div>
+        <div class="yes">completo</div>
+        <div class="yes">completo + mentoria</div>
+
+        <div class="rowh">Entrada PDF / link / texto</div>
+        <div class="yes">sim</div>
+        <div class="yes">sim</div>
+        <div class="yes">sim</div>
+
+        <div class="rowh">Radar automático do perfil</div>
+        <div class="no">não</div>
+        <div class="yes">sim</div>
+        <div class="yes">sim</div>
+
+        <div class="rowh">Lembretes diários</div>
+        <div class="no">não</div>
+        <div class="yes">sim</div>
+        <div class="yes">sim</div>
+
+        <div class="rowh">Múltiplos concursos</div>
+        <div class="no">não</div>
+        <div class="yes">sim</div>
+        <div class="yes">sim</div>
+
+        <div class="rowh">Grupo VIP + mentoria</div>
+        <div class="no">não</div>
+        <div class="no">não</div>
+        <div class="yes">sim</div>
+
+        <div class="rowh">Prioridade no roadmap</div>
+        <div class="no">não</div>
+        <div class="no">não</div>
+        <div class="yes">sim</div>
+      </div>
+    </section>
+
+    <!-- 6. OS 3 PLANOS (cards) -->
+    <section data-i="5">
+      <div class="eyebrow">planos</div>
+      <h2>Escolhe o seu aprovaAI</h2>
+      <div class="plans">
+        <div class="plan">
+          <div class="tier">Free</div>
+          <div class="price">R$0 <small>/sempre</small></div>
+          <ul>
+            <li><span class="ok">✓</span> 1 edital resumido / mês</li>
+            <li><span class="ok">✓</span> plano básico</li>
+            <li><span class="ok">✓</span> entrada PDF / link / texto</li>
+            <li><span class="no">✗</span> radar / lembretes / multi</li>
+          </ul>
+          <div class="strip">entrada de funil</div>
+        </div>
+        <div class="plan feat">
+          <div class="tier">Pro <span class="tag">mais popular</span></div>
+          <div class="price">R$19–29 <small>/mês</small></div>
+          <ul>
+            <li><span class="ok">✓</span> editais ilimitados</li>
+            <li><span class="ok">✓</span> plano completo ponderado</li>
+            <li><span class="ok">✓</span> radar automático do perfil</li>
+            <li><span class="ok">✓</span> lembretes diários</li>
+            <li><span class="ok">✓</span> múltiplos concursos</li>
+          </ul>
+          <div class="strip">pra quem vai fazer prova de verdade</div>
+        </div>
+        <div class="plan">
+          <div class="tier">Ultra / Comunidade</div>
+          <div class="price">a definir</div>
+          <ul>
+            <li><span class="ok">✓</span> tudo do Pro</li>
+            <li><span class="ok">✓</span> grupo VIP</li>
+            <li><span class="ok">✓</span> bot + mentoria de cronograma</li>
+            <li><span class="ok">✓</span> prioridade no roadmap</li>
+          </ul>
+          <div class="strip">comunidade + suporte de método</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. MONETIZACAO / AQUISICAO -->
+    <section data-i="6">
+      <div class="eyebrow">receita + aquisição</div>
+      <h2>Freemium, aquisição a R$ 0</h2>
+      <div class="cards c2">
+        <div class="card"><span class="ico">💎</span><h3>Receita — assinatura</h3><p>Free puxa o funil; Pro converte por utilidade (editais ilimitados + lembretes). Ancorado em "1 café por semana". Ultra agrega comunidade + mentoria.</p></div>
+        <div class="card"><span class="ico">📣</span><h3>Aquisição — R$ 0</h3><p>Comunidade Telegram como hub + bot como entrada. Posts em grupos de concurso com valor ("manda o edital, recebe o plano"). Parceria com cursinhos (afiliado).</p></div>
+      </div>
+      <p class="lead">Benchmark validado: post "@concursairotec" (183K views, 6.9K bookmarks) prova autoridade de "IA pra concurso". O gap dele (banco de questões, simulado, corretor) é o nosso upsell pós-MVP.</p>
+    </section>
+
+    <!-- 9. FECHAMENTO -->
+    <section data-i="8">
+      <div class="eyebrow">resumo</div>
+      <h2>aprova<span class="cyan">AI</span> — o robô que lê o edital por você.</h2>
+      <p class="lead">Produto próprio da AAPSON, com identidade própria. Free faz o básico; Pro destrava editais ilimitados + lembretes; Ultra agrega comunidade. Vende TEMPO e CLAREZA, não questões.</p>
+    </section>
+
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <button id="deck-prev" class="deck-nav-btn prev" type="button" aria-label="Anterior">‹</button>
+  <button id="deck-next" class="deck-nav-btn next" type="button" aria-label="Próximo">›</button>
+  <div class="nav">
+    <button id="prev" aria-label="anterior">‹</button>
+    <span class="counter" id="counter"></span>
+    <button id="next" aria-label="próximo">›</button>
+  </div>
+
+  <script>
+    const deck = document.getElementById('deck');
+    const slides = [...deck.querySelectorAll('section')];
+    const dotsWrap = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    let i = 0;
+    slides.forEach((_, k) => {
+      const d = document.createElement('i');
+      if (k === 0) d.className = 'on';
+      dotsWrap.appendChild(d);
+    });
+    function show(n){
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      [...dotsWrap.children].forEach((d, k) => d.classList.toggle('on', k === i));
+      counter.textContent = (i + 1) + ' / ' + slides.length;
+    }
+    document.getElementById('next').onclick = () => show(i + 1);
+    document.getElementById('prev').onclick = () => show(i - 1);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') show(i + 1);
+      if (e.key === 'ArrowLeft') show(i - 1);
+    });
+    const pb=document.getElementById('deck-prev'), nb=document.getElementById('deck-next');
+    if(pb) pb.onclick = () => show(i - 1);
+    if(nb) nb.onclick = () => show(i + 1);
+    const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(!reduce && ('ontouchstart' in window || navigator.maxTouchPoints>0)){
+      let x0=null,y0=null;
+      deck.addEventListener('touchstart',e=>{if(e.touches&&e.touches.length){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+      deck.addEventListener('touchend',e=>{if(x0===null)return;const t=e.changedTouches&&e.changedTouches[0];if(!t)return;const dx=t.clientX-x0,dy=t.clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){show(i+(dx<0?1:-1));}x0=y0=null;},{passive:true});
+    }
+    show(0);
+  </script>
+</body>
+</html>

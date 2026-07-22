@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avança · Automação Pix DFY — Apresentação Comercial</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Space+Grotesk:wght@400;500;700&display=swap");
+  :root{
+    --bg:#07111A; --bg2:#0A1822; --surface:#0E1C28; --fg:#EAF4F4;
+    --a1:#2E7DF6; /* azul - Avança */
+    --a2:#1FB6A6; /* esmeralda - Avança */
+    --a3:#F2B33D; /* âmbar - nó */
+    --muted:#7FA8B8; --border:rgba(31,182,166,.14); --ink:#07111A;
+    --font-display:"Fraunces",Georgia,serif; --font-body:"Fraunces",Georgia,serif; --font-mono:"Space Grotesk",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden}
+  .deck{height:100vh;height:100dvh;overflow:visible;position:relative}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:9vh 8vw 12vh 8vw;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  .slide.active{display:flex;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .eyebrow{display:inline-block;font-family:var(--font-mono);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--a2);font-weight:600;margin-bottom:1.1rem}
+  h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem}
+  h2{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.6rem}
+  h3{font-size:1.25rem;font-weight:600;margin-bottom:.6rem}
+  .lead{font-size:1.15rem;color:var(--fg);max-width:46ch;margin-bottom:1.4rem}
+  p{font-size:1.02rem;color:var(--fg);max-width:52ch}
+  .muted{color:var(--muted)}
+  .grid{display:grid;gap:1.1rem;margin-top:1.4rem}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.4rem}
+  .card.win{border-left:3px solid var(--a2)}
+  .card.risk{border-left:3px solid var(--a3)}
+  .card .ic{font-size:1.5rem;margin-bottom:.5rem}
+  .kpi{font-size:1.6rem;font-weight:700;color:var(--a2)}
+  ul.clean{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.7rem}
+  ul.clean li{display:flex;gap:.7rem;align-items:flex-start;font-size:1.02rem}
+  ul.clean li::before{content:"›";color:var(--a1);font-weight:700;flex:none}
+  .chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .chip{background:rgba(46,125,246,.14);color:var(--a1);border:1px solid rgba(46,125,246,.30);padding:.4rem .9rem;border-radius:999px;font-size:.85rem;font-weight:600;letter-spacing:.02em}
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:1.4rem}
+  .plan{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem}
+  .plan.feat{border-color:var(--a1);box-shadow:0 0 24px rgba(46,125,246,.18)}
+  .plan .pt{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+  .plan .pv{font-size:1.9rem;font-weight:700;margin:.4rem 0 .2rem}
+  .plan .pv small{font-size:.9rem;color:var(--muted);font-weight:400}
+  .plan .pd{font-size:.9rem;color:var(--muted);min-height:2.6rem}
+  .foot-note{color:var(--muted);font-size:.8rem;line-height:1.5;margin-top:2rem;border-top:1px solid var(--border);padding-top:1rem}
+  .brandmark{position:fixed;top:1.4rem;left:1.6rem;display:flex;align-items:center;gap:.55rem;z-index:20}
+  .brandmark svg{width:30px;height:34px;flex:none}
+  .brandmark .bn{font-family:var(--font-display);font-weight:700;letter-spacing:.04em;font-size:1.2rem}
+  .brandmark .bn .a1{color:var(--a1)} /* A = azul */
+  .brandmark .bn .a2{color:var(--a2)} /* ç = esmeralda */
+  .brandmark .bn .rest{color:var(--fg)}
+  .nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.6rem;background:linear-gradient(0deg,var(--bg) 55%,transparent);z-index:20}
+  .nav button{font-family:var(--font-mono);cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--fg);padding:.55rem 1.1rem;border-radius:999px;font-size:.9rem;transition:.2s}
+  .nav button:hover{border-color:var(--a1);color:var(--a1)}
+  .nav .dots{display:flex;gap:.4rem}
+  .nav .dots i{width:7px;height:7px;border-radius:50%;background:var(--border);display:block}
+  .nav .dots i.on{background:var(--a1)}
+  .cta{display:inline-block;background:var(--a1);color:var(--ink);font-weight:600;padding:.85rem 1.8rem;border-radius:999px;margin-top:1.6rem;font-size:1rem;text-decoration:none}
+  /* botoes de toque (mobile) */
+  .deck-nav-btn{position:fixed;bottom:74px;width:46px;height:46px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--fg);font-size:22px;z-index:25;cursor:pointer;display:none;align-items:center;justify-content:center}
+  .deck-nav-btn.prev{left:18px}
+  .deck-nav-btn.next{right:18px}
+  @media(max-width:760px){
+    body{overflow-x:hidden;overflow-y:auto}
+    html,body{height:100%}
+    .slide{padding:84px 22px 130px;justify-content:flex-start;min-height:100dvh}
+    .grid.cols-2,.grid.cols-3,.price{grid-template-columns:1fr}
+    .brandmark{top:14px;left:16px}
+    .brandmark .bn{font-size:1.05rem}
+    .nav{bottom:14px;padding:.7rem 1rem}
+    .nav button{padding:.5rem .9rem;font-size:.85rem}
+    .deck-nav-btn{display:flex}
+  }
+  @media print{.brandmark,.nav,.deck-nav-btn{display:none}.slide{position:relative;display:flex!important;page-break-after:always;height:auto;padding:4vh 6vw}}
+</style>
+</head>
+<body>
+<div class="brandmark">
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Avança">
+    <path d="M6 40 L20 14 L28 26 L34 16 L42 40Z" stroke="#1FB6A6" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="34" cy="16" r="3.5" fill="#F2B33D"/>
+    <path d="M6 40 L20 14 L28 26 L34 16 L42 40Z" fill="none" stroke="#2E7DF6" stroke-width="1.5" opacity="0.4"/>
+  </svg>
+  <span class="bn"><span class="a1">A</span><span class="rest">vança</span></span>
+</div>
+<div class="deck" id="deck">
+  <button id="deck-prev" class="deck-nav-btn prev" type="button" aria-label="Anterior">‹</button>
+  <button id="deck-next" class="deck-nav-btn next" type="button" aria-label="Próximo">›</button>
+
+  <section class="slide active">
+    <span class="eyebrow">Avança · Automação Pix DFY · para PME de serviço</span>
+    <h1>Sua assinatura não cai no esquecimento</h1>
+    <p class="lead">Feito para a PME de serviço com recorrência (50 a 500 cobranças por mês): a gente conecta sua conta Pix, monitora o que falha e dispara a recuperação no WhatsApp da sua marca — você não toca em código, nem monta time de cobrança.</p>
+    <a class="cta" onclick="go(7)">Ver investimento →</a>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">O problema</span>
+    <h2>O Pix que falha em silêncio sangra o caixa da PME</h2>
+    <div class="grid cols-3">
+      <div class="card risk"><div class="ic">⚠️</div><h3>Expiração silenciosa</h3><p class="muted">A mensalidade do cliente vence e o Pix expira. Ele queria pagar — mas o prazo passou e ninguém viu.</p></div>
+      <div class="card risk"><div class="ic">🔁</div><h3>Sem retentativa</h3><p class="muted">Pix não tem débito automático. Uma falha e a venda morre — não há segunda tentativa automática.</p></div>
+      <div class="card risk"><div class="ic">💸</div><h3>Receita que escorre</h3><p class="muted">PME de serviço vive de poucos reais todo mês. Perder 1 a cada 10 assinaturas é sangrar o caixa que já é apertado.</p></div>
+    </div>
+    <p class="muted" style="margin-top:1.4rem">O dono da PME faz tudo — vende, atende, cobra. Sem time de cobrança, a inadimplência vira dor silenciosa. A gente substitui esse time por automação.</p>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">Para quem é</span>
+    <h2>Feito para a PME de serviço que cobra todo mês</h2>
+    <div class="grid cols-2">
+      <div class="card"><h3>👤 O dono faz tudo</h3><p class="muted">Microempresa, MEI ou pequeno serviço onde o sócio vende, atende e ainda cobra. Sem time de cobrança, sem CRM caro.</p></div>
+      <div class="card"><h3>🔁 Recorrência real</h3><p class="muted">Mensalidades, assinaturas ou retainer — de 50 a 500 cobranças por mês. Volume que justifica automatizar, mas não um departamento.</p></div>
+      <div class="card"><h3>🧾 Serviço, não produto físico</h3><p class="muted">Escola, clínica, academia, consultoria, manutenção, assinatura de conteúdo. O cliente quer pagar — só esquece ou o Pix expira.</p></div>
+      <div class="card"><h3>💡 Não quer virar engenheiro</h3><p class="muted">Quer receber pronto: a gente liga a conta, escreve as mensagens e entrega o painel. Você aprova e acompanha.</p></div>
+    </div>
+    <p class="muted" style="margin-top:1.4rem">Não é para quem esmaga volume de milhares de transações — é para a PME que perde receita recorrente por falta de uma retentativa simples.</p>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">Como funciona</span>
+    <h2>Quatro passos. O dono aprova, a gente roda.</h2>
+    <div class="grid cols-2">
+      <div class="card"><h3>1 · Conecta</h3><p class="muted">A gente liga a conta Pix (ou gateway) da sua PME à automação. Você só autoriza — não mexe em planilha nem contrata dev.</p></div>
+      <div class="card"><h3>2 · Monitora</h3><p class="muted">A cada mensalidade, o sistema vê se o Pix foi pago ou expirou. Em segundos, sem você ficar olhando.</p></div>
+      <div class="card"><h3>3 · Recupera</h3><p class="muted">Quem não pagou recebe mensagem no WhatsApp da sua marca, com botão de pagar de novo — como se o seu time estivesse cobrando.</p></div>
+      <div class="card"><h3>4 · Relata</h3><p class="muted">Você vê no painel quanto foi recuperado. Sem surpresa, sem planilha manual.</p></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">O que a Avança entrega</span>
+    <h2>Você recebe pronto — não um projeto pra terminar</h2>
+    <ul class="clean">
+      <li>Conexão da conta Pix/gateway da sua PME (sem você programar nada)</li>
+      <li>Disparo automático de recuperação no WhatsApp da sua marca</li>
+      <li>Painel simples: mensalidades, expiradas, recuperadas</li>
+      <li>Mensagens pré-escritas e revisadas (tom do seu negócio)</li>
+      <li>Ativação acompanhada: a gente liga tudo e te mostra funcionando</li>
+    </ul>
+    <div class="chips" style="margin-top:1.4rem">
+      <span class="chip">Sem código</span><span class="chip">WhatsApp oficial (Meta)</span><span class="chip">LGPD by design</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">Segurança e conformidade</span>
+    <h2>A gente nunca cobra duas vezes</h2>
+    <div class="grid cols-2">
+      <div class="card win"><h3>Idempotência</h3><p class="muted">Cada cobrança tem ID único. Mesmo que o sistema tente de novo, o cliente não é cobrado duas vezes.</p></div>
+      <div class="card win"><h3>LGPD by design</h3><p class="muted">Dados só para recuperar o pagamento. Sem revenda, sem spam. Você manda apagar quando quiser.</p></div>
+      <div class="card win"><h3>WhatsApp oficial</h3><p class="muted">Usamos a API oficial da Meta (Cloud API). Nada de WhatsApp Web — estável e dentro das regras.</p></div>
+      <div class="card win"><h3>Você no controle</h3><p class="muted">Aprova os textos, vê o painel. A automação é sua, não da gente.</p></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">Investimento</span>
+    <h2>Três modalidades — você paga conforme recupera</h2>
+    <div class="price">
+      <div class="plan"><div class="pt">Setup + Mensal</div><div class="pv">R$ 297<small>/mês</small></div><div class="pd">Ativação + assinatura fixa. Sem taxa sobre recuperação.</div></div>
+      <div class="plan feat"><div class="pt">Setup + Revenue-share</div><div class="pv">R$ 397<small>/mês</small></div><div class="pd">+ 10% só do que for recuperado. Você só paga se o cliente pagar de volta.</div></div>
+      <div class="plan"><div class="pt">Enterprise</div><div class="pv">Sob consulta</div><div class="pd">Volume alto, múltiplas contas, SLA. Fala com a gente.</div></div>
+    </div>
+    <p class="muted" style="margin-top:1rem">Faixas de ancoragem — tabela fechada e contrato após diagnóstico do seu volume.</p>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">Próximos passos</span>
+    <h2>Em 1 call a gente liga tudo</h2>
+    <ul class="clean">
+      <li>Call de 20 min: você mostra como cobra hoje</li>
+      <li>A gente manda o plano de conexão + texto das mensagens</li>
+      <li>Ativação e teste com você do lado</li>
+      <li>Primeiro relatório de recuperação em até 7 dias</li>
+    </ul>
+    <a class="cta" onclick="go(0)">Quero ver o investimento ↑</a>
+  </section>
+
+</div>
+<div class="nav">
+  <button onclick="prev()">← Anterior</button>
+  <div class="dots" id="dots"></div>
+  <button onclick="next()">Próximo →</button>
+</div>
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dots=document.getElementById('dots');
+  let i=0;
+  slides.forEach((_,n)=>{const d=document.createElement('i');if(n===0)d.className='on';dots.appendChild(d)});
+  function show(n){i=(n+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('active',k===i));[...dots.children].forEach((d,k)=>d.className=k===i?'on':'');}
+  function next(){show(i+1)} function prev(){show(i-1)} function go(n){show(n)}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+  // swipe mobile
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(!reduce && ('ontouchstart' in window || navigator.maxTouchPoints>0)){
+    const deck=document.getElementById('deck');let x0=null,y0=null;
+    deck.addEventListener('touchstart',e=>{if(e.touches&&e.touches.length){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+    deck.addEventListener('touchend',e=>{if(x0===null)return;const t=e.changedTouches&&e.changedTouches[0];if(!t)return;const dx=t.clientX-x0,dy=t.clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){show(i+(dx<0?1:-1));}x0=y0=null;},{passive:true});
+  }
+  // botoes de toque
+  const pb=document.getElementById('deck-prev'),nb=document.getElementById('deck-next');
+  if(pb)pb.addEventListener('click',()=>prev());
+  if(nb)nb.addEventListener('click',()=>next());
+</script>
+</body>
+</html>

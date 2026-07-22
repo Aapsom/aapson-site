@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VYBE — Apresentação Comercial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0B0F1A; --fg:#EAF6FF; --a1:#C6FF3D; --a2:#FF5C7A; --a3:#B8C7FF;
+      --muted:rgba(234,246,255,.62); --card:rgba(198,255,61,.055); --border:rgba(198,255,61,.20);
+      --ice:#EAF6FF; --lav:#B8C7FF;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      background:var(--bg); color:var(--fg);
+      font-family:'Inter',system-ui,sans-serif;
+      line-height:1.5; -webkit-font-smoothing:antialiased;
+      overflow:hidden;
+    }
+    .deck{height:100vh;height:100dvh;overflow:visible}
+    section{
+      min-height:100vh; min-height:100dvh; padding:5.2rem 6vw 8rem;
+      display:flex; flex-direction:column; justify-content:center;
+      opacity:0; transform:translateY(18px); transition:opacity .5s ease,transform .5s ease;
+      position:absolute; inset:0; pointer-events:none; overflow-y:auto;
+    }
+    section.active{opacity:1; transform:none; pointer-events:auto}
+    h1,h2,h3,.kicker,.eyebrow,.price,.tag,.brandmark{font-family:'Space Grotesk','Inter',sans-serif}
+    .eyebrow{color:var(--a1); font-weight:600; letter-spacing:.14em; text-transform:uppercase; font-size:.8rem; margin-bottom:1rem}
+    h1{font-size:clamp(2.6rem,6vw,4.8rem); line-height:1.0; font-weight:700; letter-spacing:-.02em}
+    h1 .lime{color:var(--a1)} h1 .coral{color:var(--a2)}
+    h2{font-size:clamp(1.9rem,4vw,3rem); line-height:1.05; font-weight:700; margin-bottom:1.6rem; letter-spacing:-.01em}
+    .lead{color:var(--muted); font-size:clamp(1.05rem,1.7vw,1.3rem); max-width:54ch; margin-top:1.2rem}
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1.8rem}
+    .cards.c2{grid-template-columns:repeat(2,1fr)}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:1.4rem 1.5rem}
+    .card h3{color:var(--a1); font-size:1.18rem; margin-bottom:.55rem; font-weight:600}
+    .card p{color:var(--muted); font-size:1.0rem}
+    .card .ico{font-size:1.5rem; margin-bottom:.5rem; display:block}
+    .list{margin-top:1.4rem; display:flex; flex-direction:column; gap:.95rem}
+    .li{display:flex; gap:1rem; align-items:flex-start}
+    .li .dot{flex:0 0 auto; width:8px; height:8px; border-radius:50%; background:var(--a1); margin-top:.55rem}
+    .li b{color:var(--fg); font-weight:600}
+    .li span{color:var(--muted)}
+    /* tabela de planos */
+    .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1.6rem}
+    .plan{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:1.4rem 1.5rem; display:flex; flex-direction:column}
+    .plan.feat{border-color:var(--a1); box-shadow:0 0 0 1px var(--a1), 0 12px 40px rgba(198,255,61,.12)}
+    .plan .tier{font-family:'Space Grotesk'; font-weight:700; font-size:1.25rem}
+    .plan .price{color:var(--a1); font-weight:700; font-size:1.6rem; margin:.4rem 0 .2rem}
+    .plan .price small{color:var(--muted); font-size:.85rem; font-weight:500}
+    .plan ul{list-style:none; margin-top:1rem; display:flex; flex-direction:column; gap:.55rem; font-size:.96rem}
+    .plan li{color:var(--muted); display:flex; gap:.5rem; align-items:flex-start}
+    .plan li .ok{color:var(--a1); font-weight:700}
+    .plan li .no{color:var(--a2); font-weight:700}
+    .plan li b{color:var(--fg); font-weight:600}
+    .plan .strip{margin-top:auto; padding-top:.9rem; font-size:.82rem; color:var(--a3)}
+    .tag{display:inline-block; background:var(--a1); color:#0B0F1A; font-weight:700; font-size:.72rem; padding:.15rem .55rem; border-radius:999px; letter-spacing:.04em; vertical-align:middle; margin-left:.4rem}
+    .disclaimer{margin-top:2.2rem; font-size:.82rem; color:var(--muted); max-width:60ch; opacity:.85}
+    .brandmark{position:fixed; top:1.4rem; left:1.6rem; font-weight:700; letter-spacing:.02em; z-index:20; font-size:1.15rem; color:var(--ice)}
+    .brandmark .dot{color:var(--a2)}
+    .brandmark small{color:var(--a3); font-weight:500; font-size:.78rem; margin-left:.4rem}
+    .by{position:fixed; top:1.5rem; right:1.8rem; font-size:.78rem; color:var(--muted); z-index:20; letter-spacing:.04em}
+    /* navegacao */
+    .nav{position:fixed; bottom:1.6rem; right:1.8rem; z-index:30; display:flex; gap:.5rem}
+    .nav button{background:var(--card); border:1px solid var(--border); color:var(--fg); width:2.4rem; height:2.4rem; border-radius:10px; cursor:pointer; font-size:1.1rem; font-family:'Space Grotesk'}
+    .nav button:hover{border-color:var(--a1)}
+    .dots{position:fixed; bottom:1.8rem; left:1.8rem; z-index:30; display:flex; gap:.4rem}
+    .dots i{width:7px; height:7px; border-radius:50%; background:rgba(234,246,255,.28)}
+    .dots i.on{background:var(--a1); transform:scale(1.25)}
+    .counter{color:var(--muted); font-size:.85rem; min-width:5rem; text-align:right}
+    .compare{margin-top:1.4rem; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; font-size:.92rem}
+    .compare div{padding:.7rem .9rem; border-bottom:1px solid var(--border); border-right:1px solid var(--border)}
+    .compare .head{background:rgba(198,255,61,.08); color:var(--fg); font-weight:600; font-family:'Space Grotesk'}
+    .compare .rowh{color:var(--a1); font-weight:600; font-family:'Space Grotesk'}
+    .compare .yes{color:var(--a1); font-weight:700}
+    .compare .no{color:var(--a2); font-weight:700}
+    .deck-nav-btn{position:fixed;bottom:74px;width:46px;height:46px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--fg);font-size:22px;z-index:25;cursor:pointer;display:none;align-items:center;justify-content:center}
+    .deck-nav-btn.prev{left:18px}
+    .deck-nav-btn.next{right:18px}
+    @media(max-width:760px){
+      body{overflow-x:hidden;overflow-y:auto}
+      html,body{height:100%}
+      section{justify-content:flex-start;padding:84px 22px 130px}
+      .cards,.plans,.compare{grid-template-columns:1fr}
+      .brandmark{top:14px;left:16px}
+      .nav{bottom:14px}
+      .deck-nav-btn{display:flex}
+    }
+    @media print{
+      body{background:#fff; color:#111; overflow:visible}
+      .nav,.brandmark,.by,.dots{display:none!important}
+      section{position:relative; height:auto; opacity:1!important; transform:none!important; page-break-after:always; padding:3rem 2rem}
+      .card,.plan,.compare{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="brandmark">vybe<span class="dot">.</span><small>da AAPSON</small></div>
+
+  <div class="deck" id="deck">
+
+    <!-- 1. ABERTURA -->
+    <section class="active" data-i="0">
+      <div class="eyebrow">agente trend orchestrator · p/ teen 14–19</div>
+      <h1>o <span class="lime">vybe</span> é o agente que <span class="coral">faz</span><br>o que tá bombando</h1>
+      <p class="lead">Não é mais um app de dica. É um agente com personalidade que <b>cria o edit, a playlist e o moodboard</b> do adolescente — e se mantém na moda sozinho pelo Trend Radar. Enquanto o teen manda a vibe, o VYBE executa nas contas dele.</p>
+      <p class="disclaimer">Produto PRÓPRIO da AAPSON (identidade própria, não é "filho visual"). Público: teen 14–19. Consentimento dos pais para conta e assinatura (ver compliance).</p>
+    </section>
+
+    <!-- 2. O PROBLEMA / WEDGE -->
+    <section data-i="1">
+      <div class="eyebrow">por que existe</div>
+      <h2>teen não quer app de "hábito". quer estar na moda.</h2>
+      <div class="cards c2">
+        <div class="card"><span class="ico">📉</span><h3>o problema</h3><p>Adolescente perde tempo tentando acompanhar trend que já passou. Ferramentas de "produtividade" soam como app de empresa — e morrem em 1 dia.</p></div>
+        <div class="card"><span class="ico">⚡</span><h3>a nossa wedge</h3><p>Um agente que FAZ (não aconselha) e que evolui com a cultura. Retenção vem de "sempre tem trend nova pro meu VYBE fazer" — não de lembrete.</p></div>
+      </div>
+      <p class="lead">Modelo <b>falso-free / pay-to-be-cool</b>: o free faz tudo, mas com marca d'água e skins básicas. O VYBE+ vende <b>ser cool</b> (status/identidade), não "mais do mesmo". Conversão por desejo social — como Roblox/Fortnite (5–15%).</p>
+    </section>
+
+    <!-- 3. COMO FUNCIONA -->
+    <section data-i="2">
+      <div class="eyebrow">o loop</div>
+      <h2>3 passos. o teen manda, o VYBE faz.</h2>
+      <div class="cards">
+        <div class="card"><span class="ico">🔭</span><h3>1. Trend Radar</h3><p>Varre TikTok/Reddit, cruza com o gosto do teen e puxa a trend dominante em tempo real (ou com delay no Free).</p></div>
+        <div class="card"><span class="ico">🎭</span><h3>2. Persona & Skin</h3><p>A persona casa a trend com a skin certa (brat, clean-girl, aura…) e responde no tom da trend — sem soar "app de empresa".</p></div>
+        <div class="card"><span class="ico">🛠️</span><h3>3. O agente age</h3><p>Cria o edit, a playlist ou o moodboard e <b>mostra antes de postar</b>. Só publica com confirmação do teen (zero auto-post cringe).</p></div>
+      </div>
+      <p class="disclaimer">Stack real (conferida no disco): Gemini 2.5 Flash (leve + forte) com OpenRouter fallback. Arquitetura MCP-first + OAuth PKCE. Roda localmente com LLM real.</p>
+    </section>
+
+    <!-- 4. FUNCIONALIDADES (completo) -->
+    <section data-i="3">
+      <div class="eyebrow">o que o vybe faz de verdade</div>
+      <h2>Funcionalidades</h2>
+      <div class="list">
+        <div class="li"><span class="dot"></span><div><b>Trend Radar em tempo real</b> — <span>detecta a top trend (ex: brat 55.2 de heat) e alimenta tudo o que o agente cria. É o core, não acessório.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>5 skins de personalidade</b> — <span>brat, clean-girl, aura, mob-wife, tomato-girl. Cada uma tem tom, vocabulário e cor próprios. Trocam sozinhas conforme a trend domina.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Geração de edit / vídeo</b> — <span>o agente monta o edit da trend na plataforma conectada (ex: CapCut/Canva) e mostra o rascunho antes de publicar.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Playlists por trend</b> — <span>cria playlist no Spotify casada com a vibe da trend (Integração Hub via MCP/OAuth).</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Moodboards</b> — <span>monta moodboard no Notion/Canva pra campanha ou post, no tom da skin ativa.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Confirmação antes de postar</b> — <span>tool-calling com aprovação do teen. Nunca auto-posta (regra anti-cringe + compliance).</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Reconexão 1 clique</b> — <span>OAuth PKCE com refresh; se a conta desconecta, o teen reconecta num toque, sem reautorizar tudo.</span></div></div>
+        <div class="li"><span class="dot"></span><div><b>Skin Unlock (progressão de identidade)</b> — <span>cada ação sobe o VYBE Level silenciosamente; novas skins aparecem como "liberou, tá dominando" (FOMO de cultura, não de produto).</span></div></div>
+      </div>
+    </section>
+
+    <!-- 5. DIFERENCA POR PLANO (tabela comparativa) -->
+    <section data-i="4">
+      <div class="eyebrow">o que muda por plano</div>
+      <h2>Diferenças por plano</h2>
+      <div class="compare">
+        <div class="head">Funcionalidade</div>
+        <div class="head">Free · R$0</div>
+        <div class="head">VYBE+ · R$19,90/mês</div>
+        <div class="head">VYBE Crew · R$39,90/mês</div>
+
+        <div class="rowh">Ações (edit, playlist, moodboard)</div>
+        <div class="yes">ilimitadas</div>
+        <div class="yes">ilimitadas</div>
+        <div class="yes">ilimitadas</div>
+
+        <div class="rowh">Marca d'água "made with VYBE"</div>
+        <div class="no">tem</div>
+        <div class="yes">sem</div>
+        <div class="yes">sem</div>
+
+        <div class="rowh">Skins básicas (brat, clean-girl, aura…)</div>
+        <div class="yes">todas</div>
+        <div class="yes">todas</div>
+        <div class="yes">todas</div>
+
+        <div class="rowh">Skins exclusivas (BRAT Neon, Aura Iridescent)</div>
+        <div class="no">não</div>
+        <div class="yes">sim</div>
+        <div class="yes">sim</div>
+
+        <div class="rowh">Trend em tempo real</div>
+        <div class="no">delay 24h</div>
+        <div class="yes">tempo real</div>
+        <div class="yes">tempo real</div>
+
+        <div class="rowh">Badge de status</div>
+        <div class="no">não</div>
+        <div class="yes">VYBE+</div>
+        <div class="yes">Crew</div>
+
+        <div class="rowh">Moodboards colaborativos</div>
+        <div class="no">não</div>
+        <div class="no">não</div>
+        <div class="yes">até 5 amigos</div>
+
+        <div class="rowh">Crew badge (grupo)</div>
+        <div class="no">não</div>
+        <div class="no">não</div>
+        <div class="yes">sim</div>
+      </div>
+    </section>
+
+    <!-- 6. OS 3 PLANOS (cards) -->
+    <section data-i="5">
+      <div class="eyebrow">planos</div>
+      <h2>Escolhe o seu vybe</h2>
+      <div class="plans">
+        <div class="plan">
+          <div class="tier">VYBE Free</div>
+          <div class="price">R$0 <small>/sempre</small></div>
+          <ul>
+            <li><span class="ok">✓</span> ações ilimitadas (edit, playlist, moodboard)</li>
+            <li><span class="ok">✓</span> 5 skins básicas</li>
+            <li><span class="no">✗</span> marca d'água "made with VYBE"</li>
+            <li><span class="no">✗</span> trend com delay 24h</li>
+            <li><span class="no">✗</span> skins exclusivas / badge</li>
+          </ul>
+          <div class="strip">pra testar e usar todo dia</div>
+        </div>
+        <div class="plan feat">
+          <div class="tier">VYBE+ <span class="tag">mais popular</span></div>
+          <div class="price">R$19,90 <small>/mês</small></div>
+          <ul>
+            <li><span class="ok">✓</span> tudo do Free</li>
+            <li><span class="ok">✓</span> <b>sem</b> marca d'água</li>
+            <li><span class="ok">✓</span> skins exclusivas (BRAT Neon, Aura Iridescent)</li>
+            <li><span class="ok">✓</span> trend em tempo real</li>
+            <li><span class="ok">✓</span> badge de status</li>
+          </ul>
+          <div class="strip">pra ser cool (pagam os pais)</div>
+        </div>
+        <div class="plan">
+          <div class="tier">VYBE Crew</div>
+          <div class="price">R$39,90 <small>/mês</small></div>
+          <ul>
+            <li><span class="ok">✓</span> tudo do VYBE+</li>
+            <li><span class="ok">✓</span> grupo de até 5 amigos</li>
+            <li><span class="ok">✓</span> moodboards colaborativos</li>
+            <li><span class="ok">✓</span> Crew badge</li>
+            <li><span class="no">✗</span> —</li>
+          </ul>
+          <div class="strip">pra turma toda na trend</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. MONETIZACAO / B2B -->
+    <section data-i="6">
+      <div class="eyebrow">receita</div>
+      <h2>Duas pernas de receita</h2>
+      <div class="cards c2">
+        <div class="card"><span class="ico">💎</span><h3>Braço ativo — VYBE+</h3><p>Assinatura paga por pais de teen 14–19. O upsell é desejo social (skin exclusiva + tira marca d'água). Conversão por status, não por limite.</p></div>
+        <div class="card"><span class="ico">🤝</span><h3>Braço futuro — Marketplace B2B (v2)</h3><p>SaaS paga para estar "dentro" das ações do agente (ex: Canva patrocinado = template preferido da trend). CPM/CPA por ação. Sinergia com Lead Engine (Aristóteles nº6).</p></div>
+      </div>
+      <p class="lead">Custo de construção: 1 dev (você + IA). Infra MVP ~$0–$2/mês (free tiers). Sem gasto com dados de trend.</p>
+    </section>
+
+    <!-- 9. FECHAMENTO -->
+    <section data-i="8">
+      <div class="eyebrow">resumo</div>
+      <h2>vybe<span class="coral">.</span> o agente que faz a trend, não só explica</h2>
+      <p class="lead">Produto próprio da AAPSON, com identidade própria. Free faz tudo (com marca d'água); VYBE+ vende ser cool; VYBE Crew é a turma toda. Receita por assinatura hoje, marketplace B2B amanhã.</p>
+    </section>
+
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <button id="deck-prev" class="deck-nav-btn prev" type="button" aria-label="Anterior">‹</button>
+  <button id="deck-next" class="deck-nav-btn next" type="button" aria-label="Próximo">›</button>
+  <div class="nav">
+    <button id="prev" aria-label="anterior">‹</button>
+    <span class="counter" id="counter"></span>
+    <button id="next" aria-label="próximo">›</button>
+  </div>
+
+  <script>
+    const deck = document.getElementById('deck');
+    const slides = [...deck.querySelectorAll('section')];
+    const dotsWrap = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    let i = 0;
+    slides.forEach((_, k) => {
+      const d = document.createElement('i');
+      if (k === 0) d.className = 'on';
+      dotsWrap.appendChild(d);
+    });
+    function show(n){
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      [...dotsWrap.children].forEach((d, k) => d.classList.toggle('on', k === i));
+      counter.textContent = (i + 1) + ' / ' + slides.length;
+    }
+    document.getElementById('next').onclick = () => show(i + 1);
+    document.getElementById('prev').onclick = () => show(i - 1);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') show(i + 1);
+      if (e.key === 'ArrowLeft') show(i - 1);
+    });
+    const pb=document.getElementById('deck-prev'), nb=document.getElementById('deck-next');
+    if(pb) pb.onclick = () => show(i - 1);
+    if(nb) nb.onclick = () => show(i + 1);
+    const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(!reduce && ('ontouchstart' in window || navigator.maxTouchPoints>0)){
+      let x0=null,y0=null;
+      deck.addEventListener('touchstart',e=>{if(e.touches&&e.touches.length){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+      deck.addEventListener('touchend',e=>{if(x0===null)return;const t=e.changedTouches&&e.changedTouches[0];if(!t)return;const dx=t.clientX-x0,dy=t.clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){show(i+(dx<0?1:-1));}x0=y0=null;},{passive:true});
+    }
+    show(0);
+  </script>
+</body>
+</html>

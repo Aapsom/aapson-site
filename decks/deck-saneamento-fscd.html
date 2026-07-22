@@ -3,231 +3,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAPSON · Saneamento FS-CD — Deck Comercial</title>
+<title>AAPSON · Apresentação Comercial — Saneamento FS-CD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&display=swap");
-:root{
-  --bg:#0B0714; --bg2:#08060F; --surface:#14101F; --surface2:#1A1426;
-  --fg:#EFE9FF; --muted:rgba(239,233,255,.72); --faint:rgba(239,233,255,.48);
-  --a1:#A78BFA; --a2:#D9F03A; --a3:#C8743C;
-  --ink:#0B0714;
-  --accent:#D9F03A;        /* SANEAMENTO = chartreuse (água/recuperação) */
-  --accent2:#A78BFA;
-  --accent-glow:rgba(217,240,58,.35);
-  --line:rgba(255,255,255,.10);
-  --font-display:"Fraunces",Georgia,serif;
-  --font-body:"Fraunces",Georgia,serif;
-  --font-mono:"JetBrains Mono",monospace;
-}
-/* ===== Tema claro (Light 04 Editorial Cream, espelha acid.css) ===== */
-:root[data-theme="light"]{
-  --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
-  --fg:#191512; --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
-  --ink:#F2EEE6; --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
-}
-@media (prefers-color-scheme:light){
   :root{
-    --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
-    --fg:#191512; --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
-    --ink:#F2EEE6; --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
+    --bg:#0B0714; --fg:#EFE9FF; --a1:#A78BFA; --a2:#D9F03A; --a3:#C8743C;
+    --muted:rgba(239,233,255,.62); --card:rgba(167,139,250,.07); --border:rgba(167,139,250,.22);
   }
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;}
-body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden;}
-.deck{position:relative;width:100vw;height:100vh;overflow:hidden;}
-.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:64px 72px;}
-.slide.active{display:flex;animation:fade .5s ease;}
-@keyframes fade{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
-/* background grid + glow */
-.slide::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(900px 500px at 78% 12%, var(--accent-glow), transparent 60%),
-  linear-gradient(transparent 95%, rgba(255,255,255,.04) 95%) 0 0/100% 38px,
-  linear-gradient(90deg, transparent 95%, rgba(255,255,255,.04) 95%) 0 0/38px 100%;
-  opacity:.6;z-index:0;pointer-events:none;}
-.slide>*{position:relative;z-index:1;}
-.eyebrow{font-family:var(--font-mono);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
-h1{font-family:var(--font-display);font-weight:700;font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-.01em;margin-bottom:20px;}
-h2{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,3.4vw,40px);line-height:1.08;margin-bottom:22px;}
-.lead{font-size:clamp(17px,2vw,22px);color:var(--muted);max-width:60ch;}
-.kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:26px;}
-.kicker b{color:var(--accent);font-weight:500;}
-/* wordmark */
-.brand{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:.02em;}
-.mark{width:30px;height:34px;flex:0 0 auto;}
-.word .a1{color:var(--a2);} .word .a2{color:var(--a1);} .word .rest{color:var(--fg);}
-.topbar{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 72px;z-index:5;}
-.topbar .meta{font-family:var(--font-mono);font-size:12px;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;}
-/* grids */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px;}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:14px;}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;transition:transform .3s,border-color .3s;}
-.card:hover{transform:translateY(-4px);border-color:var(--accent);}
-.card h3{font-family:var(--font-display);font-size:20px;font-weight:600;margin-bottom:10px;}
-.card .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:10px;}
-.card p{font-size:14.5px;color:var(--muted);}
-/* before/after */
-.ba{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin-top:18px;}
-.ba .col{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;}
-.ba .col.bad{border-color:rgba(200,116,60,.4);}
-.ba h4{font-family:var(--font-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;color:var(--faint);}
-.ba ul{list-style:none;}.ba li{padding:8px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted);}
-.ba li:first-child{border-top:none;}
-.arrow{display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--accent);}
-/* pricing */
-.price{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px;}
-.tier{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative;}
-.tier.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 18px 50px -20px var(--accent-glow);}
-.tier .name{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);}
-.tier .val{font-family:var(--font-display);font-size:40px;font-weight:700;margin:10px 0 4px;}
-.tier .who{font-size:13.5px;color:var(--muted);}
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px;}
-.step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;}
-.step .n{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--accent);}
-.step h3{font-family:var(--font-display);font-size:18px;font-weight:600;margin:8px 0;}
-.step p{font-size:14px;color:var(--muted);}
-/* CTA */
-.cta{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;}
-.btn{font-family:var(--font-mono);font-size:14px;letter-spacing:.04em;border-radius:999px;padding:15px 30px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--ink);font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s;}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px var(--accent-glow);}
-.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line2);}
-/* nav */
-.nav{position:absolute;bottom:26px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 72px;z-index:6;font-family:var(--font-mono);font-size:12px;color:var(--faint);}
-.dots{display:flex;gap:8px;}
-.dot{width:9px;height:9px;border-radius:50%;background:var(--line2);cursor:pointer;transition:background .2s,transform .2s;}
-.dot.on{background:var(--accent);transform:scale(1.25);}
-.nav .hint{letter-spacing:.14em;text-transform:uppercase;}
-.cover .brand{margin-bottom:40px;}
-.cover h1{font-size:clamp(44px,6.5vw,86px);}
-.cover .sub{font-family:var(--font-mono);font-size:15px;letter-spacing:.1em;color:var(--muted);margin-top:18px;}
-.cover .pill{margin-top:34px;}
-.bignum{font-family:var(--font-display);font-size:clamp(40px,7vw,92px);font-weight:700;color:var(--accent);line-height:1;}
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;}
-.stat .v{font-family:var(--font-display);font-size:38px;font-weight:700;color:var(--accent);}
-.stat .l{font-size:13.5px;color:var(--muted);margin-top:6px;}
-.note{font-family:var(--font-mono);font-size:11.5px;color:var(--faint);margin-top:26px;letter-spacing:.04em;}
-ul.clean{list-style:none;}.clean li{padding:9px 0 9px 26px;position:relative;font-size:15.5px;color:var(--muted);border-top:1px solid var(--line);}
-.clean li:first-child{border-top:none;}.clean li::before{content:"▸";position:absolute;left:0;color:var(--accent);}
-@media(max-width:760px){.slide{padding:44px 26px;}.grid2,.grid3,.price,.steps,.ba,.stat-row{grid-template-columns:1fr;}.nav{padding:0 26px;}.topbar{padding:18px 26px;}}
-.theme-toggle{position:fixed;top:14px;right:14px;z-index:400;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:18px;line-height:1;cursor:pointer;border:1px solid var(--line2);border-radius:999px;background:var(--surface);color:var(--fg);box-shadow:0 6px 22px rgba(0,0,0,.28);transition:background .2s,color .2s,border-color .2s,transform .2s;user-select:none;}
-.theme-toggle:hover{transform:translateY(-1px);border-color:var(--accent);box-shadow:0 8px 26px var(--accent-glow);}
-.theme-toggle:active{transform:scale(.94);}
-.theme-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-</style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:'Fraunces',Georgia,serif; -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  .deck{height:100vh;height:100dvh;overflow:visible}
+  .slide{
+    display:none; flex:1; flex-direction:column; justify-content:center;
+    padding:7vh 9vw; min-min-height:100vh;min-height:100dvh;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(167,139,250,.16), transparent 60%),
+      radial-gradient(900px 500px at 100% 110%, rgba(216,240,58,.10), transparent 55%),
+      var(--bg);
+  overflow-y:auto;
+  .slide.active{display:flex;animation:fade .45s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .eyebrow{
+    display:inline-block; letter-spacing:.22em; text-transform:uppercase;
+    font-size:.72rem; color:var(--a2); margin-bottom:1.1rem; font-weight:600;
+  }
+  h1{font-size:clamp(2.3rem,5.4vw,4.2rem);line-height:1.02;font-weight:700;letter-spacing:-.01em}
+  h2{font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.08;font-weight:700;margin-bottom:1.4rem}
+  .lead{color:var(--muted);font-size:clamp(1.05rem,1.7vw,1.35rem);max-width:44ch;margin-top:1.2rem}
+  .accent{color:var(--a1)}
+  .terra{color:var(--a3)}
+  .ch{color:var(--a2)}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:1.6rem}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:1.35rem 1.4rem; backdrop-filter:blur(4px);
+  }
+  .card h3{color:var(--a1);font-size:1.18rem;margin-bottom:.5rem;font-weight:600}
+  .card p,.card li{color:var(--muted);font-size:1.02rem}
+  .list{margin-top:1.2rem;display:flex;flex-direction:column;gap:.85rem}
+  .li{display:flex;gap:.9rem;align-items:flex-start}
+  .li .num{
+    flex:none;width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--a1),var(--a3));
+    color:#0B0714;font-weight:700;font-size:1rem;
+  }
+  .li .txt strong{color:var(--fg);font-weight:600}
+  .li .txt span{color:var(--muted);display:block;font-size:.98rem;margin-top:.15rem}
+  table.price{width:100%;border-collapse:collapse;margin-top:1.4rem;font-size:1.1rem}
+  table.price th,table.price td{padding:.95rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+  table.price th{color:var(--a2);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:.82rem}
+  table.price td:last-child,table.price th:last-child{text-align:right;color:var(--a1);font-weight:700}
+  .steps{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.6rem}
+  .step{flex:1 1 200px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.2rem}
+  .step .n{color:var(--a3);font-weight:700;font-size:.85rem;letter-spacing:.12em}
+  .step p{color:var(--muted);margin-top:.45rem;font-size:1rem}
+  .bigquote{font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.25;max-width:24ch}
+  .footer-note{color:var(--muted);font-size:.82rem;line-height:1.5;margin-top:2.2rem;border-top:1px solid var(--border);padding-top:1rem}
+  /* nav */
+  .nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
+    padding:.85rem 1.4rem;background:linear-gradient(0deg,var(--bg) 60%,transparent);z-index:20}
+  .nav button{
+    font-family:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);
+    color:var(--fg);padding:.6rem 1.1rem;border-radius:999px;font-size:.92rem;transition:.2s;
+  }
+  .nav button:hover{border-color:var(--a1);color:var(--a1)}
+  .nav button:disabled{opacity:.35;cursor:default}
+  .dots{display:flex;gap:.5rem}
+  .dots i{width:.6rem;height:.6rem;border-radius:50%;background:var(--border);transition:.2s}
+  .dots i.on{background:var(--a2);transform:scale(1.25)}
+  .counter{color:var(--muted);font-size:.85rem;min-width:5rem;text-align:right}
+  .brandmark{position:fixed;top:1.4rem;left:1.6rem;display:flex;align-items:center;gap:.55rem;z-index:20}
+  .brandmark svg{width:28px;height:34px;flex:none}
+  .brandmark .bn{font-weight:700;letter-spacing:.04em;font-size:1.15rem}
+  .brandmark .bn .a1{color:var(--a2)}
+  .brandmark .bn .a2{color:var(--a1)}
+  .brandmark .bn .rest{color:var(--fg)}
+  @media print{
+    body{background:#fff;color:#111}
+    .nav,.brandmark,.dots{display:none!important}
+    .slide{display:flex!important;page-break-after:always;min-min-height:100vh;min-height:100dvh;padding:6vh 8vw;
+      background:#0B0714!important;color:#EFE9FF!important;
+      -webkit-print-color-adjust:exact;print-color-adjust:exactoverflow-y:auto;
+    @page{size:A4 landscape;margin:0}
+  }
+
+    .deck-nav-btn{position:fixed;bottom:74px;width:46px;height:46px;border-radius:50%;border:1px solid var(--border);background:var(--surface,var(--card,#14101F));color:var(--fg);font-size:22px;z-index:25;cursor:pointer;display:none;align-items:center;justify-content:center}
+    .deck-nav-btn.prev{left:18px}
+    .deck-nav-btn.next{right:18px}
+    @media(max-width:760px){
+      body{overflow-x:hidden;overflow-y:auto}
+      html,body{height:100%}
+      .slide{justify-content:flex-start;padding:84px 22px 130px !important}
+      .grid,.cols-2,.cols-3,.price,.plans,.cards{grid-template-columns:1fr !important}
+      .brandmark,.brandmark-top{top:14px;left:16px}
+      .nav{bottom:14px}
+      .deck-nav-btn{display:flex}
+    }
+
+  </style>
 </head>
 <body>
-<button class="theme-toggle" type="button" aria-label="Mudar tema">◐</button>
-<script>
-/* toggle de tema para decks (segue sistema por padrao, botao sobrescreve) */
-(function(){
-  var STORE="aapson-deck-theme";
-  function forced(){try{return localStorage.getItem(STORE);}catch(e){return null;}}
-  function system(){return (matchMedia&&matchMedia("(prefers-color-scheme:light)").matches)?"light":"dark";}
-  function resolved(){return forced()||system();}
-  function apply(){var f=forced();if(f==="light"||f==="dark")document.documentElement.setAttribute("data-theme",f);else document.documentElement.removeAttribute("data-theme");}
-  apply();
-  var btn=document.querySelector(".theme-toggle");
-  function paint(){btn.textContent=(resolved()==="light")?"☀":"☾";btn.setAttribute("aria-label",(resolved()==="light")?"Tema claro — clica para escuro":"Tema escuro — clica para claro");}
-  paint();
-  btn.addEventListener("click",function(){var n=(resolved()==="light")?"dark":"light";try{localStorage.setItem(STORE,n);}catch(e){}apply();paint();});
-  if(window.matchMedia){var mq=matchMedia("(prefers-color-scheme:light)");var on=function(){if(!forced()){apply();paint();}};if(mq.addEventListener)mq.addEventListener("change",on);else if(mq.addListener)mq.addListener(on);}
-})();
-</script>
+<div class="brandmark">
+  <svg viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg" aria-label="AAPSON">
+    <polygon points="50,2 91,56 73,56 50,25 27,56 9,56" fill="#D9F03A"/>
+    <polygon points="9,68 27,68 50,99 73,68 91,68 50,122" fill="#A78BFA"/>
+    <circle cx="50" cy="62" r="9" fill="#C8743C"/>
+  </svg>
+  <span class="bn"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span>
+</div>
 <div class="deck" id="deck">
 
-  <!-- 1 COVER -->
-  <section class="slide cover active">
-    <div class="topbar"><div class="brand"><svg class="mark" viewBox="-8 -10 116 144"><rect x="-8" y="-10" width="116" height="144" rx="20" fill="#0B0714"/><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span></div><div class="meta">Deck Comercial · 01/06</div></div>
-    <div class="brand" style="visibility:hidden"></div>
-    <div class="kicker">Saneamento FS-CD → S/4HANA · <b>Assessment de Prontidão</b></div>
-    <h1>Diagnóstico pré-carga que tira o retrabalho do cutover.</h1>
-    <div class="sub">Água &amp; esgoto sobre IS-U + FI-CA/FS-CD · pacote fechado de 5 dias · R$ 15.000</div>
-    <div class="pill"><span class="kicker" style="margin:0">Acelerador de migração · sem vender IA, sem prometer milagre</span></div>
+  <!-- 1. CAPA -->
+  <section class="slide active">
+    <span class="eyebrow">Apresentação Comercial</span>
+    <h1>Saneamento de dados <span class="accent">FS-CD</span> para migração <span class="ch">S/4HANA</span></h1>
+    <p class="lead">Um acelerador de saneamento pré-carga que detecta, classifica e corrige inconsistências silenciosas antes do Migration Cockpit — com trilha auditável.</p>
   </section>
 
-  <!-- 2 PROBLEM -->
+  <!-- 2. CONTEXTO -->
   <section class="slide">
-    <div class="topbar"><div class="brand"><svg class="mark" viewBox="-8 -10 116 144"><rect x="-8" y="-10" width="116" height="144" rx="20" fill="#0B0714"/><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span></div><div class="meta">O Problema · 02/06</div></div>
-    <div class="eyebrow">Onde a migração S/4HANA trava</div>
-    <h2>Cada achado bloqueante descoberto no cutover custa hora sênior + atraso.</h2>
-    <div class="grid3">
-      <div class="card"><span class="tag">Master data</span><h3>VKONT sem GPART</h3><p>Contract account sem predecessor vira erro de carga — e só aparece no mock load.</p></div>
-      <div class="card"><span class="tag">Transacional</span><h3>OPBEL duplicado</h3><p>Open items replicados (OPBEL+OPUPW) forçam limpeza manual sob pressão de janela.</p></div>
-      <div class="card"><span class="tag">Cutover</span><h3>Locks / dunning (MANSP)</h3><p>Locks de dunning esquecidos e BP/CVI travam o fechamento da carga.</p></div>
+    <span class="eyebrow">Contexto</span>
+    <h2>O risco mora no que só aparece no <span class="terra">mock load</span></h2>
+    <div class="cards">
+      <div class="card"><h3>A migração depende de dados consistentes</h3><p>Contas-contrato com inconsistência silenciosa são a maior fonte de atraso e retrabalho em projetos S/4HANA.</p></div>
+      <div class="card"><h3>Custo de correção só sobe</h3><p>O erro legado só estoura no meio da carga, quando consertar já custa caro e trava ondas inteiras.</p></div>
     </div>
-    <div class="note">Wedge fixo: diagnóstico de dados FI-CA/FS-CD ANTES do mock load quebrar — nunca "vendemos IA para S/4HANA".</div>
+    <p class="lead">Antecipar o saneamento é a diferença entre um mock load limpo e um projeto que descamba.</p>
   </section>
 
-  <!-- 3 BEFORE / AFTER -->
+  <!-- 3. DIAGNÓSTICO -->
   <section class="slide">
-    <div class="topbar"><div class="brand"><svg class="mark" viewBox="-8 -10 116 144"><rect x="-8" y="-10" width="116" height="144" rx="20" fill="#0B0714"/><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span></div><div class="meta">Contraste · 03/06</div></div>
-    <div class="eyebrow">Status quo × Com a AAPSON</div>
-    <h2>Empurramos o retrabalho da janela de cutover para antes do mock load.</h2>
-    <div class="ba">
-      <div class="col bad"><h4>Hoje (sem diagnóstico)</h4><ul><li>Achado aparece no cutover, sob cronograma</li><li>Hora sênior corrigindo predecessor/duplicado</li><li>Divisão água+esgoto na mesma contract account</li><li>Budget billing e corte/religação por dunning estouram</li></ul></div>
-      <div class="arrow">→</div>
-      <div class="col"><h4>Com o Assessment (5 dias)</h4><ul><li>Os 10 achados-tipo mapeados em staging</li><li>Correção fora da janela crítica</li><li>Convergência FI-CA/IS-U validada antes</li><li>Cutover previsível, sem surpresa de dado</li></ul></div>
+    <span class="eyebrow">Diagnóstico</span>
+    <h2>O que hoje custa caro e <span class="accent">falha em silêncio</span></h2>
+    <div class="list">
+      <div class="li"><span class="num">1</span><span class="txt"><strong>Predecessores fora de ordem</strong><span>conta-contrato antes do parceiro de negócio, pagamento antes do contrato.</span></span></div>
+      <div class="li"><span class="num">2</span><span class="txt"><strong>Itens em aberto e clearing</strong><span>inconsistências que estouram só na conversão.</span></span></div>
+      <div class="li"><span class="num">3</span><span class="txt"><strong>Campos custom e status</strong><span>passam batido na validação padrão e derrubam ondas inteiras.</span></span></div>
+      <div class="li"><span class="num">4</span><span class="txt"><strong>Sem trilha auditável</strong><span>quando algo quebra, ninguém sabe por quê.</span></span></div>
     </div>
   </section>
 
-  <!-- 4 METHOD / 10 FINDINGS -->
+  <!-- 4. SOLUÇÃO -->
   <section class="slide">
-    <div class="topbar"><div class="brand"><svg class="mark" viewBox="-8 -10 116 144"><rect x="-8" y="-10" width="116" height="144" rx="20" fill="#0B0714"/><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span></div><div class="meta">Método · 04/06</div></div>
-    <div class="eyebrow">O que o Assessment entrega</div>
-    <h2>Detecção dos 10 achados-tipo antes do mock load.</h2>
-    <div class="grid2">
-      <div class="card"><span class="tag">Cobertura</span><h3>10 achados-tipo</h3><p>VKONT sem GPART · OPBEL duplicado · locks MANSP · BP/CVI · carga fora de ordem (FICA_CONT_AC/FICA_PAYMENT) · open item divergente · duplicidade de chave no staging · objeto FS-CD quebrado · dunning esquecido · porta p/ pacote recorrente pré-carga.</p></div>
-      <div class="card"><span class="tag">Entregável</span><h3>Relatório + plano de remediação</h3><p>Mapeamento dos achados por severidade, ordem de correção sugerida e critério de prontidão para o mock load — entregue em 5 dias, pacote fechado.</p></div>
+    <span class="eyebrow">Solução</span>
+    <h2>Acelerador de saneamento <span class="ch">pré-carga</span></h2>
+    <p class="lead">Roda <span class="accent">antes</span> do Migration Cockpit, sobre dado <span class="terra">anonimizado ou em sandbox</span> (nunca no produtivo sem aprovação).</p>
+    <div class="steps">
+      <div class="step"><div class="n">DETECTA</div><p>Varre inconsistências por tipo e severidade.</p></div>
+      <div class="step"><div class="n">CLASSIFICA</div><p>Ordena por impacto: bloqueante → baixo.</p></div>
+      <div class="step"><div class="n">SUGERE</div><p>Propõe a regra de correção por erro.</p></div>
+      <div class="step"><div class="n">REGISTRA</div><p>Decisão auditável, sem alucinação.</p></div>
     </div>
-    <div class="note">Pacote fechado de 5 dias · R$ 15.000 · sem taxa de inscrição · sem promessa de "migração mágica".</div>
   </section>
 
-  <!-- 5 PROOF / CTA -->
+  <!-- 5. ENTREGÁVEIS -->
   <section class="slide">
-    <div class="topbar"><div class="brand"><svg class="mark" viewBox="-8 -10 116 144"><rect x="-8" y="-10" width="116" height="144" rx="20" fill="#0B0714"/><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span></div><div class="meta">Prova + Next · 05/06</div></div>
-    <div class="eyebrow">Por que confiar</div>
-    <h2>8+ anos operando cobrança recorrente (FS-CD / S/4HANA).</h2>
-    <div class="stat-row">
-      <div class="stat"><div class="v">R$ 15k</div><div class="l">Assessment fechado de 5 dias</div></div>
-      <div class="stat"><div class="v">10</div><div class="l">achados-tipo cobertos</div></div>
-      <div class="stat"><div class="v">5d</div><div class="l">entrega pacote fechado</div></div>
-    </div>
-    <div class="cta">
-      <a class="btn" href="mailto:contato@aapson.com.br?subject=Assessment%20Saneamento%20FS-CD">Agendar diagnóstico →</a>
-      <a class="btn ghost" href="#">Ver Consultoria FS-CD →</a>
-    </div>
-    <div class="note">⚠️ GATE 👤: disparo ao lead e aceite do 1º cliente são decisão humana. Material vault-only, sem PII.</div>
-  </section>
-
-  <!-- 6 CLOSE -->
-  <section class="slide cover">
-    <div class="topbar"><div class="brand"><svg class="mark" viewBox="-8 -10 116 144"><rect x="-8" y="-10" width="116" height="144" rx="20" fill="#0B0714"/><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span></div><div class="meta">Resumo · 06/06</div></div>
-    <div class="kicker">Saneamento FS-CD · <b>Assessment de Prontidão</b></div>
-    <h1>Menos hora sênior no cutover. Mais previsibilidade no go-live.</h1>
-    <div class="sub">Pacote fechado · 5 dias · R$ 15.000 · água &amp; esgoto sobre IS-U + FI-CA/FS-CD</div>
-    <div class="cta">
-      <a class="btn" href="mailto:contato@aapson.com.br?subject=Assessment%20Saneamento%20FS-CD">Falar sobre o meu caso →</a>
+    <span class="eyebrow">Entregáveis ranqueados por impacto</span>
+    <h2>O que você recebe</h2>
+    <div class="list">
+      <div class="li"><span class="num">1</span><span class="txt"><strong>Relatório de diagnóstico</strong><span>causa provável por erro — versão executiva + técnica.</span></span></div>
+      <div class="li"><span class="num">2</span><span class="txt"><strong>Backlog priorizado de saneamento</strong><span>por severidade, com antes/depois.</span></span></div>
+      <div class="li"><span class="num">3</span><span class="txt"><strong>Loop de correção auditável</strong><span>em cópia: detecta → sugere → aplica → registra.</span></span></div>
+      <div class="li"><span class="num">4</span><span class="txt"><strong>Base de erros recorrentes anonimizada</strong><span>reaproveitável em ondas futuras.</span></span></div>
     </div>
   </section>
 
-  <div class="nav">
-    <span class="hint">← → navega · AAPSON · Saneamento FS-CD</span>
-    <div class="dots" id="dots"></div>
-    <span class="hint" id="counter">01 / 06</span>
-  </div>
+  <!-- 6. INVESTIMENTO -->
+  <section class="slide">
+    <span class="eyebrow">Investimento</span>
+    <h2>Sem taxa de inscrição</h2>
+    <table class="price">
+      <thead><tr><th>Modalidade</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Recorrente (operação contínua de saneamento)</td><td>R$ 990 / mês</td></tr>
+        <tr><td>À vista (pacote fechado)</td><td>R$ 9.900</td></tr>
+      </tbody>
+    </table>
+    <p class="lead">Escopo por onda definido na descoberta.</p>
+  </section>
+
+  <!-- 7. PRÓXIMOS PASSOS -->
+  <section class="slide">
+    <span class="eyebrow">Próximos passos</span>
+    <h2>Como começamos</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><p>Call de descoberta de 25 min.</p></div>
+      <div class="step"><div class="n">02</div><p>Assinatura de NDA (com anonimização).</p></div>
+      <div class="step"><div class="n">03</div><p>Primeira onda de diagnóstico.</p></div>
+    </div>
+    <p class="footer-note">AAPSON · consultoria FS-CD + IA. Material sob anonimização; não identifica cliente real. Não constitui recomendação de investimento. Conteúdo gerado para uso comercial, sem dados pessoais de terceiros.</p>
+  </section>
+
 </div>
+
+<button id="deck-prev" class="deck-nav-btn prev" type="button" aria-label="Anterior">‹</button>
+  <button id="deck-next" class="deck-nav-btn next" type="button" aria-label="Próximo">›</button>
+  <div class="nav">
+  <button id="prev">← Anterior</button>
+  <div class="dots" id="dots"></div>
+  <span class="counter" id="counter"></span>
+  <button id="next">Próximo →</button>
+</div>
+
 <script>
-const slides=[...document.querySelectorAll('.slide')];
-const dotsBox=document.getElementById('dots');
-const counter=document.getElementById('counter');
-let i=0;
-slides.forEach((_,n)=>{const d=document.createElement('span');d.className='dot'+(n===0?' on':'');d.onclick=()=>go(n);dotsBox.appendChild(d);});
-function go(n){i=(n+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('active',k===i));
-[...dotsBox.children].forEach((d,k)=>d.classList.toggle('on',k===i));
-counter.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');}
-addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(i+1);if(e.key==='ArrowLeft')go(i-1);if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1);});
-</script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, dots=document.getElementById('dots');
+  slides.forEach(function(_,n){var d=document.createElement('i');if(n===0)d.className='on';dots.appendChild(d);});
+  var prev=document.getElementById('prev'), next=document.getElementById('next'),
+      counter=document.getElementById('counter');
+  function render(){
+    slides.forEach(function(s,n){s.classList.toggle('active',n===i);});
+    [].slice.call(dots.children).forEach(function(d,n){d.className=n===i?'on':'';});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    counter.textContent=(i+1)+' / '+slides.length;
+  }
+  prev.onclick=function(){if(i>0){i--;render();}};
+  next.onclick=function(){if(i<slides.length-1){i++;render();}};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'){next.onclick();}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){prev.onclick();}
+  });
+  render();
+})();
+
+
+  
+    const _pb=document.getElementById('deck-prev'),_nb=document.getElementById('deck-next');
+    const _prevBtn=document.getElementById('prev'),_nextBtn=document.getElementById('next');
+    function _fwd(){if(_nextBtn)_nextBtn.click();else if(typeof go==='function')go(1);else if(typeof show==='function')show(1);}
+    function _back(){if(_prevBtn)_prevBtn.click();else if(typeof go==='function')go(-1);else if(typeof show==='function')show(-1);}
+    if(_nb)_nb.onclick=_fwd; if(_pb)_pb.onclick=_back;
+    const _reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const _deck=document.getElementById('deck')||document.querySelector('.deck');
+    if(!_reduce && _deck && ('ontouchstart' in window || navigator.maxTouchPoints>0)){
+      let x0=null,y0=null;
+      _deck.addEventListener('touchstart',e=>{if(e.touches&&e.touches.length){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+      _deck.addEventListener('touchend',e=>{if(x0===null)return;const t=e.changedTouches&&e.changedTouches[0];if(!t)return;const dx=t.clientX-x0,dy=t.clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){(dx<0?_fwd:_back)();}x0=y0=null;},{passive:true});
+    }
+
+  </script>
 </body>
 </html>
