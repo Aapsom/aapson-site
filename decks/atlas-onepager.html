@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATLAS — One-Pager (PME + White-label)</title>
+<style>
+  :root {
+    --bg: #0B0714;
+    --primary: #2DD4BF;
+    --accent: #C6FF00;
+    --text: #EFE9FF;
+    --card: #1A1128;
+    --border: #2DD4BF33;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Fraunces', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  .brandmark {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    width: 32px; height: 32px;
+    background: var(--primary);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+  h1 { font-size: 2rem; font-weight: 700; }
+  h1 .wordmark { color: var(--primary); }
+  .subtitle { color: var(--accent); font-size: 1.1rem; margin-top: 0.25rem; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .card h2 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .card h2 .emoji { font-size: 1.5rem; }
+  .feature { margin-bottom: 1rem; }
+  .feature h3 { color: var(--text); font-size: 1rem; margin-bottom: 0.25rem; }
+  .feature p { color: #B8A8D9; font-size: 0.875rem; }
+  .pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .price {
+    background: var(--card);
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .price .tier { color: var(--accent); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 1px; }
+  .price .value { font-size: 2rem; font-weight: 700; color: var(--primary); margin: 0.5rem 0; }
+  .price .desc { color: #B8A8D9; font-size: 0.875rem; }
+  .wedge {
+    background: linear-gradient(135deg, var(--primary)10, var(--accent)10);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .wedge h2 { color: var(--primary); margin-bottom: 0.5rem; }
+  .wedge p { color: #B8A8D9; }
+  .wedge .stats { display: flex; gap: 2rem; margin-top: 1rem; }
+  .wedge .stat { text-align: center; }
+  .wedge .stat .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .wedge .stat .label { font-size: 0.75rem; color: #B8A8D9; }
+  .footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: #B8A8D9;
+    font-size: 0.875rem;
+  }
+  .gate {
+    background: #312E81;
+    border: 1px solid #C6FF00;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 2rem 0;
+    color: #FCD34D;
+    font-size: 0.875rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Brandmark -->
+  <div class="brandmark">
+    <div class="logo"></div>
+    <div>
+      <h1>ATLAS</h1>
+      <div class="subtitle">Infra de Receita 24/7 para PME</div>
+    </div>
+  </div>
+
+  <!-- Wedge -->
+  <div class="wedge">
+    <h2>💧 O problema que resolvemos</h2>
+    <p>PMEs perdem 40% da receita por vazamentos no funil: chamadas perdidas (62%), follow-up perdido (27%), resposta lenta (&gt;5min = -400% conversão).</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">62%</div>
+        <div class="label">Chamadas perdidas</div>
+      </div>
+      <div class="stat">
+        <div class="num">27%</div>
+        <div class="label">Follow-up perdido</div>
+      </div>
+      <div class="stat">
+        <div class="num">+400%</div>
+        <div class="label">Conversão &lt;5min</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two products -->
+  <div class="grid">
+
+    <!-- ATLAS PME -->
+    <div class="card">
+      <h2><span class="emoji">💳</span> ATLAS PME</h2>
+      <p style="color: #B8A8D9; font-size: 0.875rem; margin-bottom: 1rem;">SaaS de confiabilidade de cobrança para PME que já usa Pix.</p>
+      <div class="feature">
+        <h3>✅ Painel de status em tempo real</h3>
+        <p>pagou / não pagou / atrasado / grace — com isolamento RLS 100%.</p>
+      </div>
+      <div class="feature">
+        <h3>✅ Retry automático de débito falho</h3>
+        <p>1ª falha → +24h, 2ª → +48h, 3ª → intervenção humana. Loop E2E 3/3.</p>
+      </div>
+      <div class="feature">
+        <h3>✅ Histórico de tentativas</h3>
+        <p>ligou / WhatsApp / e-mail / resposta — tudo imutável (LGPD).</p>
+      </div>
+      <div class="pricing">
+        <div class="price">
+          <div class="tier">Entry</div>
+          <div class="value">R$ 147</div>
+          <div class="desc">até 50 clientes recorrentes</div>
+        </div>
+        <div class="price">
+          <div class="tier">Core</div>
+          <div class="value">R$ 347</div>
+          <div class="desc">até 200 clientes + retry Pix</div>
+        </div>
+        <div class="price">
+          <div class="tier">Scale</div>
+          <div class="value">R$ 797</div>
+          <div class="desc">ilimitado + dunning WhatsApp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATLAS White-label -->
+    <div class="card">
+      <h2><span class="emoji">🏷️</span> ATLAS White-label</h2>
+      <p style="color: #B8A8D9; font-size: 0.875rem; margin-bottom: 1rem;">Pacote de 5/6 funcionários de IA 24/7 para revendedores white-label.</p>
+      <div class="feature">
+        <h3>✅ Receptionista 24/7</h3>
+        <p>Qualifica leads no WhatsApp — responde em &lt;5min.</p>
+      </div>
+      <div class="feature">
+        <h3>✅ Reativação de base</h3>
+        <p>Recupera inadimplentes com mensagens segmentadas.</p>
+      </div>
+      <div class="feature">
+        <h3>✅ Nutrição de leads</h3>
+        <p>Move leads mornos para M8 com follow-up automatizado.</p>
+      </div>
+      <div class="feature">
+        <h3>✅ Avaliações e indicações</h3>
+        <p>Pede reviews no momento certo — +11% de novos clientes.</p>
+      </div>
+      <div class="feature">
+        <h3>✅ Treinador de vendas</h3>
+        <p>Coaching de objeções para o time — +50% de fechamento.</p>
+      </div>
+      <div class="pricing">
+        <div class="price">
+          <div class="tier">BASE</div>
+          <div class="value">R$ 997</div>
+          <div class="desc">+ R$ 697/mês · 5 funcionários</div>
+        </div>
+        <div class="price">
+          <div class="tier">PREMIUM</div>
+          <div class="value">R$ 1.497</div>
+          <div class="desc">+ R$ 997/mês · 6 funcionários + Auditor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gate -->
+  <div class="gate">
+    ⚠️ GATE 👤: 1º cliente real exige Mom Test ≥5 verdes + HITL/LGPD aprovados.
+    Estes preços estão validados internamente (22/jul/2026) mas dependem de validação de mercado.
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    ATLAS — marca própria · powered by AAPSON · Emerald Sentry palette
+  </div>
+
+</div>
+</body>
+</html>
