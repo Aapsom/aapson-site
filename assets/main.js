@@ -79,8 +79,11 @@
      ============================================================ */
   var scrub = document.querySelector(".scrub");
   var pipe = document.querySelector("[data-pipe]");
+  var vpipe = document.querySelector("[data-vpipe]");
   var label = document.querySelector("[data-scrub-label]");
   var nodes = document.querySelectorAll(".scrub .node");
+  var vnodes = document.querySelectorAll(".vtimeline .vstages li");
+  var vlabels = document.querySelectorAll(".vtimeline .vstages li");
   var STAGES = (scrub && scrub.getAttribute("data-stages"))
     ? scrub.getAttribute("data-stages").split(",").map(function (s) { return s.trim(); })
     : ["Detecta", "Tenta de novo", "Avisa", "Confere"];
@@ -88,11 +91,14 @@
 
   function setFinal() {
     if (pipe) pipe.style.width = "100%";
+    if (vpipe) vpipe.style.height = "100%";
     if (label) label.firstChild.nodeValue = STAGES[STAGES.length - 1];
     nodes.forEach(function (n) { n.classList.add("on"); });
+    vnodes.forEach(function (n, i) { n.classList.toggle("on", i === STAGES.length - 1); });
+    vlabels.forEach(function (n, i) { n.classList.toggle("on", i === STAGES.length - 1); });
   }
 
-  if (scrub && pipe && label) {
+  if (scrub && vpipe && label) {
     if (reduce) {
       setFinal();
     } else {
@@ -105,9 +111,10 @@
       }
       function apply() {
         /* spring: aproxima cur de target (suaviza o salto do scroll) */
-        cur += (target - cur) * 0.12;
+        cur += (target - cur) * 0.06;
         if (Math.abs(target - cur) < 0.0005) cur = target;
         if (pipe) pipe.style.width = (cur * 100).toFixed(2) + "%";
+        if (vpipe) vpipe.style.height = (cur * 100).toFixed(2) + "%";
         if (window.__aapsonScrubProg) window.__aapsonScrubProg(cur);
         var idx = Math.min(STAGES.length - 1, Math.floor(cur * STAGES.length));
         if (idx !== lastIdx) {
@@ -125,6 +132,14 @@
             var at = parseFloat(n.getAttribute("data-at"));
             var on = at >= 1 ? (idx >= STAGES.length - 1) : (cur >= at - 0.001);
             n.classList.toggle("on", on);
+          });
+          vnodes.forEach(function (n) {
+            var at = parseFloat(n.getAttribute("data-vat"));
+            var i = Math.round(at * (STAGES.length - 1));
+            n.classList.toggle("on", i === idx);   /* so o atual aberto */
+          });
+          vlabels.forEach(function (n, i) {
+            n.classList.toggle("on", i === idx);
           });
           lastIdx = idx;
         }
@@ -256,5 +271,26 @@
     window.addEventListener("mousemove", onMove, { passive: true });
     /* expõe o progresso do scrub p/ o drift no scroll (hero pme) */
     window.__aapsonScrubProg = function (p) { scrubProg = p; if (!rafFx) rafFx = requestAnimationFrame(tickFx); };
+  }
+
+  /* ============================================================
+     7) SCROLL-PROGRESS fina no topo (IDEIA 7)
+        respeita prefers-reduced-motion (sem transição, mas mantém o traço)
+     ============================================================ */
+  var bar = document.querySelector(".scroll-progress");
+  if (bar) {
+    var progTicking = false;
+    function progUpdate() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+      bar.style.width = Math.min(100, Math.max(0, p)).toFixed(2) + "%";
+      progTicking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!progTicking) { progTicking = true; requestAnimationFrame(progUpdate); }
+    }, { passive: true });
+    window.addEventListener("resize", progUpdate);
+    window.addEventListener("load", progUpdate);
+    progUpdate();
   }
 })();

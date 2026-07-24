@@ -18,6 +18,7 @@
 }
 </script>
 </head>
+<div class="scroll-progress" aria-hidden="true"></div>
 <body>
 
 <nav>
@@ -42,7 +43,7 @@
   </div>
 </header>
 <div class="wrap blog-grid">
-  <main class="blog-main">
+  <main class="blog-main reveal">
 <p>No FS-CD, <strong>conciliar</strong> é fechar o ciclo: o extrato bancário tem que casar com o saldo de itens abertos por contract account.</p>
 <h2>Relatórios que importam</h2>
 <ul>
@@ -59,19 +60,19 @@
 </main>
 
 <aside class="rail">
-  <div class="rail-card saas">
+  <div class="rail-card saas reveal">
     <span class="eyebrow blue">Produto AAPSON</span>
     <h3>SaaS de Confiabilidade de Cobrança</h3>
     <p>Recuperação automática de Pix, dunning e conciliação FS-CD/S4HANA. Reduce inadimplência sem operação manual.</p>
     <a class="btn btn-solid" href="../pme.html">Conhecer o SaaS →</a>
   </div>
-  <div class="rail-card ment">
+  <div class="rail-card ment reveal">
     <span class="eyebrow pink">Mentoria 3c</span>
     <h3>Vire consultor SAP independente</h3>
     <p>Formato 1:1 + in-company em FS-CD, S/4HANA e dunning automático. Credencial real de quem entrega em equipes.</p>
     <a class="btn btn-outline" href="../mentoria.html">Ver mentoria →</a>
   </div>
-  <div class="rail-card cons">
+  <div class="rail-card cons reveal">
     <span class="eyebrow">AdSense</span>
     <h3>Receita de mídia</h3>
     <p>Este blog roda AdSense após passar no pente E-E-A-T (YMYL-safe). Conteúdo de nicho SAP = RPM alto em finanças/tech.</p>
@@ -80,6 +81,12 @@
 </aside>
 </div>
 
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8+ anos</b> · Capital zero</span>
+    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8+ anos</b> · Capital zero</span>
+  </div>
+</div>
 <footer>
   <div class="colorbar"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
   <div class="wrap foot-inner">
@@ -88,7 +95,7 @@
   </div>
 </footer>
 
-<section class="related" aria-label="Artigos relacionados">
+<section class="related reveal" aria-label="Artigos relacionados">
   <h2>Artigos relacionados</h2>
   <ul>
   <li><a href="clearing-autom-tico-e-regras-de-compensa-o-no-fs-cd.html">AAPSON · Clearing automático e regras de compensação no FS-CD</a></li>
@@ -108,5 +115,7 @@
   ]
 }
 </script>
+  <script src="../assets/lenis.min.js"></script>
+<script src="../assets/main.js"></script>
 </body>
 </html>

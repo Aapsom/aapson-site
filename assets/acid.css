@@ -49,7 +49,16 @@
   --off:var(--fg); --ink:#F2EEE6;
   --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
   --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
+  /* glows no claro: neon claro some no creme -> usa tom escuro visivel */
+  --lime-glow:rgba(27,110,122,.45); --pink-glow:rgba(180,71,43,.40); --blue-glow:rgba(200,116,60,.42);
 }
+/* no claro, o nó central do mark (logo/hero-fx) some no creme -> cor escura */
+:root[data-theme="light"] .brand .mark .m-node,
+:root[data-theme="light"] .scrub-sticky .hero-fx .m-node,
+:root[data-theme="light"] .hub-hero .hero-fx .m-node{fill:#9A4A1E;}
+:root[data-theme="light"] .vstages .vcard b{color:#191512;}
+:root[data-theme="light"] .vstages li.on .vcard .vc-chip small{color:#3a342c;}
+:root[data-theme="light"] .vstages li.on .vcard .sub{color:#6b645a;}
 :root[data-theme="dark"]{
   --bg:#0B0714; --bg2:#08060F; --surface:#14101F; --surface2:#1A1426;
   --fg:#EFE9FF;
@@ -163,6 +172,25 @@ nav.scrolled .brand .mark{width:18px;height:22px;}
 .btn-outline{background:transparent;border:1px solid var(--line2);color:var(--off);padding:13px 22px;font-weight:500;font-size:14px;line-height:1;}
 .btn-outline:hover{border-color:var(--off);background:rgba(255,255,255,.04);}
 .btn-outline:active{background:rgba(255,255,255,.08);}
+/* no claro, o hover branco some no creme: usa escuro translucido */
+:root[data-theme="light"] .btn-outline:hover{background:rgba(0,0,0,.05);}
+:root[data-theme="light"] .btn-outline:active{background:rgba(0,0,0,.09);}
+
+/* no claro, textos pequenos nao podem usar cor clara (somem no creme) */
+:root[data-theme="light"] .nlink{color:#3a342c;}
+:root[data-theme="light"] .nlink:hover{color:#191512;}
+:root[data-theme="light"] .eyebrow{color:#0E5560;}
+:root[data-theme="light"] .eyebrow.blue{color:#9A5A2E;}
+:root[data-theme="light"] .eyebrow.pink{color:#9A3B22;}
+:root[data-theme="light"] .status{color:#6b645a;}
+:root[data-theme="light"] .tb-seg,.tb-astro{color:#6b645a;}
+:root[data-theme="light"] .tb-live{color:#1B6E7A;}
+:root[data-theme="light"] .sub{color:#6b645a;}
+:root[data-theme="light"] .lede{color:#3a342c;}
+/* tags de produto no claro: terra claro some no creme */
+:root[data-theme="light"] .tag.cons{color:#7A4A1E !important;background:#F0E4D6 !important;}
+:root[data-theme="light"] .tag.saas{color:#135C66 !important;}
+:root[data-theme="light"] .tag.ment{color:#8E3320 !important;}
 
 /* ---- diptych core (Split Studio) ---- */
 .dip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-2xl);align-items:center;}
@@ -269,20 +297,49 @@ footer{border-top:1px solid var(--line);}
   background:url("assets/bg-nanobanana-v2b.png") center/cover no-repeat;
   opacity:.16;mix-blend-mode:screen;}
 .hub-hero .wrap{position:relative;z-index:1;}
-/* Fase A (XEIMIfJb5d0): floaters com parallax de cursor (spring via main.js).
-   Marca duotone como atmosfera — fica ATRÁS do conteúdo, never cobre o texto.
+/* Fase A (XEIMIfJb5d0): floaters duotone com parallax de cursor (spring via main.js) +
+   movimento ambiente contínuo (keyframes) + glow de marca. Visível NOS DOIS temas
+   (usa tokens --a1/--a2/--a3), fica ATRÁS do conteúdo, nunca cobre o texto.
    Aplica em .hub-hero e em .scrub-sticky (hero da pme.html). */
 .hub-hero .hero-fx,
-.scrub-sticky .hero-fx{position:absolute;z-index:0;pointer-events:none;opacity:.10;will-change:transform;
-  width:120px;height:149px;filter:drop-shadow(0 0 24px color-mix(in srgb,var(--a1) 40%,transparent));}
+.scrub-sticky .hero-fx{position:absolute;z-index:0;pointer-events:none;opacity:.30;will-change:transform;
+  width:160px;height:198px;filter:drop-shadow(0 0 34px color-mix(in srgb,var(--a1) 60%,transparent));}
 .hub-hero .hero-fx svg,
-.scrub-sticky .hero-fx svg{width:100%;height:100%;display:block;}
+.scrub-sticky .hero-fx svg{width:100%;height:100%;display:block;animation:fxFloat 14s ease-in-out infinite;}
+.hub-hero .hero-fx .m-top,
+.scrub-sticky .hero-fx .m-top{fill:var(--a2);}      /* chartreuse = topo */
+.hub-hero .hero-fx .m-base,
+.scrub-sticky .hero-fx .m-base{fill:var(--a1);}     /* violeta = base */
+.hub-hero .hero-fx .m-node,
+.scrub-sticky .hero-fx .m-node{fill:var(--a3);}     /* terra = nó */
+@keyframes fxFloat{
+  0%,100%{transform:translate3d(0,0,0) rotate(-4deg);}
+  50%{transform:translate3d(0,-22px,0) rotate(4deg);}
+}
+@media (prefers-reduced-motion: reduce){
+  .hub-hero .hero-fx svg,
+  .scrub-sticky .hero-fx svg{animation:none;}
+}
 .hub-hero .fx-a,
-.scrub-sticky .fx-a{top:14%;left:8%;}
+.scrub-sticky .fx-a{top:12%;left:6%;animation-delay:0s;}
 .hub-hero .fx-b,
-.scrub-sticky .fx-b{top:22%;right:10%;opacity:.08;}
+.scrub-sticky .fx-b{top:20%;right:8%;width:110px;height:136px;opacity:.18;animation-delay:-4.5s;animation-direction:reverse;}
 .hub-hero .fx-c,
-.scrub-sticky .fx-c{bottom:16%;left:16%;width:90px;height:112px;opacity:.07;}
+.scrub-sticky .fx-c{bottom:14%;left:14%;width:96px;height:119px;opacity:.16;animation-delay:-8s;}
+/* glow de marca atrás do hero (tema-aware via tokens) — tira a sensação de vazio */
+.hub-hero::after,
+.scrub-sticky::after{content:"";position:absolute;z-index:0;pointer-events:none;inset:0;
+  background:
+    radial-gradient(42% 52% at 16% 20%, color-mix(in srgb,var(--a1) 22%, transparent), transparent 72%),
+    radial-gradient(40% 48% at 84% 30%, color-mix(in srgb,var(--a2) 18%, transparent), transparent 72%);
+  opacity:.95;filter:blur(10px);}
+:root[data-theme="light"] .hub-hero::after,
+:root[data-theme="light"] .scrub-sticky::after{opacity:1;filter:blur(6px);
+  background:
+    radial-gradient(44% 54% at 16% 20%, color-mix(in srgb,var(--a1) 26%, transparent), transparent 74%),
+    radial-gradient(42% 50% at 84% 30%, color-mix(in srgb,var(--a2) 22%, transparent), transparent 74%);}
+:root[data-theme="light"] .hub-hero .hero-fx,
+:root[data-theme="light"] .scrub-sticky .hero-fx{opacity:.34;filter:drop-shadow(0 0 26px color-mix(in srgb,var(--a1) 45%,transparent));}
 .hub-hero .mark-xl{width:56px;height:69px;margin:0 auto var(--s-lg);display:block;}
 .hub-hero h1{font:700 clamp(34px,5vw,58px)/1.05 var(--font-display);letter-spacing:-.015em;text-wrap:balance;max-width:16ch;margin:0 auto;}
 .hub-hero .lede{margin:var(--s-lg) auto 0;text-align:center;}
@@ -499,8 +556,11 @@ html.lenis{scroll-behavior:auto!important;}
    Técnica do vídeo (scroll-scrub / pinned hero), versão CSS+JS
    progressiva: JS anima em todos os browsers; reduced-motion = estado final.
    ============================================================ */
-.scrub{position:relative;height:260vh;}                 /* trilha de scroll */
-.scrub-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
+.scrub{position:relative;height:120vh;}                 /* trilha de scroll (vao minimo) */
+/* a secao que segue o hero nao precisa do padding-block gigante (evita buraco) */
+.scrub + section{padding-top:var(--s-2xl);}
+.scrub-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;
+  padding-top:var(--topbar-h);overflow:hidden;}
 .scrub-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-2xl);align-items:center;width:100%;}
 .scrub-visual{position:relative;display:flex;flex-direction:column;align-items:center;gap:var(--s-xl);padding:var(--s-2xl) 0;}
 /* tubulação da recorrência — preenche conforme rola */
@@ -518,6 +578,67 @@ html.lenis{scroll-behavior:auto!important;}
   .scrub{height:auto;}
   .scrub-sticky{position:static;height:auto;padding-block:var(--s-3xl);}
   .scrub-grid{grid-template-columns:1fr;gap:var(--s-xl);}
+}
+
+/* ============================================================
+   AAPSON · PME SCRUB — LAYOUT B (card viajante)
+   Trilha única: o estágio ativo vira o CARD GRANDE no lugar do
+   nome; os inativos ficam mini-label. A linha cresce no scroll.
+   ============================================================ */
+.vtimeline{position:relative;display:grid;grid-template-columns:auto 1fr;gap:20px;
+  width:min(100%,380px);margin-top:8px;padding-left:6px;}
+.vpipe{position:relative;width:6px;border-radius:999px;background:var(--surface2);align-self:stretch;min-height:340px;overflow:hidden;}
+.vpipe-fill{position:absolute;left:0;top:0;right:0;height:0%;
+  background:linear-gradient(180deg,var(--pink),var(--lime));box-shadow:0 0 18px var(--lime-glow);
+  transition:height .08s linear;}
+.vstages{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-between;min-height:340px;}
+.vstages li{position:relative;display:flex;gap:14px;align-items:flex-start;
+  transition:transform .3s cubic-bezier(.16,1,.3,1);}
+/* bolinha da trilha (sempre visível, à esquerda do card) */
+.vdot{position:relative;z-index:2;flex:none;width:14px;height:14px;margin-top:14px;border-radius:50%;
+  background:var(--surface);border:2px solid var(--line2);transition:background .25s,border-color .25s,box-shadow .25s;}
+/* mini-label (estado inativo) */
+.vcard{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:14px;
+  transition:all .3s cubic-bezier(.16,1,.3,1);}
+.vcard .vc-icon{display:none;}
+.vcard b{font:600 14px/1.2 var(--font-display);color:var(--muted);transition:color .25s;}
+.vcard .sub{display:none;font:400 10px/1.3 var(--font-mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);}
+.vcard .vc-chip{display:none;}
+/* === ESTADO ATIVO: vira o CARD GRANDE no lugar do nome === */
+.vstages li.on .vdot{background:var(--lime);border-color:var(--lime);box-shadow:0 0 14px var(--lime-glow);}
+.vstages li.on .vcard{
+  background:linear-gradient(160deg,var(--pink-tint),var(--surface2));
+  border:1px solid var(--lime);border-radius:16px;padding:16px 18px;gap:10px;
+  box-shadow:0 18px 46px -24px var(--pink-glow);position:relative;overflow:hidden;
+  transform:translateX(2px);}
+.vstages li.on .vcard::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 80% at 100% 0,color-mix(in srgb,var(--a2) 16%,transparent),transparent 70%);pointer-events:none;}
+.vstages li.on .vcard .vc-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;
+  font-size:18px;color:var(--lime);background:var(--lime-tint);box-shadow:0 0 16px var(--lime-glow);
+  animation:ssPulse 2.2s ease-in-out infinite;}
+.vstages li.on .vcard b{font:700 20px/1.2 var(--font-display);color:var(--off);}
+.vstages li.on .vcard .sub{display:block;margin-top:4px;}
+.vstages li.on .vcard .vc-chip{display:flex;align-items:center;gap:9px;margin-top:8px;padding-top:12px;border-top:1px solid var(--line);}
+.vstages li.on .vcard .vc-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 9px var(--lime-glow);flex:none;}
+.vstages li.on .vcard .vc-chip b{font:600 12px/1.1 var(--font-display);color:var(--off);}
+.vstages li.on .vcard .vc-chip small{display:block;font:400 10px/1.3 var(--font-mono);color:var(--muted);letter-spacing:.02em;}
+
+@keyframes ssPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+
+/* floaters do mark no lado direito (IDEIA C) — já existe .hero-fx, só reposiciona */
+.scrub-sticky .hero-fx.fx-a{top:8%;right:2%;left:auto;width:120px;height:148px;opacity:.22;}
+.scrub-sticky .hero-fx.fx-b{bottom:12%;right:10%;top:auto;left:auto;width:84px;height:104px;opacity:.16;animation-direction:reverse;}
+.scrub-sticky .hero-fx.fx-c{top:42%;right:14%;left:auto;width:70px;height:86px;opacity:.14;}
+
+@media (prefers-reduced-motion:reduce){
+  .vpipe-fill{transition:none;}
+  .vstages li.on .vcard .vc-icon{animation:none;}
+}
+@media(max-width:900px){
+  .vtimeline{width:100%;}
+  .vpipe{min-height:300px;} .vstages{min-height:300px;}
+  .scrub-sticky .hero-fx{display:none;}
 }
 
 /* === Toggle de tema (botão canto superior direito) === */
@@ -543,4 +664,50 @@ html.lenis{scroll-behavior:auto!important;}
 @media (prefers-reduced-motion:reduce){
   :root{transition:none;}
   .theme-toggle{transition:background .15s,color .15s,border-color .15s;}
+}
+
+/* ============================================================
+   AAPSON · MOTION EXTRA (XEIMIfJb5d0) — marquee / progress / chip / ring
+   Reuso dos tokens Acid Circuit. Progressive enhancement, reduced-motion safe.
+   Não altera texto/estrutura das páginas — só camadas de apoio.
+   ============================================================ */
+/* ---- IDEIA 3: marquee de tech no rodapé (preenche fim de página) ---- */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:16px 0;background:var(--bg2);}
+.marquee-track{display:flex;gap:40px;width:max-content;animation:scrollx 26s linear infinite;}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+.marquee span{font:500 13.5px/1 var(--font-mono);letter-spacing:.08em;color:var(--muted);
+  white-space:nowrap;display:flex;align-items:center;gap:40px;}
+.marquee b{color:var(--lime);}
+@keyframes scrollx{to{transform:translateX(-50%);}}
+
+/* ---- IDEIA 7: scroll-progress fina no topo ---- */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;z-index:399;
+  background:linear-gradient(90deg,var(--a1),var(--a2));box-shadow:0 0 10px var(--a2);
+  transition:width .08s linear;pointer-events:none;}
+
+/* ---- IDEIA 4: chip flutuante (hero do produto) ---- */
+.float-chip{position:absolute;left:-22px;bottom:40px;z-index:3;background:var(--surface2);
+  border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:11px;
+  box-shadow:0 18px 40px -18px var(--a2-glow);animation:chipFloat 9s ease-in-out infinite;}
+.float-chip .dot{width:10px;height:10px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime-glow);}
+.float-chip b{font:600 14px/1.1 var(--font-display);color:var(--off);display:block;}
+.float-chip small{display:block;font:400 11px/1.3 var(--font-mono);color:var(--muted);letter-spacing:.04em;}
+@keyframes chipFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* ---- IDEIA 5: anel giratório "8+ anos" (seção mentoria) ---- */
+.ring-badge{position:relative;width:150px;height:150px;border-radius:24px;flex:none;
+  display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,var(--pink-tint),transparent 70%);
+  border:1px solid var(--line);}
+.ring-badge .ring{position:absolute;inset:14px;border:1px dashed color-mix(in srgb,var(--a2) 55%,transparent);
+  border-radius:18px;animation:spin 22s linear infinite;}
+.ring-badge b{font:700 28px/1 var(--font-display);color:var(--off);text-align:center;}
+.ring-badge small{display:block;font:500 10px/1.3 var(--font-mono);color:var(--lime);letter-spacing:.16em;text-transform:uppercase;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{animation:none;}
+  .float-chip{animation:none;}
+  .ring-badge .ring{animation:none;}
+  .scroll-progress{transition:none;}
 }

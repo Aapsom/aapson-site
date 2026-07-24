@@ -32,6 +32,7 @@
 }
 </script>
 </head>
+<div class="scroll-progress" aria-hidden="true"></div>
 <body>
 
 <!-- GLOBAL STATUS BAR -->
@@ -79,14 +80,45 @@
         </div>
       </div>
       <div class="scrub-visual" aria-hidden="true">
-        <div class="pipe"><div class="pipe-fill" data-pipe></div></div>
-        <div class="nodes">
-          <span class="node" style="left:0%" data-at="0"></span>
-          <span class="node" style="left:33.3%" data-at="0.33"></span>
-          <span class="node" style="left:66.6%" data-at="0.66"></span>
-          <span class="node" style="left:100%" data-at="1"></span>
+        <!-- LAYOUT B (card viajante): cada etapa é um li; o ativo vira o card grande -->
+        <div class="vtimeline">
+          <div class="vpipe"><div class="vpipe-fill" data-vpipe></div></div>
+          <ol class="vstages">
+            <li class="on" data-vat="0">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon" data-ss-icon>●</div>
+                <b data-scrub-label>Detecta</b>
+                <small class="sub">role a página — o fluxo acontece com você</small>
+                <div class="vc-chip"><span class="dot"></span><span><b>retry idempotente</b><small>PIX Automático · 0 cobrança dupla</small></span></div>
+              </div>
+            </li>
+            <li data-vat="0.33">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon">↻</div>
+                <b>Tenta de novo</b>
+                <small class="sub">reagenda do jeito certo</small>
+              </div>
+            </li>
+            <li data-vat="0.66">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon">✉</div>
+                <b>Avisa</b>
+                <small class="sub">fala com o cliente no momento certo</small>
+              </div>
+            </li>
+            <li data-vat="1">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon">✓</div>
+                <b>Confere</b>
+                <small class="sub">bate o extrato e fecha o mês</small>
+              </div>
+            </li>
+          </ol>
         </div>
-        <div class="scrub-label"><span data-scrub-label>Detecta</span><span class="sub">role a página — o fluxo acontece com você</span></div>
       </div>
     </div>
   </div>
@@ -213,6 +245,12 @@
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8+ anos</b> · Capital zero</span>
+    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8+ anos</b> · Capital zero</span>
+  </div>
+</div>
 <footer>
   <div class="colorbar"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
   <div class="wrap">
