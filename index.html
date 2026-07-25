@@ -43,7 +43,7 @@
 </script>
 </head>
 <div class="scroll-progress" aria-hidden="true"></div>
-<body>
+<body class="com-intro">
 
 <!-- GLOBAL STATUS BAR -->
 <div class="topbar" role="status" aria-label="Status da página">
@@ -73,18 +73,17 @@
   </div>
 </nav>
 
-<header class="hub-hero">
-  <span class="hero-fx fx-a" data-depth="0.045" data-dir="1" aria-hidden="true"><svg viewBox="0 0 100 124"><polygon class="m-top" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon class="m-base" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle class="m-node" cx="50" cy="62" r="9"/></svg></span>
-  <span class="hero-fx fx-b" data-depth="0.032" data-dir="1" aria-hidden="true"><svg viewBox="0 0 100 124"><polygon class="m-top" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon class="m-base" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle class="m-node" cx="50" cy="62" r="9"/></svg></span>
-  <span class="hero-fx fx-c" data-depth="0.022" data-dir="-1" aria-hidden="true"><svg viewBox="0 0 100 124"><polygon class="m-top" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon class="m-base" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle class="m-node" cx="50" cy="62" r="9"/></svg></span>
+<!-- HERO: o campo de binários ocupa o lugar do antigo .mark-xl de 56px.
+     Os 3 floaters .hero-fx saíram — brigariam com o campo pelo mesmo espaço. -->
+<header class="hub-hero tem-campo">
   <div class="wrap">
-    <svg class="mark-xl mark-anim rise" viewBox="0 0 100 124" aria-hidden="true">
-      <polygon class="m-top" points="50,2 91,56 73,56 50,25 27,56 9,56"/>
-      <polygon class="m-base" points="9,68 27,68 50,99 73,68 91,68 50,122"/>
-      <circle class="m-node" cx="50" cy="62" r="9"/>
-    </svg>
-    <h1 class="rise d1">Três frentes. Uma base técnica.</h1>
-    <p class="lede rise d2">A AAPSON nasce da engenharia de cobrança de seguradoras — os sistemas SAP que processam milhões de apólices sem cobrar ninguém duas vezes — e traduz essa disciplina em três entregas. Escolha por onde você entra.</p>
+    <canvas class="campo-bin" id="campo" aria-hidden="true"></canvas>
+    <h1>Três frentes. Uma base técnica.</h1>
+    <p class="lede">A AAPSON nasce da engenharia de cobrança de seguradoras — os sistemas SAP que processam milhões de apólices sem cobrar ninguém duas vezes — e traduz essa disciplina em três entregas. Escolha por onde você entra.</p>
+    <p class="no-diz" aria-live="polite">
+      <span class="no-ponto" aria-hidden="true"></span>
+      <span id="no-txt"></span>
+    </p>
   </div>
 </header>
 
@@ -107,7 +106,7 @@
     <a class="track cons reveal" href="fscd.html">
     <span class="eyebrow blue">// Para consultorias · FS-CD → S/4HANA</span>
     <h2>A migração não trava no código. Trava no dado — e no hypercare.</h2>
-    <p>Assessment de prontidão de dados FS-CD em 5 dias (R$ 15.000, pacote fechado): aponta o que vai travar no S/4HANA e entrega a trilha de saneamento. Depois do go-live, hypercare & monitoramento 24/7 que vigia o bastidorm sem queimar sênior.</p>
+    <p>Assessment de prontidão de dados FS-CD em 5 dias (R$ 15.000, pacote fechado): aponta o que vai travar no S/4HANA e entrega a trilha de saneamento. Depois do go-live, hypercare &amp; monitoramento 24/7 que vigia o bastidor sem queimar sênior.</p>
     <span class="go">Ver a frente FS-CD →</span>
     </a>
   </div>
@@ -120,7 +119,7 @@
       <div class="dip-text reveal">
         <span class="eyebrow">// Quem está por trás</span>
         <h2>Uma consultora que vive o problema — não uma agência que ouviu falar dele.</h2>
-        <p class="sec-lede">A AAPSON é conduzida por uma consultora SAP especialista em FS-CD, o módulo de cobrança das seguradoras, com 8+ anos em projetos reais — cobrança e compensação, cosseguro e resseguro, Pix e faturamento digital. É desse dia a dia que vêm as três frentes: a disciplina que garante a cobrança de milhões de apólices, aplicada ao pequeno negócio; o método de IA usado em projeto de verdade, ensinado a outros consultores; e o julgamento técnico que separa uma migração de dados confiável de um retrabalho caro.</p>
+        <p class="sec-lede">A AAPSON é conduzida por uma consultora SAP especialista em FS-CD, o módulo de cobrança das seguradoras, com 8 anos em projetos reais — cobrança e compensação, cosseguro e resseguro, Pix e faturamento digital. É desse dia a dia que vêm as três frentes: a disciplina que garante a cobrança de milhões de apólices, aplicada ao pequeno negócio; o método de IA usado em projeto de verdade, ensinado a outros consultores; e o julgamento técnico que separa uma migração de dados confiável de um retrabalho caro.</p>
       </div>
       <div class="dip-proof reveal">
         <div class="proof">
@@ -138,7 +137,7 @@
           <div class="axis cons">
             <div class="axis-k">Contexto</div>
             <div class="axis-v">Seguros · Pix · faturamento digital</div>
-            <div class="axis-d">8+ anos de projeto em seguradoras, do desenho à produção</div>
+            <div class="axis-d">8 anos de projeto em seguradoras, do desenho à produção</div>
           </div>
         </div>
       </div>
@@ -148,8 +147,8 @@
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8+ anos</b> · Capital zero</span>
-    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8+ anos</b> · Capital zero</span>
+    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8 anos</b> · Capital zero</span>
+    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8 anos</b> · Capital zero</span>
   </div>
 </div>
 <footer>
@@ -164,5 +163,53 @@
 
 <script src="assets/lenis.min.js"></script>
 <script src="assets/main.js" defer></script>
+<script src="assets/marca-binaria.js"></script>
+<script>
+(function () {
+  var campo = document.getElementById('campo');
+  if (!campo) return;
+
+  function pronto(){ document.body.classList.add('pronto'); }
+
+  // A intro roda UMA VEZ POR SESSÃO (aba): 2,4s é generoso na primeira visita e
+  // pedágio na quarta. `?intro` na URL força a repetição, para revisão.
+  var forcar = location.search.indexOf('intro') >= 0;
+  var jaViu  = false;
+  try { jaViu = sessionStorage.getItem('aapson-intro') === '1'; } catch (e) {}
+  var comIntro = (!jaViu || forcar) && !MarcaBinaria.reducedMotion;
+  try { sessionStorage.setItem('aapson-intro', '1'); } catch (e) {}
+
+  var motor = MarcaBinaria(campo, {
+    modo: 'corrente', alturaMarca: 0.94, densidade: 11,
+    intro: comIntro, aoTerminar: pronto
+  });
+
+  if (comIntro) {
+    // Rede de segurança: falha de enfeite NUNCA pode deixar o conteúdo invisível.
+    setTimeout(pronto, 4000);
+    var pular = function(){ motor.pularIntro(); pronto(); };
+    addEventListener('scroll', pular, { passive:true, once:true });
+    addEventListener('pointerdown', pular, { once:true });
+    addEventListener('keydown', pular, { once:true });
+  } else pronto();
+
+  // O nó central diz o que é em cada frente — cada fala aponta para uma das
+  // três trilhas logo abaixo, ligando o hero ao resto da página.
+  var FALAS = [
+    '<b>Na seguradora:</b> a compensação que não pode duplicar.',
+    '<b>Na PME:</b> o retry do Pix que ninguém vê falhar.',
+    '<b>No consultor:</b> o critério que a IA não substitui.'
+  ];
+  var alvo = document.getElementById('no-txt'), iF = 0;
+  alvo.innerHTML = FALAS[0];
+  if (!MarcaBinaria.reducedMotion) {
+    setInterval(function () {
+      iF = (iF + 1) % FALAS.length;
+      alvo.style.opacity = 0;
+      setTimeout(function(){ alvo.innerHTML = FALAS[iF]; alvo.style.opacity = 1; }, 260);
+    }, 3800);
+  }
+})();
+</script>
 </body>
 </html>

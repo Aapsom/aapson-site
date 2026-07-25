@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAPSON &middot; contraste da marca no tema claro</title>
+<meta name="robots" content="noindex">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&display=swap");
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F2EEE6;color:#191512;font-family:"Fraunces",Georgia,serif;
+  padding:44px clamp(18px,4vw,52px);line-height:1.55}
+h1{font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;margin-bottom:10px}
+.sub{color:#5b544a;max-width:70ch;font-size:16px;margin-bottom:34px}
+.mono{font-family:"JetBrains Mono",monospace}
+.linha-tit{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:#7a7268;margin:34px 0 14px;
+  border-top:1px solid rgba(0,0,0,.14);padding-top:14px}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+.op{background:#FBF9F4;border:1px solid rgba(0,0,0,.13);border-radius:14px;padding:20px 18px 16px;
+  text-align:center}
+.op.atual{border-color:#B4472B;background:#FCF4F1}
+.op svg{width:88px;height:109px;display:block;margin:0 auto 14px}
+.nome{font-weight:600;font-size:16px;margin-bottom:3px}
+.hexes{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:#7a7268;letter-spacing:.02em}
+.de{font-family:"JetBrains Mono",monospace;font-size:12px;margin-top:10px;
+  padding-top:9px;border-top:1px solid rgba(0,0,0,.10)}
+.bom{color:#1B6E7A;font-weight:500}
+.meio{color:#8A6410;font-weight:500}
+.ruim{color:#B4472B;font-weight:500}
+.tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:99px;
+  background:rgba(0,0,0,.07);color:#5b544a;margin-bottom:12px}
+.rec{background:#1B6E7A;color:#fff}
+.nota{margin-top:32px;font-size:14.5px;color:#5b544a;max-width:76ch;
+  border-left:2px solid #C8743C;padding-left:16px}
+</style>
+</head>
+<body>
+<h1>Contraste da marca no tema claro</h1>
+<p class="sub">O n&oacute; terra <span class="mono">#C8743C</span> n&atilde;o se mexe &mdash; regra de marca:
+o terra &eacute; o mesmo nos dois tons. Quem muda &eacute; o <b>tri&acirc;ngulo de baixo</b>.
+&Delta;E abaixo de 20 = as duas cores se confundem; 20&ndash;35 = limítrofe; acima de 35 = distintas.
+Refer&ecirc;ncia: no tema escuro, base &times; n&oacute; d&aacute; <b>&Delta;E 96,6</b>.</p>
+
+<p class="linha-tit">n&oacute; terra normal &middot; #C8743C &middot; contraste com o fundo 3,01</p>
+<div class="grade" id="g1"></div>
+
+<p class="linha-tit">n&oacute; terra escuro &middot; #9A4A1E &middot; contraste com o fundo 5,38 (o design system j&aacute; usa este no claro)</p>
+<div class="grade" id="g2"></div>
+
+<p class="nota">O vinho atual piora com o n&oacute; escuro (&Delta;E cai de 19,8 para 12,9): as duas
+op&ccedil;&otilde;es de terra s&atilde;o quentes, ent&atilde;o nenhuma escolha de n&oacute; salva um
+tri&acirc;ngulo de baixo tamb&eacute;m quente. A sa&iacute;da &eacute; tirar o baixo do calor.</p>
+
+<script>
+var TOPO = '#1B6E7A';
+var OPCOES = [
+  {id:'atual', nome:'Vinho (atual)',      a1:'#B4472B', tag:'hoje'},
+  {id:'viol',  nome:'Violeta profundo',   a1:'#5B3EA6', tag:'recomendado'},
+  {id:'ind',   nome:'&Iacute;ndigo',      a1:'#4B2E83', tag:''},
+  {id:'ame',   nome:'Ameixa',             a1:'#7A2E6B', tag:''},
+  {id:'vmag',  nome:'Vinho-magenta',      a1:'#8C2F5A', tag:'mant&eacute;m calor'}
+];
+// dE CIE76 -- mesma conta do paleta.py, para o rotulo bater com a medicao
+function lab(h){h=h.replace('#','');
+  var c=[0,2,4].map(function(i){var v=parseInt(h.substr(i,2),16)/255;
+    return v<=0.04045?v/12.92:Math.pow((v+0.055)/1.055,2.4);});
+  var x=(0.4124*c[0]+0.3576*c[1]+0.1805*c[2])/0.95047,
+      y=(0.2126*c[0]+0.7152*c[1]+0.0722*c[2]),
+      z=(0.0193*c[0]+0.1192*c[1]+0.9505*c[2])/1.08883;
+  var f=function(t){return t>0.008856?Math.pow(t,1/3):(7.787*t+16/116);};
+  return [116*f(y)-16, 500*(f(x)-f(y)), 200*(f(y)-f(z))];}
+function dE(a,b){var A=lab(a),B=lab(b);
+  return Math.sqrt(Math.pow(A[0]-B[0],2)+Math.pow(A[1]-B[1],2)+Math.pow(A[2]-B[2],2));}
+
+function marca(a1,a3){
+  return '<svg viewBox="0 0 100 124" aria-hidden="true">'
+    + '<polygon fill="'+TOPO+'" points="50,2 91,56 73,56 50,25 27,56 9,56"/>'
+    + '<polygon fill="'+a1+'" points="9,68 27,68 50,99 73,68 91,68 50,122"/>'
+    + '<circle fill="'+a3+'" cx="50" cy="62" r="9"/></svg>';
+}
+function montar(destino, a3){
+  document.getElementById(destino).innerHTML = OPCOES.map(function(o){
+    var d = dE(o.a1, a3);
+    // Limiar corrigido: 18 dava "distinto" ao vinho atual (dE 19,8) que a dona
+    // confundiu na prática. Em áreas chapadas grandes e afastadas na tela, a
+    // confusão vai bem além de 18 — a faixa honesta é 20/35.
+    var cls = d < 20 ? 'ruim' : (d < 35 ? 'meio' : 'bom');
+    var txt = d < 20 ? 'confunde' : (d < 35 ? 'limítrofe' : 'distinto');
+    return '<div class="op'+(o.id==='atual'?' atual':'')+'">'
+      + (o.tag ? '<span class="tag'+(o.tag==='recomendado'?' rec':'')+'">'+o.tag+'</span>' : '')
+      + marca(o.a1, a3)
+      + '<div class="nome">'+o.nome+'</div>'
+      + '<div class="hexes">base '+o.a1+'</div>'
+      + '<div class="de">&Delta;E base&times;n&oacute; <span class="'+cls+'">'
+      + d.toFixed(1)+' &middot; '+txt+'</span></div>'
+      + '</div>';
+  }).join('');
+}
+montar('g1', '#C8743C');
+montar('g2', '#9A4A1E');
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAPSON &middot; Funil R1 &middot; B2 Manifesto</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="funil.css">
+<style>.grito{font-size:clamp(40px,8.2vw,118px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase;
+    transform:rotate(-2.2deg);transform-origin:left center;font-weight:700}
+  .destaque{background:var(--a2);color:var(--ink);padding:0 .14em;display:inline-block;text-shadow:none!important}
+  .b2c .lede{margin-top:38px}</style>
+</head>
+<body>
+<div class="tag">
+  <span><b>B2</b> &nbsp;Manifesto</span>
+  <span class="meio">declara&ccedil;&atilde;o em caixa-alta; os bin&aacute;rios s&atilde;o textura, n&atilde;o protagonista</span>
+  <span><a href="index.html">&larr; todas as 10</a></span>
+</div>
+<nav><div class="wrap"><a class="marca" href="#"><svg viewBox="0 0 100 124" aria-hidden="true"><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="p1">A</span><span class="p2">A</span><span class="resto">PSON</span></span></a><div class="links"><a href="#frentes">Frentes</a><a href="#frentes">Quem conduz</a><a href="#frentes">Conversar</a></div></div></nav>
+<header class="palco">
+  <canvas id="campo" aria-hidden="true"></canvas>
+  <div class="vinheta" aria-hidden="true"></div>
+  
+  <div class="wrap conteudo b2c">
+    <h1 class="grito">COBRAR<br><span class="destaque">CERTO</span><br>&Eacute; ENGENHARIA,<br>N&Atilde;O SORTE.</h1>
+    <p class="lede">Software que lida com dinheiro n&atilde;o tem direito a &ldquo;quase&rdquo;. A AAPSON
+      existe porque a diferen&ccedil;a entre 99% e 100% <b>&eacute; um cliente cobrado duas vezes</b>.</p>
+    <div class="acoes"><a class="btn btn-1" href="#frentes">O que isso vira na pr&aacute;tica</a></div>
+  </div>
+</header>
+
+<section class="banda" id="frentes">
+  <div class="wrap">
+    <p class="rotulo">// a mesma base, tr&ecirc;s sa&iacute;das</p>
+    <h2 class="h-medio">Cobran&ccedil;a que n&atilde;o falha &mdash; em tr&ecirc;s escalas diferentes.</h2>
+    <p class="lede">A disciplina &eacute; uma s&oacute;: garantir que o dinheiro certo saia da conta certa,
+      uma vez s&oacute;. Muda o tamanho de quem precisa dela.</p>
+    <div class="frentes">
+      <a class="frente" href="../fscd.html">
+        <span class="n">01 &mdash; SEGURADORA</span>
+        <h3>A migra&ccedil;&atilde;o n&atilde;o trava no c&oacute;digo. Trava no dado.</h3>
+        <p>Assessment de prontid&atilde;o FS-CD &rarr; S/4HANA em 5 dias, pacote fechado de R$ 15.000.
+          Depois do go-live, hypercare 24/7.</p>
+        <span class="seta">Ver a frente FS-CD &rarr;</span>
+      </a>
+      <a class="frente" href="../pme.html">
+        <span class="n">02 &mdash; PEQUENO NEG&Oacute;CIO</span>
+        <h3>Sua mensalidade caiu? A gente garante que sim.</h3>
+        <p>Quando a cobran&ccedil;a autom&aacute;tica falha, o sistema detecta, tenta de novo do jeito
+          certo, avisa o cliente e confere o extrato. Em valida&ccedil;&atilde;o.</p>
+        <span class="seta">Ver a frente PME &rarr;</span>
+      </a>
+      <a class="frente" href="../mentoria.html">
+        <span class="n">03 &mdash; CONSULTOR</span>
+        <h3>IA aplicada ao seu projeto real.</h3>
+        <p>Mentoria in-company ou trilha 1:1, conduzida por quem usa IA todos os dias em projeto
+          de verdade &mdash; n&atilde;o em teoria.</p>
+        <span class="seta">Ver a mentoria &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+<footer class="rodape"><div class="wrap">
+  <span>&copy; 2026 AAPSON &mdash; engenharia de cobran&ccedil;a aplicada.</span>
+  <span>Dire&ccedil;&atilde;o <b id="qual"></b> do funil R1</span>
+</div></footer>
+<script src="marca-binaria.js"></script>
+<script>
+  var motor = MarcaBinaria(document.getElementById('campo'), {
+    modo: 'corrente', alturaMarca: 0.95, densidade: 11, deslocX: 0.2
+  });
+  document.getElementById('qual').textContent = 'B2';
+  if ('corrente' === 'dissolve') {
+    var palco = document.querySelector('.palco');
+    addEventListener('scroll', function () {
+      var h = palco.offsetHeight || 1;
+      motor.scroll(Math.min(1, Math.max(0, scrollY / h)));
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>

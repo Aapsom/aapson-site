@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&display=swap");
+/* ============================================================
+   AAPSON · Funil R1 — base compartilhada das 10 direções
+   Tokens = Acid Circuit DUOTONE dark10 (fonte: assets/acid.css).
+   Fraunces em TODO heading/body (regra travada 14/jul).
+   Mono APENAS dentro do campo de binários e em rótulos de dado —
+   o binário é GRÁFICO, não tipografia de leitura.
+   ============================================================ */
+
+:root{
+  --bg:#0B0714; --bg2:#08060F; --surface:#14101F;
+  --fg:#EFE9FF;
+  --a1:#A78BFA;  /* violeta   = triângulo BASE  */
+  --a2:#D9F03A;  /* chartreuse = triângulo TOPO */
+  --a3:#C8743C;  /* terra      = nó central     */
+  --muted:rgba(239,233,255,.72);
+  --faint:rgba(239,233,255,.46);
+  --line:rgba(255,255,255,.09);
+  --line2:rgba(255,255,255,.16);
+  --bin-fraco:rgba(239,233,255,.15);
+  --ink:#0B0714;
+  --font:"Fraunces",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--font); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font); font-weight:600; line-height:1.04; margin:0; letter-spacing:-.015em}
+
+.wrap{max-width:1200px; margin:0 auto; padding:0 clamp(20px,4vw,48px)}
+
+/* ---- barra de identificação da variação (só no funil, sai no build final) ---- */
+.tag{
+  position:fixed; top:0; left:0; right:0; z-index:60;
+  display:flex; gap:14px; align-items:center; justify-content:space-between;
+  padding:7px clamp(14px,3vw,26px);
+  background:rgba(8,6,15,.82); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  font-family:var(--mono); font-size:11px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--faint);
+}
+.tag b{color:var(--a2); font-weight:500}
+.tag .meio{color:var(--muted); text-transform:none; letter-spacing:0; font-family:var(--font); font-size:13px}
+.tag a{color:var(--a1); text-decoration:none}
+
+/* ---- nav ---- */
+nav{position:absolute; top:32px; left:0; right:0; z-index:20}
+nav .wrap{display:flex; align-items:center; justify-content:space-between; gap:24px}
+.marca{display:flex; align-items:center; gap:11px; text-decoration:none}
+.marca svg{width:22px; height:27px; display:block}
+.word{font-size:19px; letter-spacing:.01em; font-weight:600}
+.word .p1{color:var(--a2)} .word .p2{color:var(--a1)} .word .resto{color:var(--fg)}
+.links{display:flex; gap:26px; align-items:center; font-size:14px; color:var(--muted)}
+.links a{text-decoration:none}
+.links a:hover{color:var(--a2)}
+@media(max-width:720px){ .links{display:none} }
+
+/* ---- palco do hero ---- */
+.palco{position:relative; min-height:100svh; display:grid; place-items:center; overflow:hidden}
+.palco canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+.palco .conteudo{position:relative; z-index:10; width:100%}
+/* Vinheta LEVE: só assenta as bordas. A versão pesada anterior esmagava as pontas
+   da marca (chartreuse virava verde-oliva) — o campo é o herói, não pode ser abafado. */
+.vinheta{
+  position:absolute; inset:0; z-index:5; pointer-events:none;
+  background:radial-gradient(ellipse 78% 68% at 50% 50%, transparent 0%, rgba(11,7,20,.34) 74%, rgba(11,7,20,.72) 100%);
+}
+
+/* ---- tipo do hero ---- */
+/* Halo local: o texto abre o próprio espaço no campo de binários em vez de
+   exigir um painel opaco por cima (que mataria o efeito). Sem isso, a lede do
+   A1 ficava ilegível em cima dos dígitos. */
+.palco .conteudo :is(h1,h2,h3,.lede,.olho,.assinatura,.grito,.num,.val,.rot,.d,.v,.k){
+  text-shadow:0 0 12px var(--bg), 0 0 26px var(--bg), 0 0 46px var(--bg);
+}
+/* O halo basta para display grande, mas NÃO para a lede: texto pequeno sobre
+   dígitos densos fica ilegível (A4/A5 provaram). A lede ganha escudo próprio —
+   translúcido, então o campo continua visível atrás. */
+.palco .conteudo :is(.lede,.olho){
+  position:relative; isolation:isolate;
+  padding:12px 20px; margin-left:-20px; margin-right:-20px;
+}
+.palco .conteudo .olho{padding:5px 20px; width:fit-content}
+.a2c .olho, .a5c .olho{margin-left:auto; margin-right:auto}
+.palco .conteudo :is(.lede,.olho)::before{
+  content:""; position:absolute; inset:0; z-index:-1; border-radius:14px;
+  background:radial-gradient(ellipse 100% 120% at 50% 50%,
+    rgba(11,7,20,.93) 0%, rgba(11,7,20,.86) 55%, rgba(11,7,20,0) 100%);
+  backdrop-filter:blur(3px);
+}
+.a2c .lede, .a5c .lede{margin-left:auto; margin-right:auto}
+
+/* Nos layouts partidos (texto à esquerda, marca deslocada à direita) não existe
+   sobreposição no desktop — o escudo vira só um retângulo visível de graça.
+   Abaixo de 900px a grade colapsa e a marca volta a ficar atrás: aí ele precisa voltar. */
+@media(min-width:901px){
+  :is(.a3c,.r1c,.r2c,.r3c) :is(.lede,.olho)::before{display:none}
+  :is(.a3c,.r1c,.r2c,.r3c) :is(.lede,.olho){padding-left:0; padding-right:0; margin-left:0; margin-right:0}
+}
+
+.olho{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--a3); margin:0 0 20px;
+}
+.h-gigante{font-size:clamp(40px,7.4vw,96px)}
+.h-medio{font-size:clamp(32px,4.9vw,62px)}
+.lede{font-size:clamp(16px,1.35vw,19.5px); color:var(--muted); max-width:56ch; margin:22px 0 0}
+.lede b{color:var(--fg); font-weight:600}
+
+/* ---- botões ---- */
+.acoes{display:flex; flex-wrap:wrap; gap:13px; margin-top:34px}
+.btn{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:13px 24px; border-radius:999px; text-decoration:none;
+  font-size:15px; font-weight:600; border:1px solid transparent;
+  transition:transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.btn-1{background:var(--a2); color:var(--ink)}
+.btn-1:hover{transform:translateY(-2px); background:#e6fa55}
+/* fundo próprio: sem ele os dígitos atravessam o botão e ele parece quebrado */
+.btn-2{border-color:var(--line2); color:var(--fg); background:rgba(11,7,20,.86); backdrop-filter:blur(4px)}
+.btn-2:hover{border-color:var(--a1); color:var(--a1); transform:translateY(-2px)}
+
+/* ---- banda seguinte (prova de que a direção continua) ---- */
+.banda{border-top:1px solid var(--line); padding:clamp(64px,9vw,120px) 0; background:var(--bg2)}
+.banda .rotulo{
+  font-family:var(--mono); font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--faint); margin:0 0 18px;
+}
+.frentes{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); margin-top:44px; border:1px solid var(--line)}
+.frente{background:var(--bg); padding:clamp(22px,2.6vw,34px); text-decoration:none; display:block; transition:background .2s ease}
+.frente:hover{background:var(--surface)}
+.frente .n{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--a3)}
+.frente h3{font-size:clamp(19px,1.7vw,24px); margin:14px 0 10px}
+.frente p{margin:0; font-size:14.5px; color:var(--muted); line-height:1.58}
+.frente .seta{display:inline-block; margin-top:16px; font-size:14px; color:var(--a2)}
+@media(max-width:860px){ .frentes{grid-template-columns:1fr} }
+
+.rodape{border-top:1px solid var(--line); padding:34px 0; font-size:13px; color:var(--faint)}
+.rodape .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap}
+
+/* ---- intro: o palco pertence à marca nascendo; o texto entra depois ---- */
+.com-intro .palco .conteudo, .com-intro nav{
+  opacity:0; transform:translateY(10px);
+}
+.com-intro.pronto .palco .conteudo, .com-intro.pronto nav{
+  opacity:1; transform:none;
+  transition:opacity .75s ease, transform .75s cubic-bezier(.2,.7,.3,1);
+}
+.com-intro.pronto nav{transition-delay:.1s}
+
+@media (prefers-reduced-motion: reduce){
+  /* sem intro: o motor entrega o quadro final no primeiro frame e o texto já está lá */
+  .com-intro .palco .conteudo, .com-intro nav{opacity:1; transform:none}
+  *{animation:none!important; transition:none!important}
+}

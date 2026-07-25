@@ -21,6 +21,7 @@
   --off:var(--fg); --ink:#0B0714;
   --pink-active:#8B6FD6;
   --lime-glow:rgba(217,240,58,.6); --pink-glow:rgba(167,139,250,.4); --blue-glow:rgba(200,116,60,.5);
+  --dot-glow:var(--lime-glow);
   --lime-tint:rgba(217,240,58,.12); --blue-tint:rgba(200,116,60,.16); --pink-tint:rgba(167,139,250,.13);
   --muted:rgba(239,233,255,.72); --faint:rgba(239,233,255,.48);
   --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
@@ -42,7 +43,12 @@
 :root[data-theme="light"]{
   --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
   --fg:#191512;
-  --a1:#B4472B;   /* vinho */
+  /* a1 era vinho #B4472B ate 25/jul: colidia com o no terra #C8743C
+     (dE 19,8 / 15 graus de matiz -- as duas se confundiam). Violeta profundo da
+     dE 92,6, no nivel do tema escuro (96,6), E faz a base ser violeta nos DOIS
+     temas -- a marca parou de trocar de matiz ao trocar de tema. Medicao em
+     _funil-r1/paleta-clara.html. */
+  --a1:#5B3EA6;   /* violeta profundo */
   --a2:#1B6E7A;   /* teal */
   --a3:#C8743C;   /* terra (idem) */
   --pink:var(--a1); --lime:var(--a2); --blue:var(--a3);
@@ -50,15 +56,36 @@
   --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
   --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
   /* glows no claro: neon claro some no creme -> usa tom escuro visivel */
-  --lime-glow:rgba(27,110,122,.45); --pink-glow:rgba(180,71,43,.40); --blue-glow:rgba(200,116,60,.42);
+  --lime-glow:rgba(27,110,122,.45); --pink-glow:rgba(91,62,166,.42); --blue-glow:rgba(200,116,60,.42);
+  --pink-tint:rgba(91,62,166,.13);
+  --dot-glow:var(--pink-glow);
 }
-/* no claro, o nó central do mark (logo/hero-fx) some no creme -> cor escura */
+/* no claro, o nó central do mark (logo/hero-fx) some no creme -> cor escura.
+   Contraste contra o creme: 3,01 (terra normal) -> 5,38 (este). */
 :root[data-theme="light"] .brand .mark .m-node,
 :root[data-theme="light"] .scrub-sticky .hero-fx .m-node,
 :root[data-theme="light"] .hub-hero .hero-fx .m-node{fill:#9A4A1E;}
+/* faltava a variante claro-por-SISTEMA: quem nunca clicou no toggle via o nó
+   apagado. Mesmo bug dos glows, corrigido junto. */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .brand .mark .m-node,
+  :root:not([data-theme="dark"]) .scrub-sticky .hero-fx .m-node,
+  :root:not([data-theme="dark"]) .hub-hero .hero-fx .m-node{fill:#9A4A1E;}
+}
+/* O campo de binários é canvas: o motor LÊ os tokens, então o nó escuro entra
+   como override de --a3 no elemento, não como fill. */
+:root[data-theme="light"] .campo-bin{--a3:#9A4A1E;}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .campo-bin{--a3:#9A4A1E;}
+}
 :root[data-theme="light"] .vstages .vcard b{color:#191512;}
 :root[data-theme="light"] .vstages li.on .vcard .vc-chip small{color:#3a342c;}
 :root[data-theme="light"] .vstages li.on .vcard .sub{color:#6b645a;}
+/* tag ativado no claro: glow primário (vinho) em vez de lime/teal-verde */
+:root[data-theme="light"] .vstages li.on .vdot{box-shadow:0 0 14px var(--pink-glow);}
+:root[data-theme="light"] .vstages li.on .vcard .vc-icon{box-shadow:0 0 16px var(--pink-glow);}
+:root[data-theme="light"] .vstages li.on .vcard .vc-chip .dot{box-shadow:0 0 9px var(--pink-glow);}
+:root[data-theme="light"] .vstages li.on .vcard{box-shadow:0 18px 46px -24px var(--pink-glow);}
 :root[data-theme="dark"]{
   --bg:#0B0714; --bg2:#08060F; --surface:#14101F; --surface2:#1A1426;
   --fg:#EFE9FF;
@@ -72,19 +99,50 @@
   :root{
     --bg:#F2EEE6; --bg2:#ECE6DA; --surface:#FBF8F1; --surface2:#F4EEE3;
     --fg:#191512;
-    --a1:#B4472B;   /* vinho */
+    --a1:#5B3EA6;   /* violeta profundo (ver nota no bloco data-theme=light) */
     --a2:#1B6E7A;   /* teal */
     --a3:#C8743C;   /* terra (idem) */
     --pink:var(--a1); --lime:var(--a2); --blue:var(--a3);
     --off:var(--fg); --ink:#F2EEE6;
     --muted:rgba(25,21,18,.82); --faint:rgba(25,21,18,.60);
     --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.16);
+    /* este bloco (claro-por-SISTEMA) NAO redefinia os glows: eles ficavam com o
+       valor do dark e so o claro-por-BOTAO tinha a correcao. Bug antigo. */
+    --lime-glow:rgba(27,110,122,.45); --pink-glow:rgba(91,62,166,.42); --blue-glow:rgba(200,116,60,.42);
+    --pink-tint:rgba(91,62,166,.13);
+    --dot-glow:var(--pink-glow);
   }
 }
 /* Nano Banana no light (seja sistema ou botão): imagem é dark-native (neon claro
    some no creme). Inverte p/ traço escuro + multiply p/ o acento de canto aparecer. */
 @media (prefers-color-scheme:light){
   :root .hub-hero::before{mix-blend-mode:multiply;filter:invert(1) hue-rotate(180deg);opacity:.5;}
+  /* tag ativado no claro via sistema: glow primário (violeta) em vez de lime/chartreuse-verde */
+  :root .vstages li.on .vdot{box-shadow:0 0 14px var(--pink-glow);}
+  :root .vstages li.on .vcard .vc-icon{box-shadow:0 0 16px var(--pink-glow);}
+  :root .vstages li.on .vcard .vc-chip .dot{box-shadow:0 0 9px var(--pink-glow);}
+  :root .vstages li.on .vcard{box-shadow:0 18px 46px -24px var(--pink-glow);}
+  /* === CORRECAO CORES VERDES NO CLARO (sistema) === */
+  :root .theme-toggle:hover{box-shadow:0 8px 26px var(--pink-glow);border-color:var(--pink);}
+  :root .dot{background:var(--pink);box-shadow:0 0 8px var(--pink-glow);}
+  :root .node.on{background:var(--pink);border-color:var(--pink);box-shadow:0 0 12px var(--pink-glow);}
+  :root .float-chip .dot{background:var(--pink);box-shadow:0 0 12px var(--pink-glow);}
+  :root .marquee b{color:var(--pink);}
+  :root .nlink::after{background:var(--pink);}
+  :root .faq summary::after{color:var(--pink);}
+  :root .faq summary:hover{color:var(--pink);}
+  :root .endcta .eyebrow{color:var(--pink);}
+  :root .colorbar .c2{background:var(--pink);}
+  :root .track.saas:hover{border-color:var(--pink);box-shadow:0 0 32px var(--pink-tint);}
+  :root .track.saas .go{color:var(--pink);}
+  :root .ring-badge .ring{border-color:color-mix(in srgb,var(--pink) 55%,transparent);}
+  :root .ring-badge small{color:var(--pink);}
+  :root .scroll-progress{background:linear-gradient(90deg,var(--pink),var(--pink));box-shadow:0 0 10px var(--pink-glow);}
+  :root .pipe-fill{background:linear-gradient(90deg,var(--pink),var(--pink));box-shadow:0 0 18px var(--pink-glow);}
+  :root .vpipe-fill{background:linear-gradient(180deg,var(--pink),var(--pink));box-shadow:0 0 18px var(--pink-glow);}
+  :root .vstages li.on .vdot{background:var(--pink);border-color:var(--pink);box-shadow:0 0 14px var(--pink-glow);}
+  :root .vstages li.on .vcard .vc-icon{color:var(--pink);background:var(--pink-tint);box-shadow:0 0 16px var(--pink-glow);}
+  :root .vstages li.on .vcard .vc-chip .dot{background:var(--pink);box-shadow:0 0 9px var(--pink-glow);}
 }
 :root[data-theme="light"] .hub-hero::before{mix-blend-mode:multiply;filter:invert(1) hue-rotate(180deg);opacity:.5;}
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -179,18 +237,39 @@ nav.scrolled .brand .mark{width:18px;height:22px;}
 /* no claro, textos pequenos nao podem usar cor clara (somem no creme) */
 :root[data-theme="light"] .nlink{color:#3a342c;}
 :root[data-theme="light"] .nlink:hover{color:#191512;}
-:root[data-theme="light"] .eyebrow{color:#0E5560;}
+:root[data-theme="light"] .eyebrow{color:#9A3B22;}
 :root[data-theme="light"] .eyebrow.blue{color:#9A5A2E;}
 :root[data-theme="light"] .eyebrow.pink{color:#9A3B22;}
 :root[data-theme="light"] .status{color:#6b645a;}
 :root[data-theme="light"] .tb-seg,.tb-astro{color:#6b645a;}
-:root[data-theme="light"] .tb-live{color:#1B6E7A;}
+:root[data-theme="light"] .tb-live{color:#9A3B22;}
 :root[data-theme="light"] .sub{color:#6b645a;}
 :root[data-theme="light"] .lede{color:#3a342c;}
-/* tags de produto no claro: terra claro some no creme */
+/* tags de produto no claro: vinho (nao teal/verde) */
 :root[data-theme="light"] .tag.cons{color:#7A4A1E !important;background:#F0E4D6 !important;}
-:root[data-theme="light"] .tag.saas{color:#135C66 !important;}
+:root[data-theme="light"] .tag.saas{color:#9A3B22 !important;background:rgba(154,59,34,.12) !important;}
 :root[data-theme="light"] .tag.ment{color:#8E3320 !important;}
+/* === CORRECAO CORES VERDES NO CLARO === (usa vinho --pink em vez de lime/teal) */
+:root[data-theme="light"] .theme-toggle:hover{box-shadow:0 8px 26px var(--pink-glow);border-color:var(--pink);}
+:root[data-theme="light"] .dot{background:var(--pink);box-shadow:0 0 8px var(--pink-glow);}
+:root[data-theme="light"] .node.on{background:var(--pink);border-color:var(--pink);box-shadow:0 0 12px var(--pink-glow);}
+:root[data-theme="light"] .float-chip .dot{background:var(--pink);box-shadow:0 0 12px var(--pink-glow);}
+:root[data-theme="light"] .marquee b{color:var(--pink);}
+:root[data-theme="light"] .nlink::after{background:var(--pink);}
+:root[data-theme="light"] .faq summary::after{color:var(--pink);}
+:root[data-theme="light"] .faq summary:hover{color:var(--pink);}
+:root[data-theme="light"] .endcta .eyebrow{color:var(--pink);}
+:root[data-theme="light"] .colorbar .c2{background:var(--pink);}
+:root[data-theme="light"] .track.saas:hover{border-color:var(--pink);box-shadow:0 0 32px var(--pink-tint);}
+:root[data-theme="light"] .track.saas .go{color:var(--pink);}
+:root[data-theme="light"] .ring-badge .ring{border-color:color-mix(in srgb,var(--pink) 55%,transparent);}
+:root[data-theme="light"] .ring-badge small{color:var(--pink);}
+:root[data-theme="light"] .scroll-progress{background:linear-gradient(90deg,var(--pink),var(--pink));box-shadow:0 0 10px var(--pink-glow);}
+:root[data-theme="light"] .pipe-fill{background:linear-gradient(90deg,var(--pink),var(--pink));box-shadow:0 0 18px var(--pink-glow);}
+:root[data-theme="light"] .vpipe-fill{background:linear-gradient(180deg,var(--pink),var(--pink));box-shadow:0 0 18px var(--pink-glow);}
+:root[data-theme="light"] .vstages li.on .vdot{background:var(--pink);border-color:var(--pink);box-shadow:0 0 14px var(--pink-glow);}
+:root[data-theme="light"] .vstages li.on .vcard .vc-icon{color:var(--pink);background:var(--pink-tint);box-shadow:0 0 16px var(--pink-glow);}
+:root[data-theme="light"] .vstages li.on .vcard .vc-chip .dot{background:var(--pink);box-shadow:0 0 9px var(--pink-glow);}
 
 /* ---- diptych core (Split Studio) ---- */
 .dip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-2xl);align-items:center;}
@@ -478,7 +557,7 @@ html.lenis{scroll-behavior:auto!important;}
 .hub-hero::before{transform:translateY(var(--py,0)) scale(1.04);will-change:transform;}
 
 /* status dot pulsa (já existia tb-astro; reforça o .dot do nav) */
-@keyframes dot-pulse{0%,100%{box-shadow:0 0 8px var(--lime-glow);}50%{box-shadow:0 0 16px var(--lime-glow);}}
+@keyframes dot-pulse{0%,100%{box-shadow:0 0 8px var(--dot-glow);}50%{box-shadow:0 0 16px var(--dot-glow);}}
 .dot{animation:dot-pulse 2.6s ease-in-out infinite;}
 
 @media (prefers-reduced-motion:reduce){
@@ -556,11 +635,11 @@ html.lenis{scroll-behavior:auto!important;}
    Técnica do vídeo (scroll-scrub / pinned hero), versão CSS+JS
    progressiva: JS anima em todos os browsers; reduced-motion = estado final.
    ============================================================ */
-.scrub{position:relative;height:120vh;}                 /* trilha de scroll (vao minimo) */
+.scrub{position:relative;height:160vh;}                 /* trilha de scroll (vao minimo) */
 /* a secao que segue o hero nao precisa do padding-block gigante (evita buraco) */
 .scrub + section{padding-top:var(--s-2xl);}
 .scrub-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;
-  padding-top:var(--topbar-h);overflow:hidden;}
+  padding-top:var(--s-sm);overflow:hidden;}
 .scrub-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-2xl);align-items:center;width:100%;}
 .scrub-visual{position:relative;display:flex;flex-direction:column;align-items:center;gap:var(--s-xl);padding:var(--s-2xl) 0;}
 /* tubulação da recorrência — preenche conforme rola */
@@ -710,4 +789,70 @@ html.lenis{scroll-behavior:auto!important;}
   .float-chip{animation:none;}
   .ring-badge .ring{animation:none;}
   .scroll-progress{transition:none;}
+}
+
+/* ============================================================
+   CAMPO DE BINÁRIOS — hero da index (25/jul)
+   A marca oficial (mesmos polígonos: viewBox 0 0 100 124) é rasterizada num
+   grid de caracteres por assets/marca-binaria.js e nasce dos dígitos ao carregar.
+   Ocupa o lugar do antigo .mark-xl de 56px: ACIMA do h1, com espaço próprio.
+   Tentativa descartada: campo em fundo de tela cheia -> o h1 caía em cima da
+   marca e nenhum halo/escudo resolvia.
+   ============================================================ */
+:root{--bin-fraco:rgba(239,233,255,.15);}
+:root[data-theme="light"]{--bin-fraco:rgba(25,21,18,.20);}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){--bin-fraco:rgba(25,21,18,.20);}
+}
+
+.campo-bin{position:relative;z-index:1;display:block;width:100%;
+  height:clamp(230px,40svh,400px);margin:0 auto var(--s-lg);}
+/* com o campo por cima, a textura Nano Banana vira poluição (gate anti-slop) */
+.hub-hero.tem-campo{padding-block:var(--s-3xl) var(--s-3xl);}
+.hub-hero.tem-campo::before{display:none;}
+
+/* linha do nó: o ponto onde o dado vira dinheiro, dito em cada uma das 3 frentes */
+.no-diz{display:flex;gap:12px;align-items:flex-start;text-align:left;
+  margin:var(--s-lg) auto 0;max-width:60ch;padding:14px 18px;
+  border-left:2px solid var(--a3);
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(4px);
+  font-size:15.5px;color:var(--muted);line-height:1.55;}
+.no-diz b{color:var(--fg);}
+.no-ponto{width:8px;height:8px;border-radius:50%;background:var(--a3);flex:none;margin-top:7px;
+  animation:noPulsa 2.6s ease-out infinite;}
+@keyframes noPulsa{
+  0%{box-shadow:0 0 0 0 var(--terra-glow);}
+  70%{box-shadow:0 0 0 13px transparent;}
+  100%{box-shadow:0 0 0 0 transparent;}
+}
+#no-txt{transition:opacity .26s ease;}
+
+/* Intro: o palco pertence à marca nascendo; o resto entra depois. Mira o TEXTO,
+   nunca o .wrap — o canvas mora dentro dele e esconder o wrap mataria a animação. */
+.com-intro .hub-hero h1,
+.com-intro .hub-hero .lede,
+.com-intro .hub-hero .no-diz,
+.com-intro nav,
+.com-intro .topbar{opacity:0;transform:translateY(10px);}
+.com-intro.pronto .hub-hero h1,
+.com-intro.pronto .hub-hero .lede,
+.com-intro.pronto .hub-hero .no-diz,
+.com-intro.pronto nav,
+.com-intro.pronto .topbar{opacity:1;transform:none;
+  transition:opacity .75s ease, transform .75s cubic-bezier(.2,.7,.3,1);}
+.com-intro.pronto nav{transition-delay:.08s;}
+.com-intro.pronto .topbar{transition-delay:.16s;}
+
+@media (max-width:720px){
+  .campo-bin{height:clamp(190px,32svh,300px);}
+  .no-diz{font-size:14.5px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .com-intro .hub-hero h1,
+  .com-intro .hub-hero .lede,
+  .com-intro .hub-hero .no-diz,
+  .com-intro nav,
+  .com-intro .topbar{opacity:1;transform:none;}
+  .no-ponto{animation:none;}
 }

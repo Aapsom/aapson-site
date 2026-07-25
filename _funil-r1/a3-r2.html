@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAPSON &middot; A3 refinado &middot; R2 Significado</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="funil.css">
+<style>.r2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;min-height:100svh}
+  .r2c .texto{padding:80px 0}
+  .giro{display:flex;align-items:flex-start;gap:12px;margin:26px 0 4px;min-height:56px;
+    padding:14px 18px;border-left:2px solid var(--a3);background:rgba(11,7,20,.86);backdrop-filter:blur(4px)}
+  .ponta{width:8px;height:8px;border-radius:50%;background:var(--a3);flex:none;margin-top:7px;
+    box-shadow:0 0 0 0 var(--a3);animation:pulsa 2.6s ease-out infinite}
+  @keyframes pulsa{0%{box-shadow:0 0 0 0 rgba(200,116,60,.55)}70%{box-shadow:0 0 0 13px rgba(200,116,60,0)}100%{box-shadow:0 0 0 0 rgba(200,116,60,0)}}
+  .giro .txt{font-size:16px;color:var(--muted);line-height:1.5}
+  .giro .txt b{color:var(--fg)}
+  @media(max-width:900px){.r2c{grid-template-columns:1fr}.r2c .texto{padding:120px 0 60px}}</style>
+</head>
+<body class="com-intro">
+<div class="tag">
+  <span><b>A3 &rarr; R2</b> &nbsp;Significado</span>
+  <span class="meio">o n&oacute; central conduz: ele diz o que &eacute; em cada uma das tr&ecirc;s frentes</span>
+  <span><a href="refino.html">&larr; os 3 refinamentos</a></span>
+</div>
+<nav><div class="wrap"><a class="marca" href="#"><svg viewBox="0 0 100 124" aria-hidden="true"><polygon fill="#D9F03A" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon fill="#A78BFA" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle fill="#C8743C" cx="50" cy="62" r="9"/></svg><span class="word"><span class="p1">A</span><span class="p2">A</span><span class="resto">PSON</span></span></a><div class="links"><a href="#frentes">Frentes</a><a href="#frentes">Quem conduz</a><a href="#frentes">Conversar</a></div></div></nav>
+<header class="palco">
+  <canvas id="campo" aria-hidden="true"></canvas>
+  <div class="vinheta" aria-hidden="true"></div>
+  
+  <div class="wrap conteudo r2c">
+    <div class="texto">
+      <p class="olho">// engenharia de cobran&ccedil;a</p>
+      <h1 class="h-medio">O sistema n&atilde;o pode<br>errar duas vezes.</h1>
+      <p class="lede">Toda cobran&ccedil;a tem um ponto &uacute;nico onde o dado vira dinheiro.
+        <b>&Eacute; o n&oacute; no meio da marca</b> &mdash; e ele muda de nome conforme a escala.</p>
+      <div class="giro" aria-live="polite">
+        <span class="ponta" aria-hidden="true"></span>
+        <span class="txt" id="giro-txt"></span>
+      </div>
+      <div class="acoes">
+        <a class="btn btn-1" href="#frentes">Ver as tr&ecirc;s entregas</a>
+        <a class="btn btn-2" href="https://wa.me/5511970776856">Conversar</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="banda" id="frentes">
+  <div class="wrap">
+    <p class="rotulo">// a mesma base, tr&ecirc;s sa&iacute;das</p>
+    <h2 class="h-medio">Cobran&ccedil;a que n&atilde;o falha &mdash; em tr&ecirc;s escalas diferentes.</h2>
+    <p class="lede">A disciplina &eacute; uma s&oacute;: garantir que o dinheiro certo saia da conta certa,
+      uma vez s&oacute;. Muda o tamanho de quem precisa dela.</p>
+    <div class="frentes">
+      <a class="frente" href="../fscd.html">
+        <span class="n">01 &mdash; SEGURADORA</span>
+        <h3>A migra&ccedil;&atilde;o n&atilde;o trava no c&oacute;digo. Trava no dado.</h3>
+        <p>Assessment de prontid&atilde;o FS-CD &rarr; S/4HANA em 5 dias, pacote fechado de R$ 15.000.
+          Depois do go-live, hypercare 24/7.</p>
+        <span class="seta">Ver a frente FS-CD &rarr;</span>
+      </a>
+      <a class="frente" href="../pme.html">
+        <span class="n">02 &mdash; PEQUENO NEG&Oacute;CIO</span>
+        <h3>Sua mensalidade caiu? A gente garante que sim.</h3>
+        <p>Quando a cobran&ccedil;a autom&aacute;tica falha, o sistema detecta, tenta de novo do jeito
+          certo, avisa o cliente e confere o extrato. Em valida&ccedil;&atilde;o.</p>
+        <span class="seta">Ver a frente PME &rarr;</span>
+      </a>
+      <a class="frente" href="../mentoria.html">
+        <span class="n">03 &mdash; CONSULTOR</span>
+        <h3>IA aplicada ao seu projeto real.</h3>
+        <p>Mentoria in-company ou trilha 1:1, conduzida por quem usa IA todos os dias em projeto
+          de verdade &mdash; n&atilde;o em teoria.</p>
+        <span class="seta">Ver a mentoria &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+<footer class="rodape"><div class="wrap">
+  <span>&copy; 2026 AAPSON &mdash; engenharia de cobran&ccedil;a aplicada.</span>
+  <span>Refinamento <b id="qual"></b> de A3</span>
+</div></footer>
+<script src="marca-binaria.js"></script>
+<script>
+  function pronto() { document.body.classList.add('pronto'); }
+  var motor = MarcaBinaria(document.getElementById('campo'), {
+    modo: 'corrente', alturaMarca: 0.66, densidade: 12, deslocX: 0.24,
+    intro: true, aoTerminar: pronto
+  });
+  document.getElementById('qual').textContent = 'R2';
+  if (true) {
+    // Rede de seguranca: se o motor quebrar, o texto NAO pode ficar invisivel
+    // para sempre. Falha de enfeite nunca derruba o conteudo.
+    setTimeout(pronto, 4000);
+    // quem ja decidiu rolar ou clicar nao espera a intro
+    var pular = function () { motor.pularIntro(); pronto(); };
+    addEventListener('scroll', pular, { passive: true, once: true });
+    addEventListener('pointerdown', pular, { once: true });
+    addEventListener('keydown', pular, { once: true });
+  } else pronto();
+  
+  var FALAS = [
+    '<b>Na seguradora:</b> a compensa&ccedil;&atilde;o que n&atilde;o pode duplicar.',
+    '<b>Na PME:</b> o retry do Pix que ningu&eacute;m v&ecirc; falhar.',
+    '<b>No consultor:</b> o crit&eacute;rio que a IA n&atilde;o substitui.'
+  ];
+  var alvo = document.getElementById('giro-txt'), iF = 0;
+  alvo.innerHTML = FALAS[0];
+  if (!MarcaBinaria.reducedMotion) {
+    setInterval(function () {
+      iF = (iF + 1) % FALAS.length;
+      alvo.style.opacity = 0;
+      setTimeout(function () { alvo.innerHTML = FALAS[iF]; alvo.style.opacity = 1; }, 260);
+    }, 3800);
+    alvo.style.transition = 'opacity .26s ease';
+  }
+</script>
+</body>
+</html>
