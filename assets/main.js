@@ -7,7 +7,7 @@
 
   /* --- Lenis: inércia de scroll (o "feel Apple") --- */
   if (!reduce && typeof Lenis !== "undefined") {
-    var lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, smoothWheel: true });
+    var lenis = new Lenis({ lerp: 0.18, wheelMultiplier: 0.75, smoothWheel: true });
     function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
@@ -92,7 +92,7 @@
   function setFinal() {
     if (pipe) pipe.style.width = "100%";
     if (vpipe) vpipe.style.height = "100%";
-    if (label) label.firstChild.nodeValue = STAGES[STAGES.length - 1];
+    /* idem apply(): o titulo do primeiro card nao e reescrito */
     nodes.forEach(function (n) { n.classList.add("on"); });
     vnodes.forEach(function (n, i) { n.classList.toggle("on", i === STAGES.length - 1); });
     vlabels.forEach(function (n, i) { n.classList.toggle("on", i === STAGES.length - 1); });
@@ -118,16 +118,15 @@
         if (window.__aapsonScrubProg) window.__aapsonScrubProg(cur);
         var idx = Math.min(STAGES.length - 1, Math.floor(cur * STAGES.length));
         if (idx !== lastIdx) {
-          /* fade out/in no label ao trocar de etapa */
-          if (label) {
-            label.style.opacity = "0";
-            label.style.transform = "translateY(6px)";
-            setTimeout(function () {
-              label.firstChild.nodeValue = STAGES[idx];
-              label.style.opacity = "1";
-              label.style.transform = "none";
-            }, 140);
-          }
+          /* O [data-scrub-label] e o titulo do PRIMEIRO card da lista, nao um
+             rotulo solto. Reescreve-lo com o estagio atual fazia o primeiro
+             estagio (Detecta / Diagnostico) sumir da lista e o estagio corrente
+             aparecer DUAS vezes no fim do scroll. Quem comunica a etapa e o card
+             ativo (.on) -- o titulo fica estatico, e o fade some junto porque
+             piscava um texto que nao muda mais.
+             NAO remover data-scrub-label do HTML: ele e o guard deste bloco
+             (linha `if (scrub && vpipe && label)`). Sem ele o scrub morre em
+             silencio, que foi exatamente o que aconteceu com a fscd.html. */
           nodes.forEach(function (n) {
             var at = parseFloat(n.getAttribute("data-at"));
             var on = at >= 1 ? (idx >= STAGES.length - 1) : (cur >= at - 0.001);
