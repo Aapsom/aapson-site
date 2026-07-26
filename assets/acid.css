@@ -856,3 +856,8 @@ html.lenis{scroll-behavior:auto!important;}
   .com-intro .topbar{opacity:1;transform:none;}
   .no-ponto{animation:none;}
 }
+
+/* linha do nó nas subpáginas: a página mãe CICLA as 3 frentes, cada subpágina
+   fixa a sua. Dentro de coluna alinhada à esquerda o `margin:auto` do bloco
+   centralizaria — aqui ele encosta à esquerda. */
+.dip-text .no-diz, .scrub-grid .no-diz{margin-left:0;margin-right:0;max-width:56ch;}

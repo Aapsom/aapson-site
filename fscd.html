@@ -71,21 +71,60 @@
       <div class="dip-text">
         <span class="eyebrow blue rise">// Consultoria · FS-CD → S/4HANA</span>
         <h1 class="rise d1">A migração S/4HANA não trava no código. Trava no dado.</h1>
-        <p class="lede rise d2">Partidas em aberto inconsistentes, contratos órfãos, histórico de compensação que o modelo novo rejeita. A AAPSON entra exatamente nesse ponto: um <b>assessment de 5 dias</b> que aponta o dado FI-CA/FS-CD que vai travar a migração, explica a causa provável e entrega a trilha de saneamento priorizada — com a disciplina de quem vive a cadeia FKK há 8 anos. Depois do go-live, ainda tem o hypercare 24/7 que vigia o bastidorm sem queimar sênior.</p>
+        <p class="lede rise d2">Partidas em aberto inconsistentes, contratos órfãos, histórico de compensação que o modelo novo rejeita. A AAPSON entra exatamente nesse ponto: um <b>assessment de 5 dias</b> que aponta o dado FI-CA/FS-CD que vai travar a migração, explica a causa provável e entrega a trilha de saneamento priorizada — com a disciplina de quem vive a cadeia FKK há 8 anos. Depois do go-live, ainda tem o hypercare 24/7 que vigia o bastidor sem queimar sênior.</p>
+        <p class="no-diz rise d2">
+          <span class="no-ponto" aria-hidden="true"></span>
+          <span><b>Na seguradora:</b> a compensação que não pode duplicar. É o nó no meio da marca — o ponto onde o dado vira dinheiro.</span>
+        </p>
         <div class="hero-actions rise d3">
           <a class="btn btn-solid" href="#contato">Falar sobre o projeto</a>
           <a class="btn btn-outline" href="#diagnostico">Ver o diagnóstico →</a>
         </div>
       </div>
       <div class="scrub-visual" aria-hidden="true">
-        <div class="pipe"><div class="pipe-fill" data-pipe></div></div>
-        <div class="nodes">
-          <span class="node" style="left:0%" data-at="0"></span>
-          <span class="node" style="left:33.3%" data-at="0.33"></span>
-          <span class="node" style="left:66.6%" data-at="0.66"></span>
-          <span class="node" style="left:100%" data-at="1"></span>
+        <!-- LAYOUT B (card viajante), portado da pme.html. O layout horizontal
+             anterior (.pipe + .nodes) usava data-pipe, mas o guard do scrub no
+             main.js exige [data-vpipe] — então o scrub desta página estava MORTO:
+             o bloco inteiro era pulado e a timeline não respondia ao scroll.
+             Os estágios já vinham declarados em data-stages na <section>. -->
+        <div class="vtimeline">
+          <div class="vpipe"><div class="vpipe-fill" data-vpipe></div></div>
+          <ol class="vstages">
+            <li class="on" data-vat="0">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon" data-ss-icon>◎</div>
+                <b data-scrub-label>Diagnóstico</b>
+                <small class="sub">role a página — o projeto avança com você</small>
+                <div class="vc-chip"><span class="dot"></span><span><b>assessment de 5 dias</b><small>pacote fechado · R$ 15.000</small></span></div>
+              </div>
+            </li>
+            <li data-vat="0.33">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon">⚙</div>
+                <b>Saneamento</b>
+                <small class="sub">trilha priorizada: o que corrigir antes da carga</small>
+              </div>
+            </li>
+            <li data-vat="0.66">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon">⇢</div>
+                <b>Migração</b>
+                <small class="sub">o dado entra no modelo novo sem rejeição</small>
+              </div>
+            </li>
+            <li data-vat="1">
+              <span class="vdot"></span>
+              <div class="vcard">
+                <div class="vc-icon">✓</div>
+                <b>Handoff</b>
+                <small class="sub">hypercare 24/7 vigia o bastidor depois do go-live</small>
+              </div>
+            </li>
+          </ol>
         </div>
-        <div class="scrub-label"><span data-scrub-label>Diagnóstico</span><span class="sub">role a página — o projeto avança com você</span></div>
       </div>
     </div>
   </div>
