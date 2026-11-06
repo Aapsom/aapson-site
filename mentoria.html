@@ -3,100 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAPSON · Mentoria — IA aplicada ao trabalho real do consultor SAP</title>
+<title>AAPSON · Turma-piloto de IA para consultores e analistas</title>
   <script src="assets/theme.js"></script>
-<meta name="description" content="Mentoria de IA para consultores SAP e de mercado — 1:1 (4 sessões) ou in-company para equipes. Conduzida por quem vive o FS-CD há 8 anos e já treinou equipes de consultoria no uso real de IA.">
+<meta name="description" content="Turma-piloto para consultores de TI e analistas de negócio: em 4 encontros, você define o que pode entrar na ferramenta, como revisar o resultado e como falar com o cliente, e monta seu primeiro agente.">
 <link rel="canonical" href="https://aapsom.github.io/aapson-site/mentoria.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aapsom.github.io/aapson-site/mentoria.html">
-<meta property="og:title" content="AAPSON · Mentoria — IA aplicada ao trabalho real do consultor SAP">
-<meta property="og:description" content="4 sessões 1:1 + plano de IA aplicado ao seu projeto. Consultores que dominam IA não serão substituídos por ela.">
+<meta property="og:title" content="AAPSON · Turma-piloto de IA para consultores e analistas">
+<meta property="og:description" content="Aprenda a usar IA sem expor dado de cliente e monte seu primeiro agente em 4 encontros. Janeiro de 2027.">
 <meta property="og:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AAPSON · Mentoria — IA aplicada ao trabalho real do consultor SAP">
-<meta name="twitter:description" content="4 sessões 1:1 + plano de IA aplicado ao seu projeto real.">
+<meta name="twitter:title" content="AAPSON · Turma-piloto de IA para consultores e analistas">
+<meta name="twitter:description" content="Aprenda a usar IA sem expor dado de cliente e monte seu primeiro agente em 4 encontros.">
 <meta name="twitter:image" content="https://aapsom.github.io/aapson-site/assets/og-image.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -10 116 144'%3E%3Crect x='-8' y='-10' width='116' height='144' rx='20' fill='%230B0B0F'/%3E%3Cpolygon fill='%23D9F03A' points='50,2 91,56 73,56 50,25 27,56 9,56'/%3E%3Cpolygon fill='%23A78BFA' points='9,68 27,68 50,99 73,68 91,68 50,122'/%3E%3Ccircle fill='%23C8743C' cx='50' cy='62' r='9'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/acid.css">
+<style>
+.m-duas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-xl);margin-top:var(--s-2xl);}
+.m-duas .proof h3{font:700 clamp(21px,2.4vw,26px)/1.2 var(--font-display);margin:0 0 var(--s-sm);}
+.m-duas .proof p{color:var(--muted);font-size:15px;margin-top:var(--s-sm);}
+.m-duas .proof p a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
+.m-valor{font:700 clamp(38px,5vw,54px)/1.05 var(--font-display);}
+.m-lista{list-style:none;margin:var(--s-md) 0 0;padding:0;}
+.m-lista li{color:var(--muted);font-size:15px;padding-block:var(--s-sm);border-top:1px solid var(--line);}
+.m-lista li:first-child{border-top:0;}
+.m-lista li a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
+.m-condutor{max-width:62ch;}
+.m-encabeca{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-2xl);}
+.m-encabeca .ring-badge b{font-size:20px;}
+@media(max-width:760px){.m-duas{grid-template-columns:minmax(0,1fr);}.m-encabeca .ring-badge{display:none;}}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "AAPSON · Mentoria — IA aplicada ao trabalho real do consultor SAP",
+  "headline": "AAPSON · Turma-piloto de IA para consultores e analistas",
   "publisher": {"@type": "Organization", "name": "AAPSON"}
 }
 </script>
 </head>
-<div class="scroll-progress" aria-hidden="true"></div>
 <body>
-
-<!-- GLOBAL STATUS BAR -->
-<div class="topbar" role="status" aria-label="Status da página">
-  <div class="wrap">
-    <span class="tb-astro" aria-hidden="true">✳</span>
-    <span class="tb-seg">sessão <span class="tb-val" data-sessão>0s</span></span>
-    <span class="tb-sep">·</span>
-    <span class="tb-seg tb-hide-sm"><span class="tb-val" data-pings>0</span> pings</span>
-    <span class="tb-sep">·</span>
-    <span class="tb-seg">circuito <span class="tb-live">ativo</span></span>
-  </div>
-</div>
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <nav>
   <div class="wrap">
-    <a class="brand" href="./" aria-label="AAPSON — início">
+    <a class="brand" href="./" aria-label="AAPSON, início">
       <span class="mark"><svg viewBox="0 0 100 124" aria-hidden="true"><polygon class="m-top" points="50,2 91,56 73,56 50,25 27,56 9,56"/><polygon class="m-base" points="9,68 27,68 50,99 73,68 91,68 50,122"/><circle class="m-node" cx="50" cy="62" r="9"/></svg></span>
       <span class="word"><span class="a1">A</span><span class="a2">A</span><span class="rest">PSON</span></span>
     </a>
     <div class="navright">
-      <a class="nlink" href="#formato">Formato</a>
-      <a class="nlink" href="pme.html">PME</a>
-      <a class="nlink" href="fscd.html">FS-CD</a>
-      <a class="nlink" href="nicho-fscd/index.html">Blog FS-CD</a>
-      <span class="status"><span class="dot" aria-hidden="true"></span>Vagas limitadas</span>
+      <a class="nlink" href="#encontros">Encontros</a>
+      <a class="nlink" href="#valor">Valor</a>
+      <a class="nlink" href="#perguntas">Perguntas</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ABERTURA -->
 <header class="hero">
   <div class="wrap">
     <div class="dip">
       <div class="dip-text">
-        <span class="eyebrow pink rise">// Mentoria de IA · 1:1 e equipes</span>
-        <h1 class="rise d1">Consultores que dominam IA não serão substituídos por ela.</h1>
-        <p class="lede rise d2">Mentoria para consultores SAP e de mercado que querem usar IA no projeto real — não em slide de tendência. O formato principal é <b>in-company</b>: um ciclo sob medida para a sua consultoria, com o mesmo método aplicado em equipes reais. Para quem prefere começar sozinho, tem a trilha 1:1 de 4 sessões. Tudo conduzido por quem usa IA todos os dias em projeto de verdade e <b>já treinou equipes de consultoria</b> nesse método.</p>
+        <span class="eyebrow pink rise">// Turma-piloto · janeiro de 2027</span>
+        <h1 class="rise d1">Aprenda a usar IA sem expor dado de cliente e monte seu primeiro agente.</h1>
+        <p class="lede rise d2">Esta turma é para consultores de TI e analistas de negócio que atendem clientes. No primeiro encontro, você define o que pode entrar na ferramenta, o que revisar e como falar com o cliente sobre o uso de IA. Nos outros três, usa essas regras para montar, testar e ajustar um agente simples no Claude Code.</p>
         <p class="no-diz rise d2">
           <span class="no-ponto" aria-hidden="true"></span>
-          <span><b>No consultor:</b> o critério que a IA não substitui. É o nó no meio da marca — o ponto onde o dado vira decisão.</span>
+          <span><b>O agente que você monta</b> recebe uma tarefa, segue as suas instruções, consulta os seus documentos e entrega um rascunho para você revisar.</span>
         </p>
         <div class="hero-actions rise d3">
-          <a class="btn btn-solid" href="#contato">Quero a mentoria</a>
-          <a class="btn btn-outline" href="#formato">Ver o formato →</a>
+          <a class="btn btn-solid" href="#contato">Quero participar</a>
+          <a class="btn btn-outline" href="#encontros">Ver os encontros →</a>
         </div>
       </div>
       <div class="dip-proof rise d2">
         <div class="proof">
-          <div class="proof-head"><span>// formatos</span><span>1:1 · in-company</span></div>
+          <div class="proof-head"><span>// a turma</span><span>primeira edição</span></div>
           <div class="axis ment">
-            <div class="axis-k">Individual (1:1)</div>
-            <div class="axis-v">4 sessões de ~1 hora, em ~1 mês</div>
-            <div class="axis-d">Agenda combinada · acompanhamento assíncrono entre as sessões</div>
+            <div class="axis-k">Datas</div>
+            <div class="axis-v">13, 20 e 27 de janeiro e 3 de fevereiro de 2027</div>
+            <div class="axis-d">Quartas-feiras, das 19h às 21h, ao vivo e online</div>
           </div>
           <div class="axis ment">
-            <div class="axis-k">Equipes (in-company)</div>
-            <div class="axis-v">Ciclo sob medida pra sua consultoria</div>
-            <div class="axis-d">O mesmo método, desenhado pro fluxo do seu time — formato já aplicado em equipes reais</div>
+            <div class="axis-k">Valor</div>
+            <div class="axis-v">R$ 490 por pessoa</div>
+            <div class="axis-d">Pré-venda até 15 de dezembro de 2026. A assinatura do Claude Pro não está incluída</div>
           </div>
           <div class="axis ment">
-            <div class="axis-k">Entregável</div>
-            <div class="axis-v">Seu plano de IA aplicado</div>
-            <div class="axis-d">Fluxo de trabalho com IA montado no SEU contexto de projeto — pronto pra usar na segunda-feira</div>
+            <div class="axis-k">Você termina com</div>
+            <div class="axis-v">Seu primeiro agente, montado por você</div>
+            <div class="axis-d">E as regras que escreveu para o seu trabalho</div>
           </div>
         </div>
       </div>
@@ -104,14 +105,16 @@
   </div>
 </header>
 
-<!-- FORMATO — momento pinado (assinatura) -->
-<section id="formato" class="reveal">
-<div class="ring-badge" aria-hidden="true"><div class="ring"></div><div><b>8<br>anos</b><small>FS-CD</small></div></div>
-
+<!-- ENCONTROS -->
+<section id="encontros" class="reveal">
   <div class="wrap">
-    <h2>Não é curso gravado. São 4 sessões no seu projeto real.</h2>
-    <p class="sec-lede">Cada sessão parte do seu contexto — não de exemplo genérico. Entre as sessões, você aplica; na seguinte, ajustamos. Esta é a trilha individual; para equipes, o mesmo método vira um ciclo in-company sob medida. Valor 1:1: R$ 250 por sessão (pacote 4 sessões = R$ 1.000) · in-company: R$ 1.500 por turma de 8h.</p>
-    <p class="deck-cta"><a class="btn btn-outline" href="https://github.com/aapsom/aapson-site/raw/main/Trabalho/06-Produto-SaaS/mentoria_artefatos/Deck_5_Niveis_Mentoria.pptx" download>⬇ Baixar deck da trilha (PPTX editável)</a> <a class="btn btn-outline" href="https://github.com/aapsom/aapson-site/raw/main/Trabalho/06-Produto-SaaS/mentoria_artefatos/Kit_Mentorado.docx" download>⬇ Kit do mentorado (DOCX)</a></p>
+    <div class="m-encabeca">
+      <div>
+        <h2>O que acontece em cada encontro.</h2>
+        <p class="sec-lede">O primeiro encontro define as regras, e os outros três as aplicam na construção do agente. Cada encontro dura 2 horas.</p>
+      </div>
+      <div class="ring-badge" aria-hidden="true"><div class="ring"></div><div><b>4<br>encontros</b><small>8h ao vivo</small></div></div>
+    </div>
     <div class="flow">
       <div class="flow-stick" aria-hidden="true">
         <svg class="flow-mark" viewBox="0 0 100 124">
@@ -120,29 +123,56 @@
           <circle fill="rgba(200,116,60,.35)" stroke="var(--a3)" stroke-width="1.5" class="draw m-node" pathLength="1" cx="50" cy="62" r="9"/>
         </svg>
         <div class="flow-count" data-flow-count>01<span class="tot"> / 04</span></div>
-        <div class="flow-now" data-flow-now>Diagnóstico</div>
+        <div class="flow-now" data-flow-now>13 de janeiro</div>
       </div>
       <div class="flow-steps">
-        <div class="flow-step" data-i="1" data-label="Diagnóstico">
-          <span class="k">SESSÃO 1 · DIAGNÓSTICO</span>
-          <h4>Onde a IA cabe no seu trabalho — e onde não cabe.</h4>
-          <p>Mapeamos seu dia a dia de projeto: análise, documentação, teste, comunicação. Sai a lista honesta do que a IA acelera no seu caso e do que continua sendo seu julgamento.</p>
+        <div class="flow-step" data-i="1" data-label="13 de janeiro">
+          <span class="k">ENCONTRO 1 · 13/JAN</span>
+          <h4>Regras antes da ferramenta.</h4>
+          <p>Você define o que pode entrar na ferramenta, levando em conta contrato, NDA e LGPD, o que precisa de revisão e como falar sobre IA com o cliente. Sai com uma página com as suas regras.</p>
         </div>
-        <div class="flow-step" data-i="2" data-label="Ferramentas">
-          <span class="k">SESSÃO 2 · FERRAMENTAS</span>
-          <h4>Montar o seu ambiente, sem virar desenvolvedor.</h4>
-          <p>Assistentes, agentes e a sua própria base de conhecimento, configurados no seu contexto. Você sai da sessão com o ambiente funcionando — não com uma lista de links.</p>
+        <div class="flow-step" data-i="2" data-label="20 de janeiro">
+          <span class="k">ENCONTRO 2 · 20/JAN</span>
+          <h4>Como um agente funciona.</h4>
+          <p>Você vê a diferença entre um chat e um agente e aprende a usar instruções, contexto, permissões e limites de uso. Sai com a instalação conferida e a pasta do agente pronta, já com as suas instruções.</p>
         </div>
-        <div class="flow-step" data-i="3" data-label="Prática guiada">
-          <span class="k">SESSÃO 3 · PRÁTICA GUIADA</span>
-          <h4>Aplicar numa entrega real do seu projeto.</h4>
-          <p>Você usa o fluxo numa entrega de verdade — um documento funcional, uma análise, um teste — e revisamos juntas(os) o resultado. É onde o método vira hábito.</p>
+        <div class="flow-step" data-i="3" data-label="27 de janeiro">
+          <span class="k">ENCONTRO 3 · 27/JAN</span>
+          <h4>Sua primeira skill.</h4>
+          <p>Você aprende o que é uma skill, quando vale criar uma e como escrever a descrição, as instruções e os arquivos de apoio. Cria e testa uma skill que transforma anotações fictícias de reunião em um rascunho de ata.</p>
         </div>
-        <div class="flow-step" data-i="4" data-label="Autonomia">
-          <span class="k">SESSÃO 4 · AUTONOMIA</span>
-          <h4>Seu plano de IA aplicado, pronto pra segunda-feira.</h4>
-          <p>Fechamos o entregável: o fluxo de trabalho com IA no seu contexto, com critérios explícitos do que delegar à IA e do que nunca delegar. Você segue sozinho(a) — esse é o ponto.</p>
+        <div class="flow-step" data-i="4" data-label="3 de fevereiro">
+          <span class="k">ENCONTRO 4 · 03/FEV</span>
+          <h4>Testar e melhorar.</h4>
+          <p>Você testa o agente com novas anotações, procura os erros e ajusta a skill. Sai com o agente testado e uma lista do que falta antes de usá-lo no trabalho. Subagentes e conectores aparecem como próximos passos.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALOR E PRÉ-REQUISITOS -->
+<section id="valor" class="reveal">
+  <div class="wrap">
+    <h2>Valor e o que você precisa ter.</h2>
+    <div class="m-duas">
+      <div class="proof">
+        <div class="proof-head"><span>// turma-piloto</span><span>4 encontros</span></div>
+        <div class="m-valor">R$ 490</div>
+        <p>Por pessoa, pelos 4 encontros. A pré-venda vai até 15 de dezembro de 2026.</p>
+        <ul class="m-lista">
+          <li>Certificado de participação.</li>
+          <li>Gravação por tempo limitado, só para a turma.</li>
+          <li>Você pode desistir em até 7 dias depois da compra e receber o valor de volta.</li>
+        </ul>
+      </div>
+      <div class="proof">
+        <div class="proof-head"><span>// pré-requisitos</span><span>antes de 20/jan</span></div>
+        <ul class="m-lista">
+          <li>Assinatura do Claude Pro, contratada direto com a Anthropic e não incluída nos R$ 490. <a href="https://claude.com/pricing" target="_blank" rel="noopener">Veja o valor atual</a>.</li>
+          <li>Computador pessoal, para instalar o aplicativo. Notebooks de empresa podem bloquear a instalação.</li>
+          <li>Conta pessoal, sem arquivos de cliente na pasta do exercício.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -151,38 +181,111 @@
 <!-- PARA QUEM -->
 <section id="paraquem" class="reveal">
   <div class="wrap">
-    <div class="wedge-panel reveal">
-      <span class="eyebrow pink">// Para quem é</span>
-      <h2>Para o consultor que sente que o mercado virou — e quer virar junto, com critério.</h2>
-      <p>Consultores SAP (funcionais e técnicos), consultores de mercado em geral — e <b>gestores de consultoria</b> que querem levar a equipe inteira pro mesmo patamar. Você não precisa saber programar: precisa da disposição de mudar o próprio fluxo de trabalho. Quem conduz a mentoria usa IA todos os dias em projeto de verdade — da análise de requisito à documentação técnica — e <b>já formou equipes de consultoria nesse método</b>. Por isso o formato central é o in-company: o que já está em uso em equipes reais, adaptado ao seu contexto.</p>
+    <h2>Para quem é esta turma.</h2>
+    <div class="m-duas">
+      <div class="proof">
+        <h3>É para você se</h3>
+        <ul class="m-lista">
+          <li>você é consultor de TI ou analista de negócio e atende clientes;</li>
+          <li>já usa IA ou quer começar, e ainda não sabe o que pode entrar na ferramenta;</li>
+          <li>quer montar um agente para entender como ele funciona e onde precisa de revisão.</li>
+        </ul>
+      </div>
+      <div class="proof">
+        <h3>Não é para você se</h3>
+        <ul class="m-lista">
+          <li>procura um agente ou uma estrutura pronta: aqui você aprende o método e monta o seu;</li>
+          <li>quer usar dados reais de clientes em aula;</li>
+          <li>precisa de orientação jurídica: a turma não substitui o jurídico nem o encarregado de dados da empresa.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- QUEM CONDUZ -->
+<section id="quem" class="reveal">
+  <div class="wrap">
+    <div class="wedge-panel reveal">
+      <span class="eyebrow pink">// Quem conduz</span>
+      <h2>Uma consultora que usa IA no próprio trabalho.</h2>
+      <p class="m-condutor">Quem conduz a turma atende clientes como consultora, usa IA todos os dias e já treinou equipes de consultoria nesse uso. Esta é a primeira edição neste formato, então ainda não há depoimentos para mostrar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERGUNTAS -->
+<section id="perguntas" class="reveal">
+  <div class="wrap">
+    <h2>Perguntas frequentes.</h2>
+    <div class="faq">
+      <details>
+        <summary>Preciso saber programar?</summary>
+        <div class="faq-a"><p>O exercício não pede que você escreva código. Você escreve as instruções em português, instala um aplicativo e aprova o que o agente faz na pasta do exercício.</p></div>
+      </details>
+      <details>
+        <summary>Por que usar o Claude Code?</summary>
+        <div class="faq-a"><p>Ele trabalha com os arquivos de uma pasta e pode pedir sua aprovação antes de editar um arquivo ou rodar um comando. Assim, você vê o agente agir e pratica a revisão. A forma de definir instruções, limites e revisão também serve para outras ferramentas. A AAPSON não tem vínculo com a Anthropic.</p></div>
+      </details>
+      <details>
+        <summary>Quando preciso assinar o Claude Pro?</summary>
+        <div class="faq-a"><p>Depois do encontro de 13 de janeiro, a tempo de instalar o aplicativo antes de 20 de janeiro. Você recebe o passo a passo da instalação nessa semana. A cobrança e o cancelamento seguem as regras da Anthropic.</p></div>
+      </details>
+      <details>
+        <summary>Posso usar dados reais de clientes?</summary>
+        <div class="faq-a"><p>Não. O exercício usa dados fictícios ou públicos. Antes de usar um agente no trabalho real, você precisa conferir o que o contrato e a empresa permitem.</p></div>
+      </details>
+      <details>
+        <summary>E se eu faltar a um encontro?</summary>
+        <div class="faq-a"><p>A gravação fica disponível por tempo limitado, só para a turma. Assim, você pode acompanhar o encontro e chegar ao seguinte com o exercício feito.</p></div>
+      </details>
+      <details>
+        <summary>Vou receber um agente pronto?</summary>
+        <div class="faq-a"><p>Não. Cada pessoa monta o próprio agente em aula. A turma ensina o método e não entrega modelos nem estruturas da AAPSON.</p></div>
+      </details>
+      <details>
+        <summary>Como faço a inscrição?</summary>
+        <div class="faq-a"><p>Mande uma mensagem pelo WhatsApp contando o que você faz hoje. Se a turma fizer sentido para o seu caso, combinamos a inscrição e o pagamento.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- OUTROS FORMATOS -->
+<section id="formatos" class="reveal">
+  <div class="wrap">
+    <h2>Outros formatos.</h2>
+    <div class="m-duas">
+      <div class="proof">
+        <h3>Individual</h3>
+        <p>Quatro sessões de cerca de 1 hora, sobre o seu trabalho. R$ 250 por sessão ou R$ 1.000 pelo pacote.</p>
+      </div>
+      <div class="proof">
+        <h3>Equipes</h3>
+        <p>Turma fechada para a sua consultoria, adaptada à rotina da equipe. Valor sob consulta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FECHAMENTO -->
 <section id="contato" class="endcta">
   <div class="wrap">
-    <span class="eyebrow pink">// Contato</span>
-    <h2>Quer ser o consultor que usa IA — não o substituído por ela?</h2>
-    <p>Comece com uma conversa direta e sem compromisso: você conta seu momento e seu projeto, e desenhamos juntos se (e como) a mentoria faz sentido pra você. Valor 1:1: R$ 250 por sessão (4 sessões) · in-company: R$ 1.500 por turma de 8h.</p>
+    <span class="eyebrow pink">// Inscrição</span>
+    <h2>Quer entrar na primeira turma?</h2>
+    <p>Mande uma mensagem contando o que você faz hoje e como usa IA. A pré-venda vai até 15 de dezembro de 2026.</p>
     <div class="cta-actions">
-      <a class="btn btn-solid" href="mailto:contato@aapson.com.br?subject=Mentoria%20de%20IA%20%C2%B7%20consultor&body=Oi%2C%20sou%20consultor(a)%20e%20quero%20saber%20da%20mentoria%20de%20IA.%20Meu%20contexto%3A%20">contato@aapson.com.br</a>
+      <a class="btn btn-solid" href="https://wa.me/5511970776856?text=Oi%2C%20quero%20saber%20da%20turma-piloto%20de%20IA.%20Meu%20trabalho%20hoje%3A%20">Conversar pelo WhatsApp</a>
     </div>
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8 anos</b> · Capital zero</span>
-    <span><b>SAP FS-CD</b> · S/4HANA · <b>PIX Automático</b> · FI-CA · Idempotência · <b>RAG</b> · NIM · Claude · <b>Conciliação</b> · FKK · <b>8 anos</b> · Capital zero</span>
-  </div>
-</div>
 <footer>
   <div class="colorbar"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
   <div class="wrap">
     <div class="foot-inner">
-      <span>© 2026 AAPSON — IA aplicada com critério de quem vive o projeto.</span>
-      <a class="mono" href="./">Ver as três frentes →</a> · <a class="mono" href="https://wa.me/5511970776856" style="color:inherit;text-decoration:none">WhatsApp</a>
+      <span>© 2026 AAPSON. IA no trabalho, com critério.</span>
+      <a class="mono" href="./">Início da AAPSON →</a> · <a class="mono" href="https://wa.me/5511970776856" style="color:inherit;text-decoration:none">WhatsApp</a>
     </div>
   </div>
 </footer>
